@@ -1,4 +1,7 @@
 ﻿
+using Autofac;
+using Facebook.DAO;
+
 namespace Facebook
 {
     partial class fAccountForm

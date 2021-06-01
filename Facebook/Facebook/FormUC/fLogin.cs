@@ -1,4 +1,6 @@
 ﻿using Facebook.Common;
+using Facebook.DAO;
+using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +15,14 @@ namespace Facebook.FormUC
 {
     public partial class fLogin : UserControl
     {
-        public fLogin()
+        private readonly IUserDAO _userDAO;
+
+        public fLogin(IUserDAO userDAO)
         {
             InitializeComponent();
+
+            this._userDAO = userDAO;
+
 
             SetUpUI();
         }

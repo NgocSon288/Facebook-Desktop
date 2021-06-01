@@ -1,4 +1,7 @@
-﻿using Facebook.Common;
+﻿using Autofac;
+using Facebook.Common;
+using Facebook.Configure.Autofac;
+using Facebook.DAO;
 using Facebook.FormUC;
 using System;
 using System.Collections.Generic;
@@ -37,9 +40,10 @@ namespace Facebook
         new private void Load()
         {
             Constants.AccountForm = this;
+            var a = Program.Container.Resolve<IUserDAO>();
 
             // Thêm 3 form: login, register, forget vào form chính của account
-            fLogin = new fLogin() { Left = 0, Top = 0 };
+            fLogin = new fLogin(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0 };
             fRegister = new fRegister() { Left = 0, Top = 0, Visible = false };
             fFogetPassword = new fFogetPassword() { Left = 0, Top = 0, Visible = false };
 
@@ -72,10 +76,7 @@ namespace Facebook
 
         #endregion
 
-
         #region Events
-
-
 
         #endregion
     }
