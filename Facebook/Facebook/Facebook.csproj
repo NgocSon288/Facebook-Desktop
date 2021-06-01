@@ -203,6 +203,12 @@
       <Name>Facebook.Service</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Assets\Images\btn-social-facebook.png" />
+    <Content Include="Assets\Images\btn-social-google.png" />
+    <Content Include="Assets\Images\btn-social-twitter.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -16,6 +16,12 @@ namespace Facebook.Common
         public static readonly Color BORDER_MENU_LEFT_COLOR = Color.FromArgb(249, 88, 155); // fmain - màu border của menu 
 
 
+        public static readonly Color TEXTBOX_ENTER_FORECOLOR = Color.FromArgb(46, 134, 222); // Account - màu chữ khi nhấn vào textbox 
+        public static readonly Color TEXTBOX_LEAVE_FORECOLOR = Color.FromArgb(131, 149, 167); // Account - màu chữ khi nhấn vào textbox, border bottom
+
+
+
+
         public static fMain MainForm = null;    // form chính của chương trình
         public static fAccountForm AccountForm = null;
     }

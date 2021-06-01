@@ -18,7 +18,25 @@ namespace Facebook.FormUC
             InitializeComponent();
 
             SetUpUI();
+            Load();
         }
+
+        private string USERNAME_COMPARE = "Tài khoản";
+        private string NEW_PASSWORD_COMPARE = "Mật khẩu mới";
+        private string CONFIRM_PASSWORD_COMPARE = "Nhập lại mật khẩu";
+        private string EMAIL_COMPARE = "Email";
+
+        #region Methods
+
+        new private void Load()
+        {
+            // Setup hình ảnh social
+            picFacebook.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-facebook.png");
+            picTwitter.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-twitter.png");
+            picGoogle.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-google.png");
+        }
+
+        #endregion
 
         #region SetUpUI
 
@@ -52,7 +70,6 @@ namespace Facebook.FormUC
         #endregion
 
         #region Evetns
-
 
         /// <summary>
         /// Chuyển sang trang đăng nhập
@@ -90,5 +107,164 @@ namespace Facebook.FormUC
 
         #endregion
 
+        #region UI
+
+        private void txtUsername_Enter(object sender, EventArgs e)
+        {
+            var txt = txtUsername.Text;
+            lblUsername.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+
+            // Text
+            if (string.Equals(txt, USERNAME_COMPARE, StringComparison.OrdinalIgnoreCase))
+            {
+                txtUsername.Text = "";
+
+                // Cho label hiện lên
+                lblUsername.Visible = true;
+            }
+
+            // Color
+            txtUsername.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+            pnlUsername.BackColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+        }
+
+        private void txtUsername_Leave(object sender, EventArgs e)
+        {
+            var txt = txtUsername.Text;
+            lblUsername.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+
+            // Text
+            if (string.IsNullOrWhiteSpace(txt) || string.IsNullOrEmpty(txt))
+            {
+                txtUsername.Text = USERNAME_COMPARE;
+
+                // Cho label ẩn đi
+                lblUsername.Visible = false;
+            }
+
+            // Color
+            txtUsername.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+            pnlUsername.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+        }
+
+        private void txtNewPassword_Enter(object sender, EventArgs e)
+        {
+            var txt = txtNewPassword.Text;
+            lblNewPassword.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+
+            // Text
+            if (string.Equals(txt, NEW_PASSWORD_COMPARE, StringComparison.OrdinalIgnoreCase))
+            {
+                txtNewPassword.Text = "";
+
+                // Cho label hiện lên
+                lblNewPassword.Visible = true;
+            }
+
+            // Color
+            txtNewPassword.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+            pnlNewPassword.BackColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+            txtNewPassword.UseSystemPasswordChar = true;
+        }
+
+        private void txtNewPassword_Leave(object sender, EventArgs e)
+        {
+            var txt = txtNewPassword.Text;
+            lblNewPassword.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+
+            // Text
+            if (string.IsNullOrWhiteSpace(txt) || string.IsNullOrEmpty(txt))
+            {
+                txtNewPassword.Text = NEW_PASSWORD_COMPARE;
+                txtNewPassword.UseSystemPasswordChar = false;
+
+                // Cho label ẩn đi
+                lblNewPassword.Visible = false;
+            }
+
+            // Color
+            txtNewPassword.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+            pnlNewPassword.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+        }
+
+        private void txtConfirmPassword_Enter(object sender, EventArgs e)
+        {
+            var txt = txtConfirmPassword.Text;
+            lblConfirmPassword.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+
+            // Text
+            if (string.Equals(txt, CONFIRM_PASSWORD_COMPARE, StringComparison.OrdinalIgnoreCase))
+            {
+                txtConfirmPassword.Text = "";
+
+                // Cho label hiện lên
+                lblConfirmPassword.Visible = true;
+            }
+
+            // Color
+            txtConfirmPassword.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+            pnlConfirmPassword.BackColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+            txtConfirmPassword.UseSystemPasswordChar = true;
+        }
+
+        private void txtConfirmPassword_Leave(object sender, EventArgs e)
+        {
+            var txt = txtConfirmPassword.Text;
+            lblConfirmPassword.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+
+            // Text
+            if (string.IsNullOrWhiteSpace(txt) || string.IsNullOrEmpty(txt))
+            {
+                txtConfirmPassword.Text = CONFIRM_PASSWORD_COMPARE;
+                txtConfirmPassword.UseSystemPasswordChar = false;
+
+                // Cho label ẩn đi
+                lblConfirmPassword.Visible = false;
+            }
+
+            // Color
+            txtConfirmPassword.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+            pnlConfirmPassword.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+        }
+
+        private void txtEmail_Enter(object sender, EventArgs e)
+        {
+            var txt = txtEmail.Text;
+            lblEmail.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+
+            // Text
+            if (string.Equals(txt, EMAIL_COMPARE, StringComparison.OrdinalIgnoreCase))
+            {
+                txtEmail.Text = "";
+
+                // Cho label hiện lên
+                lblEmail.Visible = true;
+            }
+
+            // Color
+            txtEmail.ForeColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+            pnlEmail.BackColor = Constants.TEXTBOX_ENTER_FORECOLOR;
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            var txt = txtEmail.Text;
+            lblEmail.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+
+            // Text
+            if (string.IsNullOrWhiteSpace(txt) || string.IsNullOrEmpty(txt))
+            {
+                txtEmail.Text = EMAIL_COMPARE;
+
+                // Cho label ẩn đi
+                lblEmail.Visible = false;
+            }
+
+            // Color
+            txtEmail.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+            pnlEmail.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+        }
+
+        #endregion
     }
 }

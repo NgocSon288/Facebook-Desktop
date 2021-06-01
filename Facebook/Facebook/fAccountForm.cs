@@ -47,9 +47,9 @@ namespace Facebook
             fRegister = new fRegister() { Left = 0, Top = 0, Visible = false };
             fFogetPassword = new fFogetPassword() { Left = 0, Top = 0, Visible = false };
 
-            this.Controls.Add(fLogin);
-            this.Controls.Add(fRegister);
-            this.Controls.Add(fFogetPassword);
+            this.panelContent.Controls.Add(fLogin);
+            this.panelContent.Controls.Add(fRegister);
+            this.panelContent.Controls.Add(fFogetPassword);
         }
 
         public void SwitchFormSwitchForm(ACCOUNT_FORM ACCOUNT_FORM)
