@@ -1,0 +1,47 @@
+Đăng nhập
+Đăng ký
+Trang cá nhân
+Kết bạn
+
+Trang chủ -> 
+	- post bài viết
+	- thông báo
+	- like
+	- comment
+
+
+Nhắn tin
+	- đưa vào danh sách  các  tin nhắn chờ
+------------------------------------------
+requirement coder x
+- timeline - zalo
+
+- My profile
+- My friends: list, search, send friend request, (accept/ignore friend), views friend profile, 
+- My photos: show all, upload, Tag friend, modified
+
+- Account: Register, login, forget passwords
+- Search
+- My privacy
+- My messages
+- My groups
+
+
+-----------------------------------------
+Link
+Chat
+	https://	www.youtube.com/watch?v=BDVfpPq3weo
+Chức năng
+	https://www.youtube.com/watch?v=awxRwWTdX-0
+
+phân tích csdl
+	- Coder x
+	https://www.youtube.com/watch?v=gyYiRS8vI0A
+
+	- code dạo
+	https://www.youtube.com/watch?v=5PyHxTTv8l4&t=517s
+
+Phân tích UI
+	https://www.youtube.com/watch?v=fB0C_DYxoGA&t=1402s
+
+	https://www.youtube.com/watch?v=xvbrF492uNU

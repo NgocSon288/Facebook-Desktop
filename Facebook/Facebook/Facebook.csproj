@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1616D30C-360B-4D0B-90B9-D31FD4DF709C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Facebook</RootNamespace>
+    <AssemblyName>Facebook</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net45\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CompareStringHelper.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\UIHelper.cs" />
+    <Compile Include="FormUC\fAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fAccount.Designer.cs">
+      <DependentUpon>fAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fAccountForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fAccountForm.Designer.cs">
+      <DependentUpon>fAccountForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fFogetPassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fFogetPassword.Designer.cs">
+      <DependentUpon>fFogetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fFriend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fFriend.Designer.cs">
+      <DependentUpon>fFriend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fHome.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fHome.Designer.cs">
+      <DependentUpon>fHome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fMain.Designer.cs">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fLogin.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fLogin.Designer.cs">
+      <DependentUpon>fLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fMessenger.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fMessenger.Designer.cs">
+      <DependentUpon>fMessenger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fProfile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fProfile.Designer.cs">
+      <DependentUpon>fProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormUC\fRegister.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fRegister.Designer.cs">
+      <DependentUpon>fRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="fAccountForm.resx">
+      <DependentUpon>fAccountForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fAccount.resx">
+      <DependentUpon>fAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fFogetPassword.resx">
+      <DependentUpon>fFogetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fFriend.resx">
+      <DependentUpon>fFriend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fHome.resx">
+      <DependentUpon>fHome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fMain.resx">
+      <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fLogin.resx">
+      <DependentUpon>fLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fMessenger.resx">
+      <DependentUpon>fMessenger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fProfile.resx">
+      <DependentUpon>fProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fRegister.resx">
+      <DependentUpon>fRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
