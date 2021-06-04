@@ -1,6 +1,8 @@
-﻿using App.Common;
-using Facebook.Common;
+﻿using Facebook.Common;
+using Facebook.Configure.Autofac;
+using Facebook.DAO;
 using Facebook.FormUC;
+using Facebook.Helper;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,8 @@ namespace Facebook
         private IconButton currentBtn;
         private Panel leftBorderBtn;
 
+        private fHome fHome;
+
         public fMain()
         {
             InitializeComponent();
@@ -37,6 +41,7 @@ namespace Facebook
             leftBorderBtn.Size = new Size(7, 100);
             panelMenu.Controls.Add(leftBorderBtn);
 
+            Reset();
             ShowAccountForm();
         }
 
@@ -76,19 +81,20 @@ namespace Facebook
             }
         }
 
-        private void Reset()
+        public void Reset()
         {
             DisableButton();
             leftBorderBtn.Visible = false;
 
-            var f = new fHome();
-            UIHelper.ShowControl(f, panelContent);
+            fHome = new fHome();
+            UIHelper.ShowControl(fHome, panelContent);
         }
 
         private void ShowAccountForm()
         {
             fAccountForm fAccountForm = new fAccountForm();
             this.Visible = false;
+            fAccountForm.fLogin.OnLoginSuccess += FLogin_OnLoginSuccess;
             fAccountForm.ShowDialog();
         }
 
@@ -96,6 +102,14 @@ namespace Facebook
 
 
         #region Events
+
+        /// <summary>
+        /// Hành động khi đăng nhập thành công
+        /// </summary>
+        private void FLogin_OnLoginSuccess()
+        {
+            fHome.Load();
+        }
 
         private void imgLogo_Click(object sender, EventArgs e)
         {
@@ -106,7 +120,7 @@ namespace Facebook
         {
             ActivateButton(sender);
 
-            var f = new fProfile();
+            var f = new fProfile(AutofacFactory<IUserDAO>.Get());
             UIHelper.ShowControl(f, panelContent);
         }
 
@@ -136,6 +150,9 @@ namespace Facebook
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            // Clear session
+            Constants.UserSession = null;
+
             ShowAccountForm();
         }
 

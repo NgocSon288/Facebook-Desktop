@@ -32,5 +32,11 @@ namespace Facebook.Model.Models
         public string Avatar { get; set; }      // ảnh đại diện
 
         public string Image { get; set; }       // ảnh bìa
+
+
+        [ForeignKey("Profile")]
+        public int? ProfileID { get; set; }
+
+        public Profile Profile { get; set; }
     }
 }

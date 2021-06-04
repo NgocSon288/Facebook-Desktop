@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Facebook.Components.Profile;
 using Facebook.FormUC;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,9 @@ namespace Facebook.Configure.Autofac
 
             // User controls
             builder.RegisterType<fLogin>().InstancePerLifetimeScope();
+
+            // Components
+            builder.RegisterType<InfoProfileUC>().InstancePerLifetimeScope();
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Facebook.Common;
+using Facebook.ControlCustom.Message;
+using Facebook.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +15,13 @@ namespace Facebook.FormUC
 {
     public partial class fRegister : UserControl
     {
-        public fRegister()
+        private readonly IUserDAO _userDAO;
+
+        public fRegister(IUserDAO userDAO)
         {
             InitializeComponent();
+
+            this._userDAO = userDAO;
 
             SetUpUI();
             Load();
@@ -35,6 +41,51 @@ namespace Facebook.FormUC
             picFacebook.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-facebook.png");
             picTwitter.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-twitter.png");
             picGoogle.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-google.png");
+
+            SetColor();
+        }
+
+        private string ConvertStringUI(string input)
+        {
+            if (input == NAME_COMPARE || input == USERNAME_COMPARE || input == PASSWORD_COMPARE || input == CONFIRM_PASSWORD_COMPARE || input == EMAIL_COMPARE)
+            {
+                return "";
+            }
+
+            return input;
+        }
+
+        public void RestSetForm()
+        {
+            txtName.Text = NAME_COMPARE;
+            txtUsername.Text = USERNAME_COMPARE;
+            txtPassword.Text = PASSWORD_COMPARE;
+            txtConfirmPassword.Text = CONFIRM_PASSWORD_COMPARE;
+            txtEmail.Text = EMAIL_COMPARE;
+
+            txtPassword.UseSystemPasswordChar = false;
+            txtConfirmPassword.UseSystemPasswordChar = false;
+
+            lblName.Visible = false;
+            lblUsername.Visible = false;
+            lblPassword.Visible = false;
+            lblConfirmPassword.Visible = false;
+            lblEmail.Visible = false;
+        }
+
+        private void SetColor()
+        {
+            lblTitle.ForeColor = Constants.MAIN_FORE_COLOR;
+
+            txtName.BackColor = Constants.MAIN_BACK_COLOR;
+            txtUsername.BackColor = Constants.MAIN_BACK_COLOR;
+            txtPassword.BackColor = Constants.MAIN_BACK_COLOR;
+            txtConfirmPassword.BackColor = Constants.MAIN_BACK_COLOR;
+            txtEmail.BackColor = Constants.MAIN_BACK_COLOR;
+
+            picFacebook.BackColor = Constants.MAIN_BACK_COLOR;
+            picTwitter.BackColor = Constants.MAIN_BACK_COLOR;
+            picGoogle.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
         #endregion
@@ -57,7 +108,7 @@ namespace Facebook.FormUC
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MyMessageBox.Show("Bạn có muốn thoát?", MessageBoxType.Question).Value == DialogResult.OK)
             {
                 Application.Exit();
             }
@@ -77,13 +128,56 @@ namespace Facebook.FormUC
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRegister_Click(object sender, EventArgs e)
+        private async void btnRegister_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Tạo tài khoản thành công");
+            var name = ConvertStringUI(txtName.Text);
+            var username = ConvertStringUI(txtUsername.Text);
+            var password = ConvertStringUI(txtPassword.Text);
+            var confirmPassword = ConvertStringUI(txtConfirmPassword.Text);
+            var email = ConvertStringUI(txtEmail.Text);
 
-            // chuyển vào trang fmain 
-            Constants.AccountForm.Close();
-            Constants.MainForm.Visible = true;
+            if (string.IsNullOrEmpty(name.Trim()) || string.IsNullOrEmpty(username.Trim()) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
+            {
+                MyMessageBox.Show("Thông tin đăng ký không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+
+            if (password != confirmPassword)
+            {
+                MyMessageBox.Show("Xác nhận mật khẩu không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+
+            var check = await _userDAO.Register(name, username, password, email);
+
+            if (check == -1)
+            {
+                MyMessageBox.Show("Email không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+            else if (check == -2)
+            {
+                MyMessageBox.Show("Tài khoản đã có người sử dụng", MessageBoxType.Warning);
+                return;
+            }
+            else if (check == 0)
+            {
+                MyMessageBox.Show("Lỗi trong quá trình đăng ký, vui lòng thử lại", MessageBoxType.Error);
+                return;
+            }
+
+            MyMessageBox.Show("Tạo tài khoản thành công", MessageBoxType.Success);
+
+            // Chuyển qua trang đăng nhập
+            btnLogin_Click(null, new EventArgs());
+
+            //// Đăng ký thành công
+            //// Đưa user vào session
+            //Constants.UserSession = _userDAO.GetByUsername(username);
+
+            //// chuyển vào trang fmain 
+            //Constants.AccountForm.Close();
+            //Constants.MainForm.Visible = true;
         }
 
         /// <summary>
@@ -292,6 +386,15 @@ namespace Facebook.FormUC
             // Color
             txtEmail.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
             pnlEmail.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin.Focus();
+                btnRegister_Click(null, new EventArgs());
+            }
         }
 
         #endregion

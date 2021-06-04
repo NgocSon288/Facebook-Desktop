@@ -13,9 +13,9 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desk
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.csproj.CopyComplete
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.dll
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.pdb
-C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Create_User_Entity.resources
-C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.csproj.GenerateResource.cache
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\bin\Debug\Autofac.dll
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\bin\Debug\Autofac.xml
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\bin\Debug\SimpleInjector.dll
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\bin\Debug\SimpleInjector.xml
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Add_User_and_Profile_Entity.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.csproj.GenerateResource.cache

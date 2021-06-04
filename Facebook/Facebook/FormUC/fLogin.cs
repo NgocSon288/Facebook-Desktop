@@ -1,4 +1,5 @@
 ﻿using Facebook.Common;
+using Facebook.ControlCustom.Message;
 using Facebook.DAO;
 using Facebook.Model.Models;
 using System;
@@ -15,13 +16,18 @@ namespace Facebook.FormUC
 {
     public partial class fLogin : UserControl
     {
-        private readonly IUserDAO _userDAO;
+        public delegate void LoginSuccess();
+        public event LoginSuccess OnLoginSuccess;
 
-        public fLogin(IUserDAO userDAO)
+        private readonly IUserDAO _userDAO;
+        private readonly IProfileDAO _profileDAO;
+
+        public fLogin(IUserDAO userDAO, IProfileDAO profileDAO)
         {
             InitializeComponent();
 
             this._userDAO = userDAO;
+            this._profileDAO = profileDAO;
 
             SetUpUI();
             Load();
@@ -38,6 +44,31 @@ namespace Facebook.FormUC
             picFacebook.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-facebook.png");
             picTwitter.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-twitter.png");
             picGoogle.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-google.png");
+
+            SetColor();
+        }
+
+        public void RestSetForm()
+        {
+            txtUsername.Text = USERNAME_COMPARE;
+            txtPassword.Text = PASSWORD_COMPARE;
+
+            txtPassword.UseSystemPasswordChar = false;
+
+            lblUsername.Visible = false;
+            lblPassword.Visible = false;
+        }
+
+        private void SetColor()
+        {
+            lblTitle.ForeColor = Constants.MAIN_FORE_COLOR;
+
+            txtUsername.BackColor = Constants.MAIN_BACK_COLOR;
+            txtPassword.BackColor = Constants.MAIN_BACK_COLOR;
+
+            picFacebook.BackColor = Constants.MAIN_BACK_COLOR;
+            picTwitter.BackColor = Constants.MAIN_BACK_COLOR;
+            picGoogle.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
         #endregion
@@ -60,7 +91,7 @@ namespace Facebook.FormUC
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MyMessageBox.Show("Bạn có muốn thoát?", MessageBoxType.Question).Value == DialogResult.OK)
             {
                 Application.Exit();
             }
@@ -82,15 +113,31 @@ namespace Facebook.FormUC
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            var isLogin = true;
-            // truy xuất db
+            var isLogin = 0;
+            var username = txtUsername.Text;
+            var password = txtPassword.Text;
+            // truy xuất dao -> db
+            isLogin = _userDAO.Login(username, password);
 
             // Giả sử đã xử lý truy xuất db và thành công
-            if (isLogin)
+            switch (isLogin)
             {
-                // chuyển vào trang fmain 
-                Constants.AccountForm.Close();
-                Constants.MainForm.Visible = true;
+                case -1:
+                case 0:
+                    MyMessageBox.Show("Tài khoản hoặc mật khẩu không hợp lệ", MessageBoxType.Error);
+                    break;
+                case 1:
+                    // Đưa user, profile vào session vào session
+                    Constants.UserSession = _userDAO.GetByUsername(username);
+                    Constants.ProfileSession = _profileDAO.GetByID(Constants.UserSession.ProfileID.Value);
+
+                    // chuyển vào trang fmain 
+                    Constants.AccountForm.Close();
+                    Constants.MainForm.Visible = true;
+                    Constants.MainForm.Reset();
+                    OnLoginSuccess?.Invoke();
+                    break;
+
             }
         }
 
@@ -196,6 +243,15 @@ namespace Facebook.FormUC
             pnlBottomPassword.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
         }
 
-        #endregion 
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin.Focus();
+                btnLogin_Click(null, new EventArgs());
+            }
+        }
+
+        #endregion
     }
 }

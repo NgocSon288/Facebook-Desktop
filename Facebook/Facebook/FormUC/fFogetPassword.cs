@@ -1,4 +1,6 @@
 ﻿using Facebook.Common;
+using Facebook.ControlCustom.Message;
+using Facebook.DAO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +15,13 @@ namespace Facebook.FormUC
 {
     public partial class fFogetPassword : UserControl
     {
-        public fFogetPassword()
+        private readonly IUserDAO _userDAO;
+
+        public fFogetPassword(IUserDAO userDAO)
         {
             InitializeComponent();
+
+            this._userDAO = userDAO;
 
             SetUpUI();
             Load();
@@ -34,6 +40,48 @@ namespace Facebook.FormUC
             picFacebook.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-facebook.png");
             picTwitter.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-twitter.png");
             picGoogle.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-google.png");
+
+            SetColor();
+        }
+
+        public void RestSetForm()
+        {
+            txtUsername.Text = USERNAME_COMPARE;
+            txtNewPassword.Text = NEW_PASSWORD_COMPARE;
+            txtConfirmPassword.Text = CONFIRM_PASSWORD_COMPARE;
+            txtEmail.Text = EMAIL_COMPARE;
+
+            txtNewPassword.UseSystemPasswordChar = false;
+            txtConfirmPassword.UseSystemPasswordChar = false;
+
+            lblUsername.Visible = false;
+            lblNewPassword.Visible = false;
+            lblConfirmPassword.Visible = false;
+            lblEmail.Visible = false;
+        }
+
+        private string ConvertStringUI(string input)
+        {
+            if (input == USERNAME_COMPARE || input == NEW_PASSWORD_COMPARE || input == CONFIRM_PASSWORD_COMPARE || input == EMAIL_COMPARE)
+            {
+                return "";
+            }
+
+            return input;
+        }
+
+        private void SetColor()
+        {
+            lblTitle.ForeColor = Constants.MAIN_FORE_COLOR;
+
+            txtUsername.BackColor = Constants.MAIN_BACK_COLOR;
+            txtNewPassword.BackColor = Constants.MAIN_BACK_COLOR;
+            txtConfirmPassword.BackColor = Constants.MAIN_BACK_COLOR;
+            txtEmail.BackColor = Constants.MAIN_BACK_COLOR;
+
+            picFacebook.BackColor = Constants.MAIN_BACK_COLOR;
+            picTwitter.BackColor = Constants.MAIN_BACK_COLOR;
+            picGoogle.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
         #endregion
@@ -56,7 +104,7 @@ namespace Facebook.FormUC
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MyMessageBox.Show("Bạn có muốn thoát?", MessageBoxType.Question).Value == DialogResult.OK)
             {
                 Application.Exit();
             }
@@ -69,7 +117,7 @@ namespace Facebook.FormUC
 
         #endregion
 
-        #region Evetns
+        #region Events
 
         /// <summary>
         /// Chuyển sang trang đăng nhập
@@ -98,11 +146,45 @@ namespace Facebook.FormUC
         /// <param name="e"></param>
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Đổi mật khẩu thành công");
+            var username = ConvertStringUI(txtUsername.Text);
+            var newPassword = ConvertStringUI(txtNewPassword.Text);
+            var confirmPassword = ConvertStringUI(txtConfirmPassword.Text);
+            var email = ConvertStringUI(txtEmail.Text);
 
-            // chuyển vào trang fmain 
-            Constants.AccountForm.Close();
-            Constants.MainForm.Visible = true;
+            if (string.IsNullOrEmpty(username.Trim()) || string.IsNullOrEmpty(newPassword.Trim()) || string.IsNullOrEmpty(confirmPassword.Trim()) || string.IsNullOrEmpty(email))
+            {
+                MyMessageBox.Show("Thông tin tài khoản mật khẩu không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                MyMessageBox.Show("Xác nhận mật khẩu không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+
+            var check = _userDAO.ForgetPassword(username, newPassword, email);
+
+            if (check == -1)
+            {
+                MyMessageBox.Show("Tài khoản không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+            else if (check == -2)
+            {
+                MyMessageBox.Show("Email không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+            else if (check == 0)
+            {
+                MyMessageBox.Show("Lỗi trong quá trình đổi mật khẩu", MessageBoxType.Error);
+                return;
+            }
+
+
+            MyMessageBox.Show("Đổi mật khẩu thành công", MessageBoxType.Success);
+
+            RestSetForm();
         }
 
         #endregion
@@ -263,6 +345,15 @@ namespace Facebook.FormUC
             // Color
             txtEmail.ForeColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
             pnlEmail.BackColor = Constants.TEXTBOX_LEAVE_FORECOLOR;
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                btnLogin.Focus();
+                btnSubmit_Click(null, new EventArgs());
+            }
         }
 
         #endregion

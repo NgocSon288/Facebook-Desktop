@@ -7,13 +7,13 @@ namespace Facebook.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Create_User_Entity : IMigrationMetadata
+    public sealed partial class Add_User_and_Profile_Entity : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Create_User_Entity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_User_and_Profile_Entity));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106010655315_Create_User_Entity"; }
+            get { return "202106040338186_Add_User_and_Profile_Entity"; }
         }
         
         string IMigrationMetadata.Source

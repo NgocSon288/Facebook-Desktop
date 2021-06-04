@@ -37,6 +37,7 @@ namespace Facebook.FormUC
             this.picTwitter = new System.Windows.Forms.PictureBox();
             this.picFacebook = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRegister = new System.Windows.Forms.LinkLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pnlEmail = new System.Windows.Forms.Panel();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -54,8 +55,7 @@ namespace Facebook.FormUC
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnRegister = new System.Windows.Forms.LinkLabel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGoogle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTwitter)).BeginInit();
@@ -77,7 +77,7 @@ namespace Facebook.FormUC
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(564, 6);
+            this.btnClose.Location = new System.Drawing.Point(570, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(30, 30);
@@ -97,7 +97,7 @@ namespace Facebook.FormUC
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(522, 6);
+            this.btnMinimize.Location = new System.Drawing.Point(537, 0);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(6);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(30, 30);
@@ -111,11 +111,11 @@ namespace Facebook.FormUC
             // btnSubmit
             // 
             this.btnSubmit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSubmit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
+            this.btnSubmit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(134)))), ((int)(((byte)(222)))));
             this.btnSubmit.FlatAppearance.BorderSize = 2;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Consolas", 13F, System.Drawing.FontStyle.Bold);
-            this.btnSubmit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
+            this.btnSubmit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(134)))), ((int)(((byte)(222)))));
             this.btnSubmit.Location = new System.Drawing.Point(135, 448);
             this.btnSubmit.Margin = new System.Windows.Forms.Padding(6);
             this.btnSubmit.Name = "btnSubmit";
@@ -181,11 +181,26 @@ namespace Facebook.FormUC
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.btnSubmit);
             this.panel1.Controls.Add(this.btnLogin);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Location = new System.Drawing.Point(100, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(400, 537);
             this.panel1.TabIndex = 65;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.AutoSize = true;
+            this.btnRegister.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
+            this.btnRegister.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.btnRegister.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
+            this.btnRegister.Location = new System.Drawing.Point(330, 515);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(64, 18);
+            this.btnRegister.TabIndex = 73;
+            this.btnRegister.TabStop = true;
+            this.btnRegister.Text = "Đăng ký";
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // panel4
             // 
@@ -229,6 +244,7 @@ namespace Facebook.FormUC
             this.txtEmail.TabIndex = 59;
             this.txtEmail.Text = "Email";
             this.txtEmail.Enter += new System.EventHandler(this.txtEmail_Enter);
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtEmail.Leave += new System.EventHandler(this.txtEmail_Leave);
             // 
             // panel10
@@ -273,6 +289,7 @@ namespace Facebook.FormUC
             this.txtConfirmPassword.TabIndex = 59;
             this.txtConfirmPassword.Text = "Nhập lại mật khẩu";
             this.txtConfirmPassword.Enter += new System.EventHandler(this.txtConfirmPassword_Enter);
+            this.txtConfirmPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtConfirmPassword.Leave += new System.EventHandler(this.txtConfirmPassword_Leave);
             // 
             // panel8
@@ -317,6 +334,7 @@ namespace Facebook.FormUC
             this.txtNewPassword.TabIndex = 59;
             this.txtNewPassword.Text = "Mật khẩu mới";
             this.txtNewPassword.Enter += new System.EventHandler(this.txtNewPassword_Enter);
+            this.txtNewPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtNewPassword.Leave += new System.EventHandler(this.txtNewPassword_Leave);
             // 
             // panel6
@@ -361,6 +379,7 @@ namespace Facebook.FormUC
             this.txtUsername.TabIndex = 59;
             this.txtUsername.Text = "Tài khoản";
             this.txtUsername.Enter += new System.EventHandler(this.txtUsername_Enter);
+            this.txtUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtUsername.Leave += new System.EventHandler(this.txtUsername_Leave);
             // 
             // btnLogin
@@ -378,30 +397,15 @@ namespace Facebook.FormUC
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // label1
+            // lblTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(-9, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(306, 47);
-            this.label1.TabIndex = 49;
-            this.label1.Text = "Quên mật khẩu";
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.AutoSize = true;
-            this.btnRegister.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
-            this.btnRegister.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.btnRegister.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
-            this.btnRegister.Location = new System.Drawing.Point(330, 515);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(64, 18);
-            this.btnRegister.TabIndex = 73;
-            this.btnRegister.TabStop = true;
-            this.btnRegister.Text = "Đăng ký";
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Consolas", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(-9, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(306, 47);
+            this.lblTitle.TabIndex = 49;
+            this.lblTitle.Text = "Quên mật khẩu";
             // 
             // fFogetPassword
             // 
@@ -459,7 +463,7 @@ namespace Facebook.FormUC
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.LinkLabel btnLogin;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.LinkLabel btnRegister;
     }
 }

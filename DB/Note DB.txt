@@ -1,17 +1,22 @@
 Đăng nhập
 Đăng ký
-Trang cá nhân
-Kết bạn
+Quên mật khẩu
+
+Trang cá nhân: hiển thị hình ảnh đại diện, avatar, thông tin cá nhân, bài viết
+
+	
+Kết bạn: tìn kiếm, kết bạn, xem thông tin bạn bè
+
 
 Trang chủ -> 
 	- post bài viết
-	- thông báo
 	- like
 	- comment
-
-
+	
 Nhắn tin
-	- đưa vào danh sách  các  tin nhắn chờ
+
+Tài khoản: đổi mật khẩu
+
 ------------------------------------------
 requirement coder x
 - timeline - zalo
@@ -64,6 +69,110 @@ pnl: 0, 150	-> 0; 41
 
 
 -------------------------------------------------------
+Check3	
+error
+warning1
+info
+
+
+
+
+
+
+
+
+-------------------------------------------------------
+reset form account
+max width = 982 (đã trừ scroll bar)
+
+
+
+
+
+
+
+-------------------------------------------------------
+- Info
+- Khi nhấn vào danh mục nào  thì đóng lại hoặc mở ra
+- Các item bên trong có thể xóa  hoặc chỉnh sửa
+
+
+- Công việc
+	- cv 1	
+	- cv 2
+	+ Thêm công việc	( nhấn vào ra thêm một textbox)
+
+- Học vấn
+	- hv 1
+	- hv 2
+	+ Thêm trường học (nhấn vào ra thêm một textbox)	=> (*)
+
+- Nơi từng sống
+	- n 1
+	- n 2
+	- (*)
+
+- Số điện thoại
+	- sdt 1
+	- sdt 2
+	+ (*)
+
+- Email
+	- email 1	(readonly)
+	- email 2
+	- (*)
+
+- Sở thíc
+	- st 1
+	- st 2
+	+ thêm sở thích như (*)
+
+
+
+==>> tạo item bên trong InfoProfileItemUC, cho từng row
+
+==>> Giaỉ quyết vần để xử lý cho từng item thì có thể truyền delegate
+
+
+parent: MinusCircle  PlusCircle
+
+
+Edit	Minus	: delete
+
+Check: update	UndoAlt: cancel
+
+
+-------------------------------------------------------
+Comment
+- ID
+- UserID
+- PostID
+- Description
+- CreateAt
+
+CommentFeedback
+- CommentID
+- UserID
+- Description
+- CreateAt
+
+
+PostStatus: Công khai, Bạn bè, Chỉ mình tôi
+
+Post
+
+- ID
+- UserID	(N -  1): chỉ ra bài viết ở trang người nào
+- PostStatusID	(1 - 1)
+- Desccription
+- Image
+- CreateBy	: người tạo, nhằm mục dích share, nếu CreateAt != UserID tức là share
+
+
+- Like : string lưu danh sách các UserID
+- 
+
+
 
 
 
@@ -74,37 +183,6 @@ pnl: 0, 150	-> 0; 41
 
 
 -------------------------------------------------------
-
-
-
-
-
-
-
-
-
--------------------------------------------------------
-
-
-
-
-
-
-
-
-
--------------------------------------------------------
-
-
-
-
-
-
-
-
-
--------------------------------------------------------
-
 
 
 

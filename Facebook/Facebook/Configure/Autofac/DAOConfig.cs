@@ -1,10 +1,5 @@
 ﻿using Autofac;
 using Facebook.DAO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Facebook.Configure.Autofac
 {
@@ -13,6 +8,7 @@ namespace Facebook.Configure.Autofac
         public static void Configure(ContainerBuilder builder)
         {
             builder.RegisterType<UserDAO>().As<IUserDAO>().InstancePerLifetimeScope();
+            builder.RegisterType<ProfileDAO>().As<IProfileDAO>().InstancePerLifetimeScope();
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Facebook.Configure.Autofac
         public static void Configure(ContainerBuilder builder)
         {
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ProfileRepository>().As<IProfileRepository>().InstancePerLifetimeScope();
         }
     }
 }

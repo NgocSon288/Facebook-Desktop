@@ -17,7 +17,7 @@ namespace Facebook
 {
     public partial class fAccountForm : Form
     {
-        private fLogin fLogin;
+        public fLogin fLogin;
         private fRegister fRegister;
         private fFogetPassword fFogetPassword;
 
@@ -40,12 +40,11 @@ namespace Facebook
         new private void Load()
         {
             Constants.AccountForm = this;
-            var a = Program.Container.Resolve<IUserDAO>();
 
             // Thêm 3 form: login, register, forget vào form chính của account
-            fLogin = new fLogin(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0 };
-            fRegister = new fRegister() { Left = 0, Top = 0, Visible = false };
-            fFogetPassword = new fFogetPassword() { Left = 0, Top = 0, Visible = false };
+            fLogin = new fLogin(AutofacFactory<IUserDAO>.Get(), AutofacFactory<IProfileDAO>.Get()) { Left = 0, Top = 0 };
+            fRegister = new fRegister(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0, Visible = false };
+            fFogetPassword = new fFogetPassword(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0, Visible = false };
 
             this.panelContent.Controls.Add(fLogin);
             this.panelContent.Controls.Add(fRegister);
@@ -58,18 +57,21 @@ namespace Facebook
             {
                 case ACCOUNT_FORM.LOGIN:
                     fLogin.Visible = true;
+                    fLogin.RestSetForm();
                     fRegister.Visible = false;
                     fFogetPassword.Visible = false;
                     break;
                 case ACCOUNT_FORM.REGISTER:
                     fLogin.Visible = false;
                     fRegister.Visible = true;
+                    fRegister.RestSetForm();
                     fFogetPassword.Visible = false;
                     break;
                 case ACCOUNT_FORM.FORGET_PASSWORD:
                     fLogin.Visible = false;
                     fRegister.Visible = false;
                     fFogetPassword.Visible = true;
+                    fFogetPassword.RestSetForm();
                     break;
             }
         }

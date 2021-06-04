@@ -36,3 +36,13 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desk
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\bin\Debug\Autofac.xml
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\bin\Debug\SimpleInjector.dll
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\bin\Debug\SimpleInjector.xml
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.ControlCustom.Message.MessageBoxChild.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.ControlCustom.Message.MessageBoxCustom.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.ControlCustom.WrapperForm.fParent.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.PostListProfileUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.HeaderProfileUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.fTest.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileSectionUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileItemUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileNewItemUC.resources

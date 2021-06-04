@@ -1,4 +1,5 @@
 ﻿using Facebook.Common;
+using Facebook.ControlCustom.Message;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,17 @@ namespace Facebook.FormUC
             InitializeComponent();
 
             SetUpUI();
+            Load();
         }
+
+        #region Methods
+
+        new public void Load()
+        {
+
+        }
+
+        #endregion
 
         #region SetUpUI
 
@@ -38,7 +49,7 @@ namespace Facebook.FormUC
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
-            if (MessageBox.Show("Bạn có muốn thoát?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MyMessageBox.Show("Bạn có muốn thoát?", MessageBoxType.Question).Value == DialogResult.OK)
             {
                 Application.Exit();
             }

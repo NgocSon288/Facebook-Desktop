@@ -64,15 +64,76 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\CompareStringHelper.cs" />
+    <Compile Include="Components\Profile\InfoProfileItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileItemUC.Designer.cs">
+      <DependentUpon>InfoProfileItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileNewItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileNewItemUC.Designer.cs">
+      <DependentUpon>InfoProfileNewItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileSectionUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileSectionUC.Designer.cs">
+      <DependentUpon>InfoProfileSectionUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\ProfileDAO.cs" />
+    <Compile Include="Helper\CompareStringHelper.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="Common\UIHelper.cs" />
+    <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\MD5Helper.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
+    <Compile Include="Helper\UIHelper.cs" />
+    <Compile Include="Helper\VerifyEmailHelper.cs" />
+    <Compile Include="Components\Profile\HeaderProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\HeaderProfileUC.Designer.cs">
+      <DependentUpon>HeaderProfileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileUC.Designer.cs">
+      <DependentUpon>InfoProfileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\PostListProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\PostListProfileUC.Designer.cs">
+      <DependentUpon>PostListProfileUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Configure\Autofac\AutofacConfig.cs" />
     <Compile Include="Configure\Autofac\AutofacFactory.cs" />
     <Compile Include="Configure\Autofac\DAOConfig.cs" />
     <Compile Include="Configure\Autofac\FormConfig.cs" />
     <Compile Include="Configure\Autofac\RepositoryConfig.cs" />
     <Compile Include="Configure\Autofac\ServiceConfig.cs" />
+    <Compile Include="ControlCustom\MessageBox\MessageBoxChild.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlCustom\MessageBox\MessageBoxChild.Designer.cs">
+      <DependentUpon>MessageBoxChild.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCustom\MessageBox\MessageBoxCustom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlCustom\MessageBox\MessageBoxCustom.Designer.cs">
+      <DependentUpon>MessageBoxCustom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCustom\MessageBox\MyDialogResult.cs" />
+    <Compile Include="ControlCustom\MessageBox\MyMessageBox.cs" />
+    <Compile Include="ControlCustom\WrapperForm\fParent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlCustom\WrapperForm\fParent.Designer.cs">
+      <DependentUpon>fParent.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="FormUC\fAccount.cs">
       <SubType>UserControl</SubType>
@@ -134,8 +195,41 @@
     <Compile Include="FormUC\fRegister.Designer.cs">
       <DependentUpon>fRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="fTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fTest.Designer.cs">
+      <DependentUpon>fTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Profile\HeaderProfileUC.resx">
+      <DependentUpon>HeaderProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileItemUC.resx">
+      <DependentUpon>InfoProfileItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileNewItemUC.resx">
+      <DependentUpon>InfoProfileNewItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileSectionUC.resx">
+      <DependentUpon>InfoProfileSectionUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileUC.resx">
+      <DependentUpon>InfoProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\PostListProfileUC.resx">
+      <DependentUpon>PostListProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCustom\MessageBox\MessageBoxChild.resx">
+      <DependentUpon>MessageBoxChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCustom\MessageBox\MessageBoxCustom.resx">
+      <DependentUpon>MessageBoxCustom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCustom\WrapperForm\fParent.resx">
+      <DependentUpon>fParent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fAccountForm.resx">
       <DependentUpon>fAccountForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +259,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUC\fRegister.resx">
       <DependentUpon>fRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fTest.resx">
+      <DependentUpon>fTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -203,11 +300,20 @@
       <Name>Facebook.Service</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Images\Home\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\btn-social-facebook.png" />
     <Content Include="Assets\Images\btn-social-google.png" />
     <Content Include="Assets\Images\btn-social-twitter.png" />
+    <Content Include="Assets\Images\Profile\avatar-default.jpg" />
+    <Content Include="Assets\Images\icon-error-message.png" />
+    <Content Include="Assets\Images\icon-infomation-message.png" />
+    <Content Include="Assets\Images\icon-question-message.png" />
+    <Content Include="Assets\Images\icon-success-message.png" />
+    <Content Include="Assets\Images\icon-warning-message.png" />
+    <Content Include="Assets\Images\Profile\image-default.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

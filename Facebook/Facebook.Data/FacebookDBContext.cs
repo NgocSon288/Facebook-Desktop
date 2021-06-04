@@ -11,6 +11,7 @@ namespace Facebook.Data
         }
 
         public DbSet<User> Users { set; get; }
+        public DbSet<Profile> Profiles { set; get; }
 
         public static FacebookDBContext Create()
         {
