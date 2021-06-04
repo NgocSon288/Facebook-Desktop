@@ -53,10 +53,21 @@ namespace Facebook.FormUC
         private void LoadHeader()
         {
             var f = new HeaderProfileUC(this._userDAO);
-            pnlHead.Height = f.Height + 100;
-
-            pnlHead.Controls.Add(f);
             f.Dock = DockStyle.Fill;
+
+            var pnlSeparator = new Panel()
+            {
+                Height = 2,
+                BackColor = Color.Gray,
+                Margin = new Padding(20, 20, 20, 20)
+            };
+            pnlSeparator.Dock = DockStyle.Bottom;
+
+
+            pnlHead.Height = f.Height + 50;
+
+            pnlHead.Controls.Add(pnlSeparator);
+            pnlHead.Controls.Add(f);
         }
 
         private void LoadLeft()

@@ -149,28 +149,36 @@ Comment
 - PostID
 - Description
 - CreateAt
+- like
+- CommentFeedback: list
 
 CommentFeedback
-- CommentID
-- UserID
+- ID
+- CommentID	: chiếu tới comment nào, không cần biết bài viết vì ID duy nhất
+- UserID	: người trả với
 - Description
+- like	
 - CreateAt
 
 
 PostStatus: Công khai, Bạn bè, Chỉ mình tôi
+- ID
+- Description
+- Posts (1 - N)
 
 Post
 
-- ID
-- UserID	(N -  1): chỉ ra bài viết ở trang người nào
-- PostStatusID	(1 - 1)
-- Desccription
+- ID 
+- PostStatusID		(1 - 1)
+- Description
 - Image
-- CreateBy	: người tạo, nhằm mục dích share, nếu CreateAt != UserID tức là share
+- CreatedBy	: người tạo, nhằm mục dích share, nếu CreateAt != UserID tức là share
+- CreatedAt
+- PostShared? : nếu != null là bài được share, nếu có id mà tìm không thấy thì có nghĩa là bài viết đã bị  chủ  nhân xóa
 
 
 - Like : string lưu danh sách các UserID
-- 
+- Comment: List
 
 
 
@@ -184,10 +192,47 @@ Post
 
 -------------------------------------------------------
 
+ public int ID { get; set; }
+
+        public string Description { get; set; }
+
+        public string Image { get; set; }
+
+        public DateTime CreatedAt { get; set; }      // Thời gian tạo hoăc là thời gian share
+
+        public int? PostShared { get; set; }    // nếu khác null là có một bài viết được chia sẻ
 
 
 
+        //[ForeignKey("User")]
+        //public int CreatedBy { get; set; }  // Người tạo, hoặc share
 
+        [ForeignKey("PostStatus")]
+        public int PostStatusID { get; set; }
+
+
+        public User User { get; set; }
+
+        public PostStatus PostStatus { get; set; }
+
+        public List<Comment> Comments { get; set; }
+
+-------
+Chức năng add post
+- Description: input
+- Image: có hoặc không, input
+- CreatedAt: Datetime.Now;
+- PostShared: =null nếu là tạo bài, share là value
+- PostStatusID: input từ comboBox
+- User: Constants.UserSession
+
+Chức năng share
+- Description: input
+- Image: không có, vì share
+- CreatedAt: Datetime.Now
+- PostShared: id của bài post
+- PostStatusID: lấy từ input comboBox
+- User: Constants.UserSession
 
 
 

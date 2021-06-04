@@ -12,8 +12,12 @@ namespace Facebook.Configure.Autofac
     {
         public static void Configure(ContainerBuilder builder)
         {
-            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CommentRepository>().As<ICommentRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CommentFeedbackRepository>().As<ICommentFeedbackRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PostRepository>().As<IPostRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PostStatusRepository>().As<IPostStatusRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ProfileRepository>().As<IProfileRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();
         }
     }
 }

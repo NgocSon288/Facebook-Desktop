@@ -82,6 +82,10 @@
     <Compile Include="Components\Profile\InfoProfileSectionUC.Designer.cs">
       <DependentUpon>InfoProfileSectionUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAO\CommentDAO.cs" />
+    <Compile Include="DAO\PostStatusDAO.cs" />
+    <Compile Include="DAO\PostDAO.cs" />
+    <Compile Include="DAO\CommentFeedbackDAO.cs" />
     <Compile Include="DAO\ProfileDAO.cs" />
     <Compile Include="Helper\CompareStringHelper.cs" />
     <Compile Include="Common\Constants.cs" />

@@ -10,8 +10,12 @@ namespace Facebook.Data
             this.Configuration.LazyLoadingEnabled = true;
         }
 
-        public DbSet<User> Users { set; get; }
+        public DbSet<Comment> Comments { set; get; }
+        public DbSet<CommentFeedback> CommentFeedbacks { set; get; }
+        public DbSet<Post> Posts { set; get; }
+        public DbSet<PostStatus> PostStatuses { set; get; }
         public DbSet<Profile> Profiles { set; get; }
+        public DbSet<User> Users { set; get; }
 
         public static FacebookDBContext Create()
         {

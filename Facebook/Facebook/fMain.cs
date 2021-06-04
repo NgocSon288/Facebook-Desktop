@@ -3,6 +3,7 @@ using Facebook.Configure.Autofac;
 using Facebook.DAO;
 using Facebook.FormUC;
 using Facebook.Helper;
+using Facebook.Model.Models;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;

@@ -85,26 +85,26 @@ namespace Facebook.Components.Profile
 
         private void SetColor()
         {
-            this.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlHeadTitle.BackColor = Constants.MAIN_BACK_COLOR;
+            this.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            pnlHeadTitle.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
-            btnTitle.BackColor = Constants.MAIN_BACK_COLOR;
+            btnTitle.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             btnTitle.ForeColor = Constants.MAIN_FORE_COLOR;
             btnTitle.IconColor = Constants.MAIN_FORE_COLOR;
 
             btnExpand.ForeColor = Constants.MAIN_FORE_COLOR;
-            btnExpand.BackColor = Constants.MAIN_BACK_COLOR;
+            btnExpand.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             btnExpand.IconColor = Constants.MAIN_FORE_COLOR;
 
-            flpContent.BackColor = Constants.MAIN_BACK_COLOR;
+            flpContent.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
-            pnlAdd.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlSeparator.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlAdd.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            pnlSeparator.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
-            btnAdd.BackColor = Constants.MAIN_BACK_COLOR;
+            btnAdd.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             btnAdd.IconColor = Constants.MAIN_FORE_LINK_COLOR;
-            btnAdd.FlatAppearance.MouseDownBackColor = Constants.MAIN_BACK_COLOR;
-            btnAdd.FlatAppearance.MouseOverBackColor = Constants.MAIN_BACK_COLOR;
+            btnAdd.FlatAppearance.MouseDownBackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            btnAdd.FlatAppearance.MouseOverBackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
             lblAdd.LinkColor = Constants.MAIN_FORE_LINK_COLOR;
         }
@@ -241,7 +241,7 @@ namespace Facebook.Components.Profile
 
         private void pnlHeadTitle_MouseLeave(object sender, EventArgs e)
         {
-            SetBackgroundColorHead(Constants.MAIN_BACK_COLOR);
+            SetBackgroundColorHead(Constants.MAIN_BACK_CONTENT_COLOR);
         }
 
         /// <summary>

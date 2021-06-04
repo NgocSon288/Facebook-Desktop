@@ -69,14 +69,25 @@
     <Compile Include="Migrations\202106040338186_Add_User_and_Profile_Entity.designer.cs">
       <DependentUpon>202106040338186_Add_User_and_Profile_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106040836251_Add_C_CF_P_PS_Entity.cs" />
+    <Compile Include="Migrations\202106040836251_Add_C_CF_P_PS_Entity.designer.cs">
+      <DependentUpon>202106040836251_Add_C_CF_P_PS_Entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PostStatusRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\CommentFeedbackRepository.cs" />
+    <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\ProfileRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202106040338186_Add_User_and_Profile_Entity.resx">
       <DependentUpon>202106040338186_Add_User_and_Profile_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106040836251_Add_C_CF_P_PS_Entity.resx">
+      <DependentUpon>202106040836251_Add_C_CF_P_PS_Entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

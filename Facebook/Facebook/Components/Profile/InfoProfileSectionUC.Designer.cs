@@ -156,12 +156,12 @@ namespace Facebook.Components.Profile
             // lblAdd
             // 
             this.lblAdd.AutoSize = true;
-            this.lblAdd.Font = new System.Drawing.Font("Consolas", 15.75F);
+            this.lblAdd.Font = new System.Drawing.Font("Consolas", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdd.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lblAdd.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(52)))), ((int)(((byte)(212)))));
             this.lblAdd.Location = new System.Drawing.Point(41, 8);
             this.lblAdd.Name = "lblAdd";
-            this.lblAdd.Size = new System.Drawing.Size(94, 24);
+            this.lblAdd.Size = new System.Drawing.Size(72, 20);
             this.lblAdd.TabIndex = 45;
             this.lblAdd.TabStop = true;
             this.lblAdd.Text = "Thêm...";

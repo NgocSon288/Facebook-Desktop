@@ -89,12 +89,12 @@ namespace Facebook.Components.Profile
             this.txtText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
             this.txtText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtText.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.txtText.Font = new System.Drawing.Font("Consolas", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtText.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
             this.txtText.Location = new System.Drawing.Point(10, 6);
             this.txtText.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.txtText.Name = "txtText";
-            this.txtText.Size = new System.Drawing.Size(343, 52);
+            this.txtText.Size = new System.Drawing.Size(343, 41);
             this.txtText.TabIndex = 63;
             this.txtText.Text = "son";
             this.txtText.Enter += new System.EventHandler(this.txtText_MouseEnter);

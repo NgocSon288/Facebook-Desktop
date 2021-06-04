@@ -55,17 +55,17 @@ namespace Facebook.Components.Profile
 
         private void SetColor()
         {
-            this.BackColor = Constants.MAIN_BACK_COLOR;
+            this.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
-            btnDeleteOrCancel.BackColor = Constants.MAIN_BACK_COLOR;
+            btnDeleteOrCancel.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             btnDeleteOrCancel.IconColor = Constants.MAIN_FORE_PARAGRAPH_COLOR;
             btnDeleteOrCancel.FlatAppearance.MouseOverBackColor = Constants.EXPAND_HEADER_COLOR;
 
-            btnEditOrUpdate.BackColor = Constants.MAIN_BACK_COLOR;
+            btnEditOrUpdate.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             btnEditOrUpdate.IconColor = Constants.MAIN_FORE_PARAGRAPH_COLOR;
             btnEditOrUpdate.FlatAppearance.MouseOverBackColor = Constants.EXPAND_HEADER_COLOR;
 
-            txtText.BackColor = Constants.MAIN_BACK_COLOR;
+            txtText.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             txtText.ForeColor = Constants.MAIN_FORE_PARAGRAPH_COLOR;
         }
 
@@ -102,7 +102,7 @@ namespace Facebook.Components.Profile
 
         private void InfoProfileItemUC_MouseLeave(object sender, EventArgs e)
         {
-            SetBackgroundColor(Constants.MAIN_BACK_COLOR);
+            SetBackgroundColor(Constants.MAIN_BACK_CONTENT_COLOR);
         }
 
         private void InfoProfileItemUC_MouseEnter1(object sender, EventArgs e)

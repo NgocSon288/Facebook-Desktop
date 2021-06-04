@@ -37,6 +37,9 @@ namespace Facebook.Model.Models
         [ForeignKey("Profile")]
         public int? ProfileID { get; set; }
 
+
         public Profile Profile { get; set; }
+
+        public List<Post> Posts { get; set; }
     }
 }

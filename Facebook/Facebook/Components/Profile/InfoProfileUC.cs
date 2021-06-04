@@ -95,8 +95,8 @@ namespace Facebook.Components.Profile
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
             lblInfo.ForeColor = Constants.MAIN_FORE_COLOR;
-            flpContent.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlContent.BackColor = Constants.MAIN_BACK_COLOR;
+            flpContent.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            pnlContent.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace Facebook.Components.Profile
             }
 
             this.Height = heightThis;
-            pnlContent.Location = new Point(10, 10);
+            pnlContent.Location = new Point(20, 20);
             pnlContent.Height = heightThis - margin;
             flpContent.Height = pnlContent.Height - topFlp;
 
