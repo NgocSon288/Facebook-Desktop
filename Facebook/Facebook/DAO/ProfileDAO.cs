@@ -15,6 +15,8 @@ namespace Facebook.DAO
         Profile GetByID(int id);
 
         bool SaveChanges();
+
+        void Refresh(); // Hổ trợ cập nhật ram
     }
 
     public class ProfileDAO : IProfileDAO
@@ -38,6 +40,11 @@ namespace Facebook.DAO
         public Profile GetByID(int id)
         {
             return profiles.FirstOrDefault(p => p.ID == id);
+        }
+
+        public void Refresh()
+        {
+            profiles = GetAll();
         }
 
         public bool SaveChanges()

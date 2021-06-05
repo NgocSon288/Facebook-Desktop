@@ -102,7 +102,7 @@ namespace Facebook
         #endregion
 
 
-        #region Events
+        #region Events 
 
         /// <summary>
         /// Hành động khi đăng nhập thành công

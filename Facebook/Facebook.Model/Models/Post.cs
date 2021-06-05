@@ -20,6 +20,10 @@ namespace Facebook.Model.Models
 
         public int? PostShared { get; set; }    // nếu khác null là có một bài viết được chia sẻ
 
+        public string Like { get; set; }        // danh sách userID cách nhau bằng CS511
+
+        public string Share { get; set; }   // danh sách userID cách nhau bằng CS511
+
 
         //[ForeignKey("User")]
         //public int CreatedBy { get; set; }  // Người tạo, hoặc share

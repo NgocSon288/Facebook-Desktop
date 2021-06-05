@@ -152,7 +152,7 @@ namespace Facebook.Components.Profile
             {
                 Width = 700,
                 Height = 3,
-                BackColor = Color.FromArgb(131, 149, 167),
+                BackColor = Constants.BORDER_BOX_COLOR,
                 Top = 0,
                 Left = pnlSeparator.Width / 2 - 700 / 2
             };

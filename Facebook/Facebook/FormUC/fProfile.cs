@@ -83,7 +83,7 @@ namespace Facebook.FormUC
 
         private void LoadRight()
         {
-            postListProfileUC = new PostListProfileUC();
+            postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get());
             UpdateHeight();
             postListProfileUC.OnHeightChanged += () => UpdateHeight();
 
@@ -100,6 +100,9 @@ namespace Facebook.FormUC
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
             flpContent.BackColor = Constants.MAIN_BACK_COLOR;
+
+            pnlLeft.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlRight.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
         #endregion

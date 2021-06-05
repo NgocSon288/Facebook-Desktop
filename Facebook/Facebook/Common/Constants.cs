@@ -16,6 +16,7 @@ namespace Facebook.Common
         public static readonly Color MAIN_BACK_CONTENT_COLOR = Color.FromArgb(50, 50, 50); // all form - màu nền chính cho chương 
         public static readonly Color MAIN_FORE_COLOR = Color.FromArgb(228, 230, 235);  // all form - màu chữ chính
         public static readonly Color MAIN_FORE_PARAGRAPH_COLOR = Color.FromArgb(208, 210, 214);  // all form - màu chữ chính paragraph
+        public static readonly Color MAIN_FORE_PARAGRAPH_NOT_ACTIVE_COLOR = Color.FromArgb(130, 133, 137);  // all form - màu chữ chính paragraph
         public static readonly Color MAIN_FORE_SMALLTEXT_COLOR = Color.FromArgb(176, 179, 184);  // all form - màu chữ chính cho các text nhỏ như ngày tháng
         public static readonly Color MAIN_FORE_LINK_COLOR = Color.FromArgb(84, 160, 255);  // all form - màu chữ chính cho các link
         public static readonly Color MAIN_FORE_LINK2_COLOR = Color.FromArgb(46, 137, 255);  // all form - màu chữ chính cho các link
@@ -34,6 +35,14 @@ namespace Facebook.Common
         // Profile
         public static readonly Color DEFAULT_IMAGE_COLOR = Color.White; // Màu mặc định khi user không có ảnh bìa
         public static readonly Color EXPAND_HEADER_COLOR = Color.FromArgb(83, 92, 104); // Color khi enter chuột vào phần header của expande
+        public static readonly Color BORDER_BOX_COLOR = Color.FromArgb(100, 101, 102); // Color khi enter chuột vào phần header của expande
+        public static readonly Color BACKGROUND_COMBOBOX_COLOR = Color.FromArgb(60, 61, 62); // Color khi enter chuột vào phần header của expande
+        public static readonly Color BACKGROUND_POSTSTATUS_ACTIVE_COLOR = Color.FromArgb(37, 47, 60); // Khi item  được chọn
+        public static readonly Color BACKGROUND_POSTSTATUS_HOVER_COLOR = Color.FromArgb(60, 61, 62); // Khi item  được hover
+
+        public static readonly Color BACKGROUND_TEXTBOX_MYCOMMENT = Color.FromArgb(78, 79, 80);
+
+
 
 
         // Bootstrap Color

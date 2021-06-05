@@ -51,7 +51,7 @@ namespace Facebook.Components.Profile
             this.pnlContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
             this.pnlContent.Controls.Add(this.flpContent);
             this.pnlContent.Controls.Add(this.lblInfo);
-            this.pnlContent.Location = new System.Drawing.Point(10, 10);
+            this.pnlContent.Location = new System.Drawing.Point(15, 15);
             this.pnlContent.Margin = new System.Windows.Forms.Padding(0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(471, 468);

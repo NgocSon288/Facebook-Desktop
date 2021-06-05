@@ -17,7 +17,7 @@ namespace Facebook.Helper
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public static Image GetAvatarByUser(User user = null)
+        public static Image GetAvatarByUser(Color color, User user = null)
         {
             if (user == null)
             {
@@ -30,7 +30,7 @@ namespace Facebook.Helper
             {
                 path = "./../../Assets/Images/Profile/avatar-default.jpg";
             }
-            return UIHelper.ClipToCircle(new Bitmap(path), Constants.MAIN_BACK_COLOR);
+            return UIHelper.ClipToCircle(new Bitmap(path), color);
         }
 
         /// <summary>

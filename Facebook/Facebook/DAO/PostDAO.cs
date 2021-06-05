@@ -12,7 +12,11 @@ namespace Facebook.DAO
     {
         List<Post> GetAll();
 
+        List<Post> GetByUserID(int userID);
+
         Post GetByID(int id);
+
+        bool Create(Post post);
 
         bool SaveChanges();
     }
@@ -30,6 +34,27 @@ namespace Facebook.DAO
             posts = GetAll();
         }
 
+        public bool Create(Post post)
+        {
+            try
+            {
+                // insert ram
+                posts.Add(post);
+
+                // insert db
+                _postService.Insert(post);
+
+                // save db
+                _postService.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public List<Post> GetAll()
         {
             return _postService.GetAll().ToList();
@@ -38,6 +63,11 @@ namespace Facebook.DAO
         public Post GetByID(int id)
         {
             return posts.FirstOrDefault(p => p.ID == id);
+        }
+
+        public List<Post> GetByUserID(int userID)
+        {
+            return posts.Where(p => p.User.ID == userID).ToList();
         }
 
         public bool SaveChanges()

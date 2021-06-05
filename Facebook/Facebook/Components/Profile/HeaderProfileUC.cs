@@ -32,7 +32,7 @@ namespace Facebook.Components.Profile
         new private void Load()
         {
             picImage.BackgroundImage = ImageHelper.GetImageByUser();
-            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser();
+            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_COLOR);
 
             lblName.Text = Constants.UserSession?.Name;
             lblName.Left = this.Width / 2 - lblName.Width / 2;
@@ -69,7 +69,7 @@ namespace Facebook.Components.Profile
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Chọn một hình ảnh (Nên chọn hình ảnh có kích thướng vuông)";
-            openFileDialog.Filter = "txt files (*.jpg)|*.jpg|(*.png)|*.png|(*.jpeg)|*.jpeg|(*.jfif)|*.jfif|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;)|*.jpg; *.jpeg; *.gif; *.bmp;";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -107,7 +107,7 @@ namespace Facebook.Components.Profile
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Chọn một hình ảnh (1000 x 370)";
-            openFileDialog.Filter = "txt files (*.jpg)|*.jpg|(*.png)|*.png|(*.jpeg)|*.jpeg|(*.jfif)|*.jfif|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;)|*.jpg; *.jpeg; *.gif; *.bmp;";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

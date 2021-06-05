@@ -30,12 +30,14 @@ namespace Facebook.DAO
     public class UserDAO : IUserDAO
     {
         private readonly IUserService _userService;
+        private readonly IProfileDAO _profileDAO;
 
         private List<User> users;
 
-        public UserDAO(IUserService userService)
+        public UserDAO(IUserService userService, IProfileDAO profileDAO)
         {
             this._userService = userService;
+            this._profileDAO = profileDAO;
 
             users = GetAll();
         }
@@ -172,6 +174,9 @@ namespace Facebook.DAO
 
                 // Insert vào RAM
                 users.Add(user);
+
+                // refresh ram profile
+                _profileDAO.Refresh();
 
                 return 1;
             }

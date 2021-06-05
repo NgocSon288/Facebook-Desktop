@@ -46,3 +46,10 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desk
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileSectionUC.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileItemUC.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.InfoProfileNewItemUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.fWrapCreatePost.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.CreatePostUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.PostStatusUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.PostStatusItemUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.PostItemUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.PostCommentUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Profile.PostCommentItemUC.resources

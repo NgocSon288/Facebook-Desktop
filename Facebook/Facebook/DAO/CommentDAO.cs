@@ -12,6 +12,8 @@ namespace Facebook.DAO
     {
         List<Comment> GetAll();
 
+        List<Comment> GetByPostID(int postID);
+
         Comment GetByID(int id);
 
         bool SaveChanges();
@@ -38,6 +40,11 @@ namespace Facebook.DAO
         public Comment GetByID(int id)
         {
             return comments.FirstOrDefault(p => p.ID == id);
+        }
+
+        public List<Comment> GetByPostID(int postID)
+        {
+            return comments.Where(c => c.PostID == postID).ToList();
         }
 
         public bool SaveChanges()
