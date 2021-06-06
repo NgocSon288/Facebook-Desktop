@@ -1,5 +1,6 @@
 ﻿using Facebook.Common;
 using Facebook.Configure.Autofac;
+using Facebook.ControlCustom.WrapperForm;
 using Facebook.DAO;
 using Facebook.Helper;
 using Facebook.Model.Models;
@@ -27,6 +28,7 @@ namespace Facebook.Components.Profile
 
         private int margin = 20;
         private int ch = 47;
+        private bool isCreated;
 
         #region Methods
 
@@ -57,7 +59,7 @@ namespace Facebook.Components.Profile
 
         private void LoadComment()
         {
-            var postCommentUC = new PostCommentUC(AutofacFactory<ICommentDAO>.Get(), post);
+            var postCommentUC = new PostCommentUC(AutofacFactory<IPostDAO>.Get(), AutofacFactory<ICommentDAO>.Get(), post);
             postCommentUC.OnHeightChanged += PostCommentUC_OnHeightChanged;
 
             this.Height += postCommentUC.Height;
@@ -159,5 +161,33 @@ namespace Facebook.Components.Profile
 
         #endregion
 
+        /// <summary>
+        /// Update lại bài viết
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            //var isUpdate = false;
+            //try
+            //{
+            //    var fWapUpdatePost = new fWrapUpdatePost(AutofacFactory<IPostStatusDAO>.Get(), AutofacFactory<IPostDAO>.Get());
+            //    //fWapUpdatePost.OnCreatedPost += (s) => isUpdate = true;
+            //    var fParent = new fParent(fWapUpdatePost); // Show  thông qua parent, sẽ có hiệu ứng ảo
+            //    fParent.Show();
+            //}
+            //catch (Exception)
+            //{
+
+            //}
+
+            //if (isUpdate)
+            //{
+            //    // Cập nhật lại Post hiện tại
+            //    LoadDetail();
+            //    UpdateHeight();
+            //    OnHeightChaned?.Invoke();
+            //}
+        }
     }
 }

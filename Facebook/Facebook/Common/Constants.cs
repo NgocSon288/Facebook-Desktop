@@ -41,6 +41,8 @@ namespace Facebook.Common
         public static readonly Color BACKGROUND_POSTSTATUS_HOVER_COLOR = Color.FromArgb(60, 61, 62); // Khi item  được hover
 
         public static readonly Color BACKGROUND_TEXTBOX_MYCOMMENT = Color.FromArgb(78, 79, 80);
+        public static readonly Color PLACEHOLDER_FORECOLOR = Color.FromArgb(131, 149, 167);
+        public static readonly Color LIKED_FORECOLOR = Color.FromArgb(45, 134, 255);
 
 
 

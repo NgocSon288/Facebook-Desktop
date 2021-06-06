@@ -108,6 +108,12 @@
     <Compile Include="Components\Profile\PostCommentUC.Designer.cs">
       <DependentUpon>PostCommentUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Profile\PostFeedbackCommentItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\PostFeedbackCommentItemUC.Designer.cs">
+      <DependentUpon>PostFeedbackCommentItemUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\PostItemUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -278,6 +284,9 @@
     <EmbeddedResource Include="Components\Profile\PostCommentUC.resx">
       <DependentUpon>PostCommentUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\PostFeedbackCommentItemUC.resx">
+      <DependentUpon>PostFeedbackCommentItemUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\PostItemUC.resx">
       <DependentUpon>PostItemUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -378,7 +387,7 @@
     <Content Include="Assets\Images\btn-social-google.png" />
     <Content Include="Assets\Images\btn-social-twitter.png" />
     <Content Include="Assets\Images\Comment\Facebook-Like.png" />
-    <Content Include="Assets\Images\Comment\textbox-blank.jpg" />
+    <Content Include="Assets\Images\Comment\textbox-blank.png" />
     <Content Include="Assets\Images\Profile\avatar-default.jpg" />
     <Content Include="Assets\Images\icon-error-message.png" />
     <Content Include="Assets\Images\icon-infomation-message.png" />

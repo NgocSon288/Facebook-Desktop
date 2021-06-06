@@ -18,6 +18,9 @@ namespace Facebook.Components.Profile
 {
     public partial class fWrapCreatePost : Form
     {
+        public delegate void CreatedPost(Post post);
+        public event CreatedPost OnCreatedPost;
+
         private readonly IPostStatusDAO _postStatusDAO;
         private readonly IPostDAO _postDAO;
 
@@ -139,6 +142,7 @@ namespace Facebook.Components.Profile
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            OnCreatedPost?.Invoke(null);
             this.Close();
         }
 
@@ -225,6 +229,8 @@ namespace Facebook.Components.Profile
             {
                 MyMessageBox.Show("Tạo bài viết không thành công!", MessageBoxType.Error);
             }
+
+            OnCreatedPost?.Invoke(post);
 
             this.Close();
         }

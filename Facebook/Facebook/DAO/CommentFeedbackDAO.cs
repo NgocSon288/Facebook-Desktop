@@ -12,6 +12,8 @@ namespace Facebook.DAO
     {
         List<CommentFeedback> GetAll();
 
+        List<CommentFeedback> GetByCommentID(int commnentID);
+
         CommentFeedback GetByID(int id);
 
         bool SaveChanges();
@@ -33,6 +35,11 @@ namespace Facebook.DAO
         public List<CommentFeedback> GetAll()
         {
             return _commentFeedbackService.GetAll().ToList();
+        }
+
+        public List<CommentFeedback> GetByCommentID(int commnentID)
+        {
+            return commentFeedbacks.Where(c => c.CommentID == commnentID).ToList();
         }
 
         public CommentFeedback GetByID(int id)

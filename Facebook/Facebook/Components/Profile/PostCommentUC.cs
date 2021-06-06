@@ -1,10 +1,13 @@
 ﻿using Facebook.Common;
+using Facebook.Configure.Autofac;
+using Facebook.ControlCustom.Message;
 using Facebook.DAO;
 using Facebook.Helper;
 using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Facebook.Components.Profile
@@ -14,15 +17,19 @@ namespace Facebook.Components.Profile
         public delegate void HeightChanged();
         public event HeightChanged OnHeightChanged;
 
+        private readonly IPostDAO _postDAO;
         private readonly ICommentDAO _commentDAO;
         private Post post;
 
         private List<Comment> comments;
+        private List<int> likes; // danh sách các userID đã like bài viết
+        private List<int> shares; // danh sách các userID đã share bài viết
 
-        public PostCommentUC(ICommentDAO commentDAO, Post post)
+        public PostCommentUC(IPostDAO postDAO, ICommentDAO commentDAO, Post post)
         {
             InitializeComponent();
 
+            this._postDAO = postDAO;
             this._commentDAO = commentDAO;
             this.post = post;
 
@@ -30,7 +37,7 @@ namespace Facebook.Components.Profile
         }
 
         private int margin = 10;
-
+        private string STRING_COMPARE = "Viết bình luận...";
         #region Methods
 
         new private void Load()
@@ -39,11 +46,41 @@ namespace Facebook.Components.Profile
 
             pnlComment.Visible = false;
 
+            LoadPanelHead();
             LoadCommentList();
 
             SetUpUI();
             SetColor();
             UpdateHeight();
+            SetLike();
+        }
+
+        /// <summary>
+        /// Like count, comment  count,  share count
+        /// </summary>
+        private void LoadPanelHead()
+        {
+            // Like count
+            likes = new List<int>();
+            if (post.Like != null)
+            {
+                likes = StringHelper.StringToStringList(post.Like).Select(i => Convert.ToInt32(i)).ToList();
+            }
+
+            lblLikeCount.Text = likes.Count.ToString();
+
+            // Comment count
+            lblCommentCount.Text = comments.Count.ToString() + " Comments";
+
+            // Share count
+            shares = new List<int>();
+            if (post.Share != null)
+            {
+                shares = StringHelper.StringToStringList(post.Share).Select(i => Convert.ToInt32(i)).ToList();
+            }
+
+            lblShareCount.Text = shares.Count.ToString() + " Shares";
+
         }
 
         private void LoadCommentList()
@@ -52,7 +89,9 @@ namespace Facebook.Components.Profile
             {
                 foreach (var item in comments)
                 {
-                    var commentItem = new PostCommentItemUC(item);
+                    var commentItem = new PostCommentItemUC(AutofacFactory<ICommentFeedbackDAO>.Get(), item);
+                    commentItem.Margin = new Padding(0, 0, 0, 0);
+                    commentItem.OnHeightChanged += CommentItem_OnHeightChanged;
 
                     flpComment.Controls.Add(commentItem);
                 }
@@ -64,7 +103,7 @@ namespace Facebook.Components.Profile
             picLike.BackgroundImage = Image.FromFile("./../../Assets/Images/Comment/Facebook-Like.png");
             picLike.BackgroundImageLayout = ImageLayout.Stretch;
             picLike.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
-            picTextBox.BackgroundImage = Image.FromFile("./../../Assets/Images/Comment/textbox-blank.jpg");     // Cần cắt hình ảnh và chèn vào
+            picTextBox.BackgroundImage = Image.FromFile("./../../Assets/Images/Comment/textbox-blank.png");     // Cần cắt hình ảnh và chèn vào
             picTextBox.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
@@ -136,7 +175,29 @@ namespace Facebook.Components.Profile
             pnlWrap.Height = this.Height - mar;
         }
 
+        /// <summary>
+        /// Set color dựa vào likes
+        /// Set lblLikeCount trên head
+        /// </summary>
+        private void SetLike()
+        {
+            // Nếu UserSession ID mà tồn tại trong Like comment thì màu xanh
+            var userID = Constants.UserSession.ID;
+            var check = likes.Any(l => l == userID);
 
+            if (check)
+            {
+                btnLike.IconColor = Constants.LIKED_FORECOLOR;
+                lblLike.ForeColor = Constants.LIKED_FORECOLOR;
+            }
+            else
+            {
+                btnLike.IconColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+                lblLike.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+            }
+
+            lblLikeCount.Text = likes.Count.ToString();
+        }
 
         #endregion Methods
 
@@ -186,6 +247,8 @@ namespace Facebook.Components.Profile
 
         #endregion UI
 
+        #region Events
+
         /// <summary>
         /// Lúc đầu chưa có comment nào, khi click vào thì hiện lên tất cả các comment
         /// </summary>
@@ -198,5 +261,75 @@ namespace Facebook.Components.Profile
             UpdateHeight();
             OnHeightChanged?.Invoke();
         }
+
+        private void CommentItem_OnHeightChanged()
+        {
+            UpdateHeight();
+            OnHeightChanged?.Invoke();
+        }
+
+        private void txtMyFeedbackComment_Enter(object sender, EventArgs e)
+        {
+            var txt = sender as TextBox;
+            var text = txt.Text;
+            txt.ForeColor = Constants.MAIN_FORE_COLOR;
+
+            if (string.Equals(text.Trim(), STRING_COMPARE, StringComparison.OrdinalIgnoreCase))
+            {
+                txt.Text = "";
+            }
+        }
+
+        private void txtMyFeedbackComment_Leave(object sender, EventArgs e)
+        {
+            var txt = sender as TextBox;
+            var text = txt.Text;
+            txt.ForeColor = Constants.PLACEHOLDER_FORECOLOR;
+
+            if (text.Trim() == "")
+            {
+                txt.Text = STRING_COMPARE;
+            }
+        }
+
+        /// <summary>
+        /// Nếu đã like thì unlike
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLike_Click(object sender, EventArgs e)
+        {
+            var check = likes.Any(l => l == Constants.UserSession.ID);
+
+            if (check)
+            {
+                likes.Remove(Constants.UserSession.ID);
+            }
+            else
+            {
+                likes.Add(Constants.UserSession.ID);
+            }
+
+            SetLike();
+
+            // Cập  nhật DB
+            post.Like = StringHelper.StringListToString(likes.Select(l => l.ToString()).ToList());
+            _postDAO.SaveChanges();
+        }
+
+        /// <summary>
+        /// Nếu bài viết là của chủ thì không share
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pnlSectionShare_Click(object sender, EventArgs e)
+        {
+            if (post.User.ID == Constants.UserSession.ID)
+            {
+                MyMessageBox.Show("Không thể share!", MessageBoxType.Warning);
+            }
+        }
+
+        #endregion
     }
 }

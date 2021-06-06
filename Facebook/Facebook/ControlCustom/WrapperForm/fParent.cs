@@ -29,14 +29,14 @@ namespace Facebook.ControlCustom.WrapperForm
                 child.ShowDialog();
             });
 
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
-            thread.Join();
-
             // Gíup focus vào  childForm
             this.GotFocus += FParent_GotFocus;
             this.Click += FParent_Click;
             this.DoubleClick += FParent_Click;
+
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            //thread.Join();
         }
 
         #region Parent events, methods
@@ -45,7 +45,7 @@ namespace Facebook.ControlCustom.WrapperForm
         {
             Invoke(new Action(() =>
             {
-                Application.OpenForms["child"].Activate();
+                Application.OpenForms["child"]?.Activate();
             }));
         }
 
@@ -63,10 +63,10 @@ namespace Facebook.ControlCustom.WrapperForm
 
         private void Child_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Close();
-            //Invoke(new Action(() =>
-            //{
-            //})); 
+            Invoke(new Action(() =>
+            {
+                this.Close();
+            }));
         }
 
         #endregion

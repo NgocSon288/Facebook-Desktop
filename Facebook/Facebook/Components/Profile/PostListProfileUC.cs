@@ -52,6 +52,8 @@ namespace Facebook.Components.Profile
 
         private void LoadPostItems()
         {
+            flpContent.Controls.Clear();
+
             foreach (var item in posts)
             {
                 var postItem = new PostItemUC(item);
@@ -127,15 +129,24 @@ namespace Facebook.Components.Profile
 
         private void picThink_Click(object sender, EventArgs e)
         {
+            var isCreated = false;
             try
             {
                 var fWrapCreatePost = new fWrapCreatePost(AutofacFactory<IPostStatusDAO>.Get(), AutofacFactory<IPostDAO>.Get());
+                fWrapCreatePost.OnCreatedPost += (s) => isCreated = s != null;
                 var fParent = new fParent(fWrapCreatePost); // Show  thông qua parent, sẽ có hiệu ứng ảo
-                fParent.Show();
+                fParent.ShowDialog();
             }
             catch (Exception)
             {
 
+            }
+
+            if (isCreated)
+            {
+                posts = _postDAO.GetAll();
+
+                LoadPostItems();
             }
 
         }

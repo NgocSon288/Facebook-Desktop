@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblOwnCommentDesctiption.Text" xml:space="preserve">
+  <data name="lblDescription.Text" xml:space="preserve">
     <value>Hi bạn, mình làm quen nha, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae modi quidem, soluta ad et, vitae corrupti eius facilis, Hi bạn, mình làm quen nha, Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae modi quidem, soluta ad et, vitae corrupti eius facilis</value>
   </data>
   <metadata name="beMyComment.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 15</value>
-  </metadata>
-  <metadata name="bunifuElipse1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>141, 15</value>
+    <value>17, 17</value>
   </metadata>
 </root>

@@ -47,6 +47,7 @@ namespace Facebook.DAO
                 // save db
                 _postService.SaveChanges();
 
+
                 return true;
             }
             catch (Exception)
@@ -57,7 +58,7 @@ namespace Facebook.DAO
 
         public List<Post> GetAll()
         {
-            return _postService.GetAll().ToList();
+            return _postService.GetAll().OrderByDescending(p => p.CreatedAt).ToList();
         }
 
         public Post GetByID(int id)

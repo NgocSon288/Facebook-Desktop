@@ -219,7 +219,6 @@ namespace Facebook.Components.Profile
 
         private void btnAddImage_Click(object sender, EventArgs e)
         {
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Chọn một hình ảnh";
             openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;)|*.jpg; *.jpeg; *.gif; *.bmp;";

@@ -73,6 +73,7 @@ namespace Facebook.Components.Profile
             this.btnEdit.Size = new System.Drawing.Size(40, 40);
             this.btnEdit.TabIndex = 65;
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // lblTime
             // 
