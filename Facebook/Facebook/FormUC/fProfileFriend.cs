@@ -1,18 +1,11 @@
 ﻿using Facebook.Common;
 using Facebook.Components.Profile;
-using Facebook.Configure.Autofac;
 using Facebook.ControlCustom.Message;
 using Facebook.DAO;
 using Facebook.Helper;
 using Facebook.Model.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Facebook.FormUC
@@ -21,11 +14,7 @@ namespace Facebook.FormUC
     {
         private User user;
 
-
         private readonly IUserDAO _userDAO;
-
-        private InfoProfileUC infoProfileUC;
-        private PostListProfileUC postListProfileUC;
 
         private Control content;
 
@@ -48,14 +37,63 @@ namespace Facebook.FormUC
             // Load Header: Image, Avatar
             LoadHeader();
 
-            /// Height của pnlMainContent = Max(heightLeft, heightRight);
-            // Load thông tin bên trái
-            LoadLeft();
+            // Load menu
+            LoadMenu();
 
-            // Load các bài viết bên phải
-            LoadRight();
+            // Tương tự load left right
+            LoadIntroduce();
 
             SetColor();
+        }
+
+        private void LoadMenu()
+        {
+            // Sẽ  thay thế
+            var menuProfileUC = new MenuProfileUC();
+            menuProfileUC.OnClickButtonIntro += () => { LoadIntroduce(); };
+            menuProfileUC.OnClickButtonFriends += () => { LoadFriends(); };
+            menuProfileUC.OnClickButtonImages += () => { LoadImages(); };
+
+            pnlMenu.Controls.Add(menuProfileUC);
+            pnlMenu.Height = menuProfileUC.Height + 19;
+        }
+
+        private void LoadIntroduce()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var infoProfileIntroduceUC = new InfoProfileIntroduceUC(user);
+            pnlMainContent.Height = infoProfileIntroduceUC.Height;
+            infoProfileIntroduceUC.Location = new Point(0, 0);
+            infoProfileIntroduceUC.OnHeightChanged += UpdateHeight;
+            infoProfileIntroduceUC.OnClickProfileFriend += LoadProfileByUser;
+
+            pnlMainContent.Controls.Add(infoProfileIntroduceUC);
+            UpdateHeight();
+        }
+
+        private void LoadFriends()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var infoProfileFriendsUC = new InfoProfileFriendsUC(user);
+            pnlMainContent.Height = infoProfileFriendsUC.Height;
+            infoProfileFriendsUC.Location = new Point(0, 0);
+
+            pnlMainContent.Controls.Add(infoProfileFriendsUC);
+            UpdateHeight();
+        }
+
+        private void LoadImages()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var infoProfileImagesUC = new InfoProfileImagesUC(user);
+            pnlMainContent.Height = infoProfileImagesUC.Height;
+            infoProfileImagesUC.Location = new Point(0, 0);
+
+            pnlMainContent.Controls.Add(infoProfileImagesUC);
+            UpdateHeight();
         }
 
         private void LoadHeader()
@@ -63,48 +101,16 @@ namespace Facebook.FormUC
             var f = new HeaderProfileUC(this._userDAO, user);
             f.Dock = DockStyle.Fill;
 
-            var pnlSeparator = new Panel()
-            {
-                Height = 2,
-                BackColor = Color.Gray,
-                Margin = new Padding(20, 20, 20, 20)
-            };
-            pnlSeparator.Dock = DockStyle.Bottom;
-
-
-            pnlHead.Height = f.Height + 50;
-
-            pnlHead.Controls.Add(pnlSeparator);
+            pnlHead.Height = f.Height;
             pnlHead.Controls.Add(f);
         }
 
-        private void LoadLeft()
-        {
-            infoProfileUC = new InfoProfileUC(AutofacFactory<IProfileDAO>.Get(), user);   // InfoUC có width bao nhiêu cũng được
-            pnlMainContent.Height = infoProfileUC.Height;   // gán giá height của InfoUC cho pnl chứa nó, vì flp có thể scroll theo độ dày các con bên trong
-            infoProfileUC.OnHeightChanged += () => UpdateHeight();
-
-            pnlLeft.Controls.Add(infoProfileUC);
-            infoProfileUC.Dock = DockStyle.Top;
-
-        }
-
-        private void LoadRight()
-        {
-            // Have friendship or no hava firendship thi cần làm xong chức năng kết bạn
-
-            postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get(), user, PostListProfileUC.PAGE.FRIEND_FRIENDSHIP);
-            UpdateHeight();
-            postListProfileUC.OnHeightChanged += () => UpdateHeight();
-            postListProfileUC.OnClickProfileFriend += LoadProfileByUser;
-
-            pnlRight.Controls.Add(postListProfileUC);
-            postListProfileUC.Dock = DockStyle.Top;
-        }
-
+        /// <summary>
+        /// Cần update lại thêm menu
+        /// </summary>
         private void UpdateHeight()
         {
-            pnlMainContent.Height = infoProfileUC.Height > postListProfileUC.Height ? infoProfileUC.Height : postListProfileUC.Height;
+            pnlMainContent.Height = pnlMainContent.Controls[0].Height;
         }
 
         private void LoadProfileByUser(User user)
@@ -118,12 +124,11 @@ namespace Facebook.FormUC
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
             flpContent.BackColor = Constants.MAIN_BACK_COLOR;
-
-            pnlLeft.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlRight.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlMainContent.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlMenu.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
-        #endregion
+        #endregion Methods
 
         #region SetUpUI
 
@@ -157,10 +162,9 @@ namespace Facebook.FormUC
             Constants.MainForm.WindowState = FormWindowState.Minimized;
         }
 
-        #endregion
+        #endregion SetUpUI
 
         #region Events
-
 
         private void btnBack_Click(object sender, EventArgs e)
         {
@@ -169,8 +173,6 @@ namespace Facebook.FormUC
             content.SendToBack();
         }
 
-
-
-        #endregion
+        #endregion Events
     }
 }

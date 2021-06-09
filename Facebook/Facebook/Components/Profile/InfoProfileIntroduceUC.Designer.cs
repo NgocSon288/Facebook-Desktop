@@ -1,7 +1,7 @@
 ﻿
 namespace Facebook.Components.Profile
 {
-    partial class InfoProfileIntroduce
+    partial class InfoProfileIntroduceUC
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,27 +29,14 @@ namespace Facebook.Components.Profile
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlMainContent = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.pnlMainContent.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pnlMainContent
-            // 
-            this.pnlMainContent.BackColor = System.Drawing.Color.Red;
-            this.pnlMainContent.Controls.Add(this.pnlRight);
-            this.pnlMainContent.Controls.Add(this.pnlLeft);
-            this.pnlMainContent.Location = new System.Drawing.Point(0, 0);
-            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlMainContent.Name = "pnlMainContent";
-            this.pnlMainContent.Size = new System.Drawing.Size(982, 371);
-            this.pnlMainContent.TabIndex = 4;
             // 
             // pnlRight
             // 
             this.pnlRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlRight.Location = new System.Drawing.Point(491, 0);
             this.pnlRight.Margin = new System.Windows.Forms.Padding(0);
             this.pnlRight.Name = "pnlRight";
@@ -66,22 +53,21 @@ namespace Facebook.Components.Profile
             this.pnlLeft.Size = new System.Drawing.Size(491, 371);
             this.pnlLeft.TabIndex = 0;
             // 
-            // InfoProfileIntroduce
+            // InfoProfileIntroduceUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.pnlMainContent);
+            this.AutoSize = true;
+            this.Controls.Add(this.pnlRight);
+            this.Controls.Add(this.pnlLeft);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "InfoProfileIntroduce";
+            this.Name = "InfoProfileIntroduceUC";
             this.Size = new System.Drawing.Size(982, 371);
-            this.pnlMainContent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel pnlMainContent;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Panel pnlLeft;
     }

@@ -113,6 +113,7 @@ namespace Facebook.Components.Profile
         private void UpdateHeight()
         {
             // margin top, bottom
+            var bonus = 20;
             var topFlp = flpContent.Top;
             var margin = 20;
             var heightLbl = lblInfo.Height;
@@ -123,9 +124,9 @@ namespace Facebook.Components.Profile
                 heightThis += item.Height + item.Margin.Bottom;
             }
 
-            this.Height = heightThis;
-            pnlContent.Location = new Point(20, 20);
-            pnlContent.Height = heightThis - margin;
+            this.Height = heightThis + bonus;
+            pnlContent.Location = new Point(20, 0);
+            pnlContent.Height = heightThis - margin + bonus;
             flpContent.Height = pnlContent.Height - topFlp;
 
             OnHeightChanged?.Invoke();

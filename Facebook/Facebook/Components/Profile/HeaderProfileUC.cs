@@ -35,35 +35,44 @@ namespace Facebook.Components.Profile
             Load();
         }
 
+        int margin = 20;
+
         #region Methods
 
         new private void Load()
         {
             beWrapAavatar.BackgroundImage = ImageHelper.GetImageByUser(user);
-            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_COLOR, user);
+            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR, user);
+
+            pnlWrap.Width = this.Width - 2 * margin - 14;
+            pnlWrap.Height = this.Height - 2 * margin;
+            pnlWrap.Location = new Point(margin, margin);
 
             lblName.Text = user?.Name;
-            lblName.Left = this.Width / 2 - lblName.Width / 2;
-            lblName.Top = this.Height - pnlBottom.Height - lblName.Height;
+            lblName.Left = pnlWrap.Width / 2 - lblName.Width / 2;
+            lblName.Top = pnlWrap.Height - pnlBottom.Height - lblName.Height - margin;
 
             pnlBottom.Width = 300;
             pnlBottom.Height = 5;
             pnlBottom.BackColor = Color.Gray;
-            pnlBottom.Left = this.Width / 2 - pnlBottom.Width / 2;
-            pnlBottom.Top = this.Height - pnlBottom.Height;
+            pnlBottom.Left = pnlWrap.Width / 2 - pnlBottom.Width / 2;
+            pnlBottom.Top = pnlWrap.Height - pnlBottom.Height - margin;
 
             SetColor();
 
             pnlWrapImage.BackColor = Constants.BORDER_IMAGE_COLOR;
+            pnlWrapImage.Left = pnlWrap.Width / 2 - pnlWrapImage.Width / 2;
 
             UIHelper.BorderRadius(beWrapAavatar, Constants.BORDER_RADIUS);
             UIHelper.BorderRadius(pnlWrapImage, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
             UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private void SetColor()
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlWrap.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             lblName.ForeColor = Constants.MAIN_FORE_COLOR;
             pnlBottom.BackColor = Constants.MAIN_FORE_COLOR;
         }

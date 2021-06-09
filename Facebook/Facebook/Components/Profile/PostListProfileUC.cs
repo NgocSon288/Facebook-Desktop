@@ -48,7 +48,7 @@ namespace Facebook.Components.Profile
 
         private Image image1;
         private Image image2;
-        private int margin = 20;
+        private int margin = 10;
 
         // Sau này có thể thêm profile của bạn bè
         public enum PAGE
@@ -93,6 +93,7 @@ namespace Facebook.Components.Profile
                 LoadPostItems();
 
                 pnlThink.Visible = user == Constants.UserSession;
+                pnlSeparator.Visible = user == Constants.UserSession;
 
                 LoadUI();
                 SetColor();
@@ -195,7 +196,7 @@ namespace Facebook.Components.Profile
             picThink.BackgroundImage = image1;
             picThink.BackgroundImageLayout = ImageLayout.Stretch;
 
-            pnlContent.Location = new Point(margin, margin);
+            pnlContent.Location = new Point(margin, 0);
 
             UIHelper.BorderRadius(pnlThink, Constants.BORDER_RADIUS);
 
@@ -204,7 +205,7 @@ namespace Facebook.Components.Profile
         private void SetColor()
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlContent.BackColor = Constants.MAIN_BACK_COLOR;   //adasd
+            pnlContent.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;   //adasd
             pnlThink.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             flpContent.BackColor = Constants.MAIN_BACK_COLOR;
 
@@ -216,7 +217,7 @@ namespace Facebook.Components.Profile
         {
             var mar = margin * 2;
             var heightHead = pnlThink.Visible ? pnlThink.Height : 0;
-            var heightSe = pnlSeparator.Height;
+            var heightSe = pnlThink.Visible ? pnlSeparator.Height : 0;
             var heightContent = 0;
 
             foreach (Control item in flpContent.Controls)
@@ -230,15 +231,15 @@ namespace Facebook.Components.Profile
 
             OnHeightChanged?.Invoke();
 
-            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
-            UIHelper.BorderRadius(flpContent, Constants.BORDER_RADIUS);
-
             if (!pnlThink.Visible)
             {
-                var a = pnlContent.Top;
-
-                pnlContent.Top -= 8;
+                //pnlContent.Top = -10;
             }
+
+            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(flpContent, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlThink, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS);
         }
 
         public void UpdateAvatar()

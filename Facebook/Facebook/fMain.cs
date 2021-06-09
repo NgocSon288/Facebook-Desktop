@@ -138,7 +138,7 @@ namespace Facebook
 
             try
             {
-                fProfile.Dispose();
+                fProfile?.Dispose();
             }
             catch (Exception)
             {

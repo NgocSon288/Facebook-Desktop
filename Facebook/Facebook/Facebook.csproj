@@ -84,6 +84,18 @@
     <Compile Include="Components\Profile\fWrapUpdatePost.Designer.cs">
       <DependentUpon>fWrapUpdatePost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Profile\InfoProfileImagesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileImagesUC.Designer.cs">
+      <DependentUpon>InfoProfileImagesUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileIntroduceUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileIntroduceUC.Designer.cs">
+      <DependentUpon>InfoProfileIntroduceUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\InfoProfileItemUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,6 +113,18 @@
     </Compile>
     <Compile Include="Components\Profile\InfoProfileSectionUC.Designer.cs">
       <DependentUpon>InfoProfileSectionUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileFriendsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileFriendsUC.Designer.cs">
+      <DependentUpon>InfoProfileFriendsUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\MenuProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\MenuProfileUC.Designer.cs">
+      <DependentUpon>MenuProfileUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\Profile\PostCommentItemUC.cs">
       <SubType>UserControl</SubType>
@@ -306,6 +330,12 @@
     <EmbeddedResource Include="Components\Profile\HeaderProfileUC.resx">
       <DependentUpon>HeaderProfileUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileImagesUC.resx">
+      <DependentUpon>InfoProfileImagesUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileIntroduceUC.resx">
+      <DependentUpon>InfoProfileIntroduceUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\InfoProfileItemUC.resx">
       <DependentUpon>InfoProfileItemUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -317,6 +347,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\InfoProfileUC.resx">
       <DependentUpon>InfoProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileFriendsUC.resx">
+      <DependentUpon>InfoProfileFriendsUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\MenuProfileUC.resx">
+      <DependentUpon>MenuProfileUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\PostCommentItemUC.resx">
       <DependentUpon>PostCommentItemUC.cs</DependentUpon>

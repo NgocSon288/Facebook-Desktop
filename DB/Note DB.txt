@@ -1,3 +1,5 @@
+dong thời gian ... 
+cá nhân: thêm danh sách bạn bè 
 components  ->  fProfileFriend.cs: cần kiểm tra là fiendship hay không
 
 ----------------------------------
@@ -375,6 +377,8 @@ Khi tạo nick mới, khi thêm bài rồi sửa bài  thì  lỗi
 
 1000 x 370
 1980	732
+1000 x 370
+900 x 333
 
 
 -------------------------------------------------------
@@ -383,8 +387,14 @@ Chức năng xóa bài bị lỗi, xóa nhắm bài ui
 
 
 -------------------------------------------------------
+InfoProfileFriendsUC - danh sách bạn bè của user truyền vào, get tất cả bạn bè của user đó
 
+InfoProfileImagesUC - danh sách các hình ảnh của user đó, tùy vào
+	+ nếu user == Constants.UserSession: getAll hình ảnh
+	+ nếu là bạn bè thì các hình ảnh PostStatus == 1, == 2 (2 = bạn)
+	+ nếu không là bạn thì PostStatus = 1
 
+=> dựa vào hình ảnh bài viết sẽ chậm mà dễ làm hơn
 -------------------------------------------------------
 
 

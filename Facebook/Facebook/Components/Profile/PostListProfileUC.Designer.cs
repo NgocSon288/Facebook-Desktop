@@ -57,7 +57,7 @@ namespace Facebook.Components.Profile
             // 
             this.flpContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpContent.Location = new System.Drawing.Point(0, 64);
-            this.flpContent.Margin = new System.Windows.Forms.Padding(0);
+            this.flpContent.Margin = new System.Windows.Forms.Padding(0, 20, 0, 0);
             this.flpContent.Name = "flpContent";
             this.flpContent.Size = new System.Drawing.Size(464, 423);
             this.flpContent.TabIndex = 2;

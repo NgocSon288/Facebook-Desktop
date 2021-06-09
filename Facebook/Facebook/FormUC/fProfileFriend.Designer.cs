@@ -33,13 +33,11 @@ namespace Facebook.FormUC
             this.btnMinimize = new System.Windows.Forms.Button();
             this.flpContent = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlHead = new System.Windows.Forms.Panel();
+            this.pnlMenu = new System.Windows.Forms.Panel();
             this.pnlMainContent = new System.Windows.Forms.Panel();
-            this.pnlRight = new System.Windows.Forms.Panel();
-            this.pnlLeft = new System.Windows.Forms.Panel();
             this.btnBack = new FontAwesome.Sharp.IconButton();
             this.panelContent = new System.Windows.Forms.Panel();
             this.flpContent.SuspendLayout();
-            this.pnlMainContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -87,6 +85,7 @@ namespace Facebook.FormUC
             // 
             this.flpContent.AutoScroll = true;
             this.flpContent.Controls.Add(this.pnlHead);
+            this.flpContent.Controls.Add(this.pnlMenu);
             this.flpContent.Controls.Add(this.pnlMainContent);
             this.flpContent.Location = new System.Drawing.Point(0, 30);
             this.flpContent.Margin = new System.Windows.Forms.Padding(0);
@@ -106,36 +105,23 @@ namespace Facebook.FormUC
             this.pnlHead.Size = new System.Drawing.Size(982, 394);
             this.pnlHead.TabIndex = 2;
             // 
+            // pnlMenu
+            // 
+            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.pnlMenu.Location = new System.Drawing.Point(0, 394);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(982, 100);
+            this.pnlMenu.TabIndex = 3;
+            // 
             // pnlMainContent
             // 
             this.pnlMainContent.BackColor = System.Drawing.Color.Red;
-            this.pnlMainContent.Controls.Add(this.pnlRight);
-            this.pnlMainContent.Controls.Add(this.pnlLeft);
-            this.pnlMainContent.Location = new System.Drawing.Point(0, 394);
+            this.pnlMainContent.Location = new System.Drawing.Point(0, 494);
             this.pnlMainContent.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMainContent.Name = "pnlMainContent";
-            this.pnlMainContent.Size = new System.Drawing.Size(982, 371);
-            this.pnlMainContent.TabIndex = 3;
-            // 
-            // pnlRight
-            // 
-            this.pnlRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRight.Location = new System.Drawing.Point(491, 0);
-            this.pnlRight.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(491, 371);
-            this.pnlRight.TabIndex = 1;
-            // 
-            // pnlLeft
-            // 
-            this.pnlLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeft.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(491, 371);
-            this.pnlLeft.TabIndex = 0;
+            this.pnlMainContent.Size = new System.Drawing.Size(982, 206);
+            this.pnlMainContent.TabIndex = 4;
             // 
             // btnBack
             // 
@@ -185,7 +171,6 @@ namespace Facebook.FormUC
             this.Name = "fProfileFriend";
             this.Size = new System.Drawing.Size(1000, 800);
             this.flpContent.ResumeLayout(false);
-            this.pnlMainContent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -195,10 +180,9 @@ namespace Facebook.FormUC
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.FlowLayoutPanel flpContent;
         private System.Windows.Forms.Panel pnlHead;
-        private System.Windows.Forms.Panel pnlMainContent;
-        private System.Windows.Forms.Panel pnlRight;
-        private System.Windows.Forms.Panel pnlLeft;
         private FontAwesome.Sharp.IconButton btnBack;
         private System.Windows.Forms.Panel panelContent;
+        private System.Windows.Forms.Panel pnlMenu;
+        private System.Windows.Forms.Panel pnlMainContent;
     }
 }

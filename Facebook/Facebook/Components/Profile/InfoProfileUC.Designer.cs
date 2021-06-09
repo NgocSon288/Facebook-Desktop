@@ -39,7 +39,7 @@ namespace Facebook.Components.Profile
             // 
             this.lblInfo.AutoSize = true;
             this.lblInfo.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfo.Location = new System.Drawing.Point(0, 0);
+            this.lblInfo.Location = new System.Drawing.Point(9, 8);
             this.lblInfo.Margin = new System.Windows.Forms.Padding(0);
             this.lblInfo.Name = "lblInfo";
             this.lblInfo.Size = new System.Drawing.Size(197, 37);
@@ -61,10 +61,10 @@ namespace Facebook.Components.Profile
             // 
             this.flpContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
             this.flpContent.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flpContent.Location = new System.Drawing.Point(0, 40);
+            this.flpContent.Location = new System.Drawing.Point(0, 66);
             this.flpContent.Margin = new System.Windows.Forms.Padding(0);
             this.flpContent.Name = "flpContent";
-            this.flpContent.Size = new System.Drawing.Size(471, 428);
+            this.flpContent.Size = new System.Drawing.Size(471, 402);
             this.flpContent.TabIndex = 51;
             // 
             // InfoProfileUC

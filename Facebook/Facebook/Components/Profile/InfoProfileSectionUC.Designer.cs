@@ -54,7 +54,7 @@ namespace Facebook.Components.Profile
             this.btnTitle.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTitle.IconSize = 36;
             this.btnTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTitle.Location = new System.Drawing.Point(0, 0);
+            this.btnTitle.Location = new System.Drawing.Point(15, 0);
             this.btnTitle.Margin = new System.Windows.Forms.Padding(0);
             this.btnTitle.Name = "btnTitle";
             this.btnTitle.Size = new System.Drawing.Size(205, 37);
