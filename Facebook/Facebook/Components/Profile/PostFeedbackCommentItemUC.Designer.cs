@@ -29,19 +29,20 @@ namespace Facebook.Components.Profile
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PostFeedbackCommentItemUC));
             this.pnlFeedbackComment = new System.Windows.Forms.Panel();
             this.lblDescription = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.picAvatar = new System.Windows.Forms.PictureBox();
-            this.beMyComment = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.pnlMyCommentControl = new System.Windows.Forms.Panel();
+            this.lblLikeCount = new System.Windows.Forms.Label();
+            this.picLike = new System.Windows.Forms.PictureBox();
             this.lblLike = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.pnlFeedbackComment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
             this.pnlMyCommentControl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLike)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlFeedbackComment
@@ -74,6 +75,7 @@ namespace Facebook.Components.Profile
             this.lblName.Size = new System.Drawing.Size(109, 16);
             this.lblName.TabIndex = 2;
             this.lblName.Text = "Huỳnh Ngọc Sơn";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // picAvatar
             // 
@@ -84,14 +86,12 @@ namespace Facebook.Components.Profile
             this.picAvatar.Size = new System.Drawing.Size(40, 40);
             this.picAvatar.TabIndex = 4;
             this.picAvatar.TabStop = false;
-            // 
-            // beMyComment
-            // 
-            this.beMyComment.ElipseRadius = 26;
-            this.beMyComment.TargetControl = this.pnlFeedbackComment;
+            this.picAvatar.Click += new System.EventHandler(this.picAvatar_Click);
             // 
             // pnlMyCommentControl
             // 
+            this.pnlMyCommentControl.Controls.Add(this.lblLikeCount);
+            this.pnlMyCommentControl.Controls.Add(this.picLike);
             this.pnlMyCommentControl.Controls.Add(this.lblLike);
             this.pnlMyCommentControl.Controls.Add(this.lblTime);
             this.pnlMyCommentControl.Location = new System.Drawing.Point(54, 144);
@@ -99,6 +99,27 @@ namespace Facebook.Components.Profile
             this.pnlMyCommentControl.Name = "pnlMyCommentControl";
             this.pnlMyCommentControl.Size = new System.Drawing.Size(318, 22);
             this.pnlMyCommentControl.TabIndex = 8;
+            // 
+            // lblLikeCount
+            // 
+            this.lblLikeCount.AutoSize = true;
+            this.lblLikeCount.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblLikeCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLikeCount.Location = new System.Drawing.Point(297, 0);
+            this.lblLikeCount.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLikeCount.Name = "lblLikeCount";
+            this.lblLikeCount.Size = new System.Drawing.Size(32, 16);
+            this.lblLikeCount.TabIndex = 9;
+            this.lblLikeCount.Text = "100";
+            // 
+            // picLike
+            // 
+            this.picLike.Location = new System.Drawing.Point(278, 0);
+            this.picLike.Margin = new System.Windows.Forms.Padding(0);
+            this.picLike.Name = "picLike";
+            this.picLike.Size = new System.Drawing.Size(15, 15);
+            this.picLike.TabIndex = 8;
+            this.picLike.TabStop = false;
             // 
             // lblLike
             // 
@@ -110,6 +131,7 @@ namespace Facebook.Components.Profile
             this.lblLike.Size = new System.Drawing.Size(46, 16);
             this.lblLike.TabIndex = 4;
             this.lblLike.Text = "Thích";
+            this.lblLike.Click += new System.EventHandler(this.lblLike_Click);
             // 
             // lblTime
             // 
@@ -138,6 +160,7 @@ namespace Facebook.Components.Profile
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.pnlMyCommentControl.ResumeLayout(false);
             this.pnlMyCommentControl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picLike)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -148,9 +171,10 @@ namespace Facebook.Components.Profile
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox picAvatar;
-        private Bunifu.Framework.UI.BunifuElipse beMyComment;
         private System.Windows.Forms.Panel pnlMyCommentControl;
         private System.Windows.Forms.Label lblLike;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblLikeCount;
+        private System.Windows.Forms.PictureBox picLike;
     }
 }

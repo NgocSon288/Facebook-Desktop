@@ -1,5 +1,6 @@
 ﻿using Facebook.Common;
 using Facebook.ControlCustom.Message;
+using Facebook.Helper;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -22,13 +23,16 @@ namespace Facebook.Components.Profile
 
         private string content;
         private bool isEdit;    // nếu là edit thì hiện cái bottom lên
+        private bool isReadOnlyItem;
 
 
-        public InfoProfileItemUC(string content)
+        public InfoProfileItemUC(string content, bool isReadOnly = false)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this.content = content;
+            this.isReadOnlyItem = isReadOnly;
 
             Load();
         }
@@ -40,9 +44,15 @@ namespace Facebook.Components.Profile
             // LoadText
             txtText.Text = content;
 
+            // is readonly
+            btnEditOrUpdate.Visible = btnDeleteOrCancel.Visible = !isReadOnlyItem;
+
             LoadUI();
 
             SetColor();
+
+            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS_SECTION_LIKE);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private void SetBackgroundColor(Color color)
@@ -78,6 +88,7 @@ namespace Facebook.Components.Profile
             // Load icon cho 2 button control
             btnEditOrUpdate.IconChar = isEdit ? IconChar.Check : IconChar.Edit;
             btnDeleteOrCancel.IconChar = isEdit ? IconChar.UndoAlt : IconChar.Minus;
+
         }
 
         #endregion
@@ -126,6 +137,7 @@ namespace Facebook.Components.Profile
             }
 
             isEdit = !isEdit;
+            btnDeleteOrCancel.Tag = txtText.Text;
 
             LoadUI();
         }
@@ -154,6 +166,8 @@ namespace Facebook.Components.Profile
             }
 
             isEdit = false;
+
+            txtText.Text = btnDeleteOrCancel.Tag.ToString();
 
             LoadUI();
         }

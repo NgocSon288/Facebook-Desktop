@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Facebook.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,8 @@ namespace Facebook.ControlCustom.WrapperForm
         public fParent(Form child)
         {
             InitializeComponent();
+
+            this.Opacity = Constants.OPACITY;
 
             this.child = child;
             child.Name = "child";

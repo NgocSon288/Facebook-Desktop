@@ -5,12 +5,16 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Facebook.Common
 {
     public static class Constants
     {
         public static readonly string SEPERATE_CHAR = "CS511";
+        public static readonly double OPACITY = 0.5;
+        public static readonly int BORDER_RADIUS = 35;
+        public static readonly int BORDER_RADIUS_SECTION_LIKE = 20;
 
         public static readonly Color MAIN_BACK_COLOR = Color.FromArgb(36, 37, 38); // all form - màu nền chính cho chương 
         public static readonly Color MAIN_BACK_CONTENT_COLOR = Color.FromArgb(50, 50, 50); // all form - màu nền chính cho chương 
@@ -43,6 +47,8 @@ namespace Facebook.Common
         public static readonly Color BACKGROUND_TEXTBOX_MYCOMMENT = Color.FromArgb(78, 79, 80);
         public static readonly Color PLACEHOLDER_FORECOLOR = Color.FromArgb(131, 149, 167);
         public static readonly Color LIKED_FORECOLOR = Color.FromArgb(45, 134, 255);
+
+        public static readonly Color BORDER_IMAGE_COLOR = Color.FromArgb(223, 249, 251); //  Màu border của ảnh đại diện
 
 
 

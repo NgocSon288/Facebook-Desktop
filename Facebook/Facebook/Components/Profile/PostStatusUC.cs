@@ -1,5 +1,6 @@
 ﻿using Facebook.Common;
 using Facebook.DAO;
+using Facebook.Helper;
 using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Facebook.Components.Profile
         public PostStatusUC(List<PostStatus> postStatuses, int postStatusIDActive = 1)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this.postStatuses = postStatuses;
             this.postStatusIDActive = postStatusIDActive;
@@ -61,7 +63,10 @@ namespace Facebook.Components.Profile
             SetUpUI();
             SetColor();
             UpdateHeight();
+
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
+
 
         private void UpdateHeight()
         {

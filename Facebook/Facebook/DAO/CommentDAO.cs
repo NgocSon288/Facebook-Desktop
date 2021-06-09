@@ -16,6 +16,8 @@ namespace Facebook.DAO
 
         Comment GetByID(int id);
 
+        bool Create(Comment comment);
+
         bool SaveChanges();
     }
 
@@ -30,6 +32,26 @@ namespace Facebook.DAO
             this._commentService = commentService;
 
             comments = GetAll();
+        }
+
+        public bool Create(Comment comment)
+        {
+            try
+            {
+                // add ram
+                comments.Add(comment);
+
+                // add db
+                _commentService.Insert(comment);
+
+                SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public List<Comment> GetAll()

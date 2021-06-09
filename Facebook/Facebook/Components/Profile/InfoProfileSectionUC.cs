@@ -28,20 +28,23 @@ namespace Facebook.Components.Profile
         private string content; // chuổi các text abcCS511defCS511123
         private IconChar icon;
 
-        private bool isLastItem = false;
+        private bool isReadonlyPage;
+        private bool isLastItem;
         private List<string> contentList;
 
         private string profileName;
 
-        public InfoProfileSectionUC(string profileName, string title, string content, IconChar icon, IProfileDAO profileDAO, bool isLastItem = false)
+        public InfoProfileSectionUC(string profileName, string title, string content, IconChar icon, IProfileDAO profileDAO, bool isReadOnly = false, bool isLastItem = false)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this._profileDAO = profileDAO;
 
             this.profileName = profileName;
             this.title = title;
             this.content = content;
+            this.isReadonlyPage = isReadOnly;
             this.isLastItem = isLastItem;
             this.icon = icon;
 
@@ -58,7 +61,7 @@ namespace Facebook.Components.Profile
 
             foreach (var text in contentList)
             {
-                var item = new InfoProfileItemUC(text);
+                var item = new InfoProfileItemUC(text, isReadonlyPage);
                 item.Tag = text; // old text
                 item.OnRemoveItem += Item_OnRemoveItem;
                 item.OnUpdateItem += Item_OnUpdateItem;
@@ -66,6 +69,8 @@ namespace Facebook.Components.Profile
                 flpContent.Controls.Add(item);
             }
 
+            // is readonly
+            pnlAdd.Visible = !isReadonlyPage;
 
             // Cần sửa  lại
             UpdateHeight();
@@ -81,6 +86,11 @@ namespace Facebook.Components.Profile
             pnlAdd.Width = btnAdd.Width + lblAdd.Width;
 
             SetColor();
+
+            btnTitle_Click(null, null);
+
+            UIHelper.BorderRadius(pnlHeadTitle, Constants.BORDER_RADIUS_SECTION_LIKE);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private void SetColor()
@@ -225,7 +235,10 @@ namespace Facebook.Components.Profile
         private void btnTitle_Click(object sender, EventArgs e)
         {
             flpContent.Visible = !flpContent.Visible;
-            pnlAdd.Visible = !pnlAdd.Visible;
+            if (!isReadonlyPage)
+            {
+                pnlAdd.Visible = !pnlAdd.Visible;
+            }
 
             UpdateHeight();
             btnExpand.IconChar = !flpContent.Visible ? IconChar.PlusCircle : IconChar.MinusCircle;

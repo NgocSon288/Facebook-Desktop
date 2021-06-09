@@ -36,6 +36,7 @@ namespace Facebook.FormUC
             this.pnlMainContent = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.panelContent = new System.Windows.Forms.Panel();
             this.flpContent.SuspendLayout();
             this.pnlMainContent.SuspendLayout();
             this.SuspendLayout();
@@ -135,6 +136,15 @@ namespace Facebook.FormUC
             this.pnlLeft.Size = new System.Drawing.Size(491, 371);
             this.pnlLeft.TabIndex = 0;
             // 
+            // panelContent
+            // 
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.Location = new System.Drawing.Point(0, 0);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(1000, 800);
+            this.panelContent.TabIndex = 22;
+            // 
             // fProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -144,6 +154,8 @@ namespace Facebook.FormUC
             this.Controls.Add(this.flpContent);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnMinimize);
+            this.Controls.Add(this.panelContent);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "fProfile";
             this.Size = new System.Drawing.Size(1000, 800);
             this.flpContent.ResumeLayout(false);
@@ -161,5 +173,6 @@ namespace Facebook.FormUC
         private System.Windows.Forms.Panel pnlMainContent;
         private System.Windows.Forms.Panel pnlLeft;
         private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.Panel panelContent;
     }
 }

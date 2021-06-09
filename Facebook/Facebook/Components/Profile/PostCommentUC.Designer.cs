@@ -33,8 +33,8 @@ namespace Facebook.Components.Profile
             this.pnlComment = new System.Windows.Forms.Panel();
             this.flpComment = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMyComment = new System.Windows.Forms.Panel();
+            this.pnlWrapDescription = new System.Windows.Forms.Panel();
             this.txtMyCommentDescription = new System.Windows.Forms.TextBox();
-            this.picTextBox = new System.Windows.Forms.PictureBox();
             this.picMyCommentAvatar = new System.Windows.Forms.PictureBox();
             this.pnlSeparator2 = new System.Windows.Forms.Panel();
             this.pnlMiddle = new System.Windows.Forms.Panel();
@@ -56,7 +56,7 @@ namespace Facebook.Components.Profile
             this.pnlWrap.SuspendLayout();
             this.pnlComment.SuspendLayout();
             this.pnlMyComment.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTextBox)).BeginInit();
+            this.pnlWrapDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMyCommentAvatar)).BeginInit();
             this.pnlMiddle.SuspendLayout();
             this.pnlSectionShare.SuspendLayout();
@@ -104,8 +104,7 @@ namespace Facebook.Components.Profile
             // 
             // pnlMyComment
             // 
-            this.pnlMyComment.Controls.Add(this.txtMyCommentDescription);
-            this.pnlMyComment.Controls.Add(this.picTextBox);
+            this.pnlMyComment.Controls.Add(this.pnlWrapDescription);
             this.pnlMyComment.Controls.Add(this.picMyCommentAvatar);
             this.pnlMyComment.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlMyComment.Location = new System.Drawing.Point(0, 0);
@@ -114,6 +113,14 @@ namespace Facebook.Components.Profile
             this.pnlMyComment.Size = new System.Drawing.Size(444, 50);
             this.pnlMyComment.TabIndex = 0;
             // 
+            // pnlWrapDescription
+            // 
+            this.pnlWrapDescription.Controls.Add(this.txtMyCommentDescription);
+            this.pnlWrapDescription.Location = new System.Drawing.Point(64, 5);
+            this.pnlWrapDescription.Name = "pnlWrapDescription";
+            this.pnlWrapDescription.Size = new System.Drawing.Size(377, 41);
+            this.pnlWrapDescription.TabIndex = 61;
+            // 
             // txtMyCommentDescription
             // 
             this.txtMyCommentDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
@@ -121,32 +128,27 @@ namespace Facebook.Components.Profile
             this.txtMyCommentDescription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtMyCommentDescription.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMyCommentDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
-            this.txtMyCommentDescription.Location = new System.Drawing.Point(72, 18);
+            this.txtMyCommentDescription.Location = new System.Drawing.Point(9, 12);
             this.txtMyCommentDescription.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.txtMyCommentDescription.Name = "txtMyCommentDescription";
-            this.txtMyCommentDescription.Size = new System.Drawing.Size(360, 34);
+            this.txtMyCommentDescription.Size = new System.Drawing.Size(364, 34);
             this.txtMyCommentDescription.TabIndex = 60;
             this.txtMyCommentDescription.Text = "Viết bình luận...";
+            this.txtMyCommentDescription.TextChanged += new System.EventHandler(this.txtMyCommentDescription_TextChanged);
             this.txtMyCommentDescription.Enter += new System.EventHandler(this.txtMyFeedbackComment_Enter);
+            this.txtMyCommentDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMyCommentDescription_KeyPress);
             this.txtMyCommentDescription.Leave += new System.EventHandler(this.txtMyFeedbackComment_Leave);
-            // 
-            // picTextBox
-            // 
-            this.picTextBox.Location = new System.Drawing.Point(63, 5);
-            this.picTextBox.Name = "picTextBox";
-            this.picTextBox.Size = new System.Drawing.Size(377, 41);
-            this.picTextBox.TabIndex = 1;
-            this.picTextBox.TabStop = false;
             // 
             // picMyCommentAvatar
             // 
             this.picMyCommentAvatar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picMyCommentAvatar.Location = new System.Drawing.Point(9, 5);
+            this.picMyCommentAvatar.Location = new System.Drawing.Point(8, 5);
             this.picMyCommentAvatar.Margin = new System.Windows.Forms.Padding(0);
             this.picMyCommentAvatar.Name = "picMyCommentAvatar";
             this.picMyCommentAvatar.Size = new System.Drawing.Size(40, 40);
             this.picMyCommentAvatar.TabIndex = 0;
             this.picMyCommentAvatar.TabStop = false;
+            this.picMyCommentAvatar.Click += new System.EventHandler(this.picMyCommentAvatar_Click);
             // 
             // pnlSeparator2
             // 
@@ -390,8 +392,8 @@ namespace Facebook.Components.Profile
             this.pnlWrap.ResumeLayout(false);
             this.pnlComment.ResumeLayout(false);
             this.pnlMyComment.ResumeLayout(false);
-            this.pnlMyComment.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picTextBox)).EndInit();
+            this.pnlWrapDescription.ResumeLayout(false);
+            this.pnlWrapDescription.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMyCommentAvatar)).EndInit();
             this.pnlMiddle.ResumeLayout(false);
             this.pnlSectionShare.ResumeLayout(false);
@@ -430,11 +432,11 @@ namespace Facebook.Components.Profile
         private FontAwesome.Sharp.IconPictureBox btnComment;
         private System.Windows.Forms.Panel pnlMyComment;
         private System.Windows.Forms.PictureBox picMyCommentAvatar;
-        private System.Windows.Forms.PictureBox picTextBox;
         private System.Windows.Forms.TextBox txtMyCommentDescription;
         private System.Windows.Forms.Panel pnlSectionShare;
         private System.Windows.Forms.Panel pnlSectionComment;
         private System.Windows.Forms.Panel pnlSectionLike;
         private System.Windows.Forms.FlowLayoutPanel flpComment;
+        private System.Windows.Forms.Panel pnlWrapDescription;
     }
 }

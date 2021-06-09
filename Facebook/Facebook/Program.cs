@@ -32,6 +32,7 @@ namespace Facebook
             Container = AutofacConfig.Configure();
 
             Application.Run(new fMain());
+
         }
 
     }

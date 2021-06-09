@@ -16,6 +16,8 @@ namespace Facebook.DAO
 
         CommentFeedback GetByID(int id);
 
+        bool Create(CommentFeedback commentFeedback);
+
         bool SaveChanges();
     }
 
@@ -30,6 +32,27 @@ namespace Facebook.DAO
             this._commentFeedbackService = commentFeedbackService;
 
             commentFeedbacks = GetAll();
+        }
+
+        public bool Create(CommentFeedback commentFeedback)
+        {
+            try
+            {
+                // add ram
+                commentFeedbacks.Add(commentFeedback);
+
+                // add db
+                _commentFeedbackService.Insert(commentFeedback);
+
+                // save db
+                SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public List<CommentFeedback> GetAll()

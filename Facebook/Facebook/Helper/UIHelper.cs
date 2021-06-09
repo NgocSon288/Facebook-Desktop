@@ -11,9 +11,49 @@ namespace Facebook.Helper
 {
     public static class UIHelper
     {
+        public delegate void ExpressBlur();
+
+        /// <summary>
+        /// Cân thực hiện sau khi laod UI
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="border"></param>
+        public static void BorderRadius(Control control, int border)
+        {
+            Bunifu.Framework.Lib.Elipse.Apply(control, border);
+        }
+        public static void BorderRadius(Form form, int border)
+        {
+            Bunifu.Framework.Lib.Elipse.Apply(form, border);
+        }
+
+        public static void SetBlur(Control root, ExpressBlur expressBlur)
+        {
+
+            if (root.GetType().ToString().Contains("TextBox"))
+            {
+                return;
+            }
+
+            root.Click += (o, s) => expressBlur();
+
+            if (root.Controls != null && root.Controls.Count > 0)
+            {
+                foreach (Control item in root.Controls)
+                {
+                    SetBlur(item, expressBlur);
+                }
+            }
+        }
+
         public static void ShowControl(Control control, Control content)
         {
             content.Controls.Clear();
+
+            foreach (Control item in content.Controls)
+            {
+                item.Dispose();
+            }
 
             control.Dock = DockStyle.Fill;
             control.BringToFront();
@@ -174,28 +214,36 @@ namespace Facebook.Helper
 
         public static Image ClipToCircleEquals2(Image srcImage, Color backGround)
         {
-            Image dstImage = new Bitmap(srcImage.Width * 2, srcImage.Height * 2, srcImage.PixelFormat);
-
-            using (Graphics g = Graphics.FromImage(dstImage))
+            try
             {
-                RectangleF r = new RectangleF(0, 0, dstImage.Width, dstImage.Height);
+                Image dstImage = new Bitmap(srcImage.Width * 2, srcImage.Height * 2, srcImage.PixelFormat);
 
-                // enables smoothing of the edge of the circle (less pixelated)
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-
-                // fills background color
-                using (Brush br = new SolidBrush(backGround))
+                using (Graphics g = Graphics.FromImage(dstImage))
                 {
-                    g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
+                    RectangleF r = new RectangleF(0, 0, dstImage.Width, dstImage.Height);
+
+                    // enables smoothing of the edge of the circle (less pixelated)
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    // fills background color
+                    using (Brush br = new SolidBrush(backGround))
+                    {
+                        g.FillRectangle(br, 0, 0, dstImage.Width, dstImage.Height);
+                    }
+
+                    // adds the new ellipse & draws the image again 
+                    GraphicsPath path = new GraphicsPath();
+                    path.AddEllipse(r);
+                    g.SetClip(path);
+                    g.DrawImage(srcImage, 0, 0);
+
+                    return dstImage;
                 }
-
-                // adds the new ellipse & draws the image again 
-                GraphicsPath path = new GraphicsPath();
-                path.AddEllipse(r);
-                g.SetClip(path);
-                g.DrawImage(srcImage, 0, 0);
-
-                return dstImage;
+            }
+            catch (Exception)
+            {
+                return null;
+                return ClipToCircleEquals2(ImageHelper.FromFile("./../../Assets/Images/Profile/avatar-default.jpg"), backGround);
             }
         }
 

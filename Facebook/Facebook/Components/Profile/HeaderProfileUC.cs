@@ -1,6 +1,8 @@
 ﻿using Facebook.Common;
+using Facebook.ControlCustom.Image;
 using Facebook.DAO;
 using Facebook.Helper;
+using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,13 +18,19 @@ namespace Facebook.Components.Profile
 {
     public partial class HeaderProfileUC : UserControl
     {
-        private readonly IUserDAO _userDAO;
+        public delegate void UpdatedAvatar();
+        public event UpdatedAvatar OnUpdatedAvatar;
 
-        public HeaderProfileUC(IUserDAO userDAO)
+        private readonly IUserDAO _userDAO;
+        private User user;
+
+        public HeaderProfileUC(IUserDAO userDAO, User user = null)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this._userDAO = userDAO;
+            this.user = user == null ? Constants.UserSession : user;
 
             Load();
         }
@@ -31,10 +39,10 @@ namespace Facebook.Components.Profile
 
         new private void Load()
         {
-            picImage.BackgroundImage = ImageHelper.GetImageByUser();
-            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_COLOR);
+            beWrapAavatar.BackgroundImage = ImageHelper.GetImageByUser(user);
+            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_COLOR, user);
 
-            lblName.Text = Constants.UserSession?.Name;
+            lblName.Text = user?.Name;
             lblName.Left = this.Width / 2 - lblName.Width / 2;
             lblName.Top = this.Height - pnlBottom.Height - lblName.Height;
 
@@ -45,6 +53,12 @@ namespace Facebook.Components.Profile
             pnlBottom.Top = this.Height - pnlBottom.Height;
 
             SetColor();
+
+            pnlWrapImage.BackColor = Constants.BORDER_IMAGE_COLOR;
+
+            UIHelper.BorderRadius(beWrapAavatar, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlWrapImage, Constants.BORDER_RADIUS);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private void SetColor()
@@ -67,34 +81,44 @@ namespace Facebook.Components.Profile
         /// <param name="e"></param>
         private void picAvatar_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Chọn một hình ảnh (Nên chọn hình ảnh có kích thướng vuông)";
-            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;)|*.jpg; *.jpeg; *.gif; *.bmp;";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (user == Constants.UserSession)
             {
-                var fileName = openFileDialog.FileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Chọn một hình ảnh (Nên chọn hình ảnh có kích thướng vuông)";
+                openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.pnj;";
 
-                if (File.Exists(fileName))
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    var fileName = openFileDialog.FileName;
 
-                    var newFileName = Path.GetFileName(fileName);
-                    newFileName = new Random().Next(0, 1000000000).ToString() + newFileName;
-
-                    if (!File.Exists(Path.Combine("./../../Assets/Images/Profile/" + fileName)))
+                    if (File.Exists(fileName))
                     {
-                        File.Copy(fileName, Path.Combine("./../../Assets/Images/Profile/", newFileName));
 
-                        // Update session
-                        Constants.UserSession.Avatar = newFileName;
+                        var newFileName = Path.GetFileName(fileName);
+                        newFileName = new Random().Next(0, 1000000000).ToString() + newFileName;
 
-                        // Update DB
-                        _userDAO.SaveChanges();
+                        if (!File.Exists(Path.Combine("./../../Assets/Images/Profile/" + fileName)))
+                        {
+                            File.Copy(fileName, Path.Combine("./../../Assets/Images/Profile/", newFileName));
+
+                            // Update session
+                            user.Avatar = newFileName;
+
+                            // Thông báo cho các con tromg trang
+                            OnUpdatedAvatar?.Invoke();
+
+                            // Update DB
+                            _userDAO.SaveChanges();
+                        }
+
+                        // Update UI avatar
+                        picAvatar.BackgroundImage = UIHelper.ClipToCircle(ImageHelper.FromFile(fileName), Constants.MAIN_BACK_COLOR);
                     }
-
-                    // Update UI avatar
-                    picAvatar.BackgroundImage = UIHelper.ClipToCircle(Image.FromFile(fileName), Constants.MAIN_BACK_COLOR);
                 }
+            }
+            else
+            {
+                MyImage.Show($"./../../Assets/Images/Profile/{user.Avatar}");
             }
         }
 
@@ -105,34 +129,41 @@ namespace Facebook.Components.Profile
         /// <param name="e"></param>
         private void picImage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Chọn một hình ảnh (1000 x 370)";
-            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;)|*.jpg; *.jpeg; *.gif; *.bmp;";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (user == Constants.UserSession)
             {
-                var fileName = openFileDialog.FileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Chọn một hình ảnh (1000 x 370)";
+                openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.pnj;";
 
-                if (File.Exists(fileName))
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    var fileName = openFileDialog.FileName;
 
-                    var newFileName = Path.GetFileName(fileName);
-                    newFileName = new Random().Next(0, 1000000000).ToString() + newFileName;
-
-                    if (!File.Exists(Path.Combine("./../../Assets/Images/Profile/" + fileName)))
+                    if (File.Exists(fileName))
                     {
-                        File.Copy(fileName, Path.Combine("./../../Assets/Images/Profile/", newFileName));
 
-                        // Update session
-                        Constants.UserSession.Image = newFileName;
+                        var newFileName = Path.GetFileName(fileName);
+                        newFileName = new Random().Next(0, 1000000000).ToString() + newFileName;
 
-                        // Update DB
-                        _userDAO.SaveChanges();
+                        if (!File.Exists(Path.Combine("./../../Assets/Images/Profile/" + fileName)))
+                        {
+                            File.Copy(fileName, Path.Combine("./../../Assets/Images/Profile/", newFileName));
+
+                            // Update session
+                            user.Image = newFileName;
+
+                            // Update DB
+                            _userDAO.SaveChanges();
+                        }
+
+                        // Update UI avatar
+                        beWrapAavatar.BackgroundImage = ImageHelper.FromFile(fileName);
                     }
-
-                    // Update UI avatar
-                    picImage.BackgroundImage = Image.FromFile(fileName);
                 }
+            }
+            else
+            {
+                MyImage.Show($"./../../Assets/Images/Profile/{user.Image}");
             }
         }
 

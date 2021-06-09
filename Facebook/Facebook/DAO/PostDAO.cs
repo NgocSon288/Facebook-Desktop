@@ -10,13 +10,21 @@ namespace Facebook.DAO
 {
     public interface IPostDAO
     {
-        List<Post> GetAll();
+        Task<List<Post>> GetAll();
 
-        List<Post> GetByUserID(int userID);
+        Task<List<Post>> GetByUserID(int userID);
+
+        Task<List<Post>> GetByUserIDByHomePage(int userID);     // Home page
+
+        Task<List<Post>> GetByUserIDByFriendPageHaveFriendShip(int userID);     // Friend page, have friendShip
+
+        Task<List<Post>> GetByUserIDByFriendPageNoFriendShip(int userID);     // Friend page, have friendShip
 
         Post GetByID(int id);
 
         bool Create(Post post);
+
+        bool Delete(Post post);
 
         bool SaveChanges();
     }
@@ -30,8 +38,12 @@ namespace Facebook.DAO
         public PostDAO(IPostService postService)
         {
             this._postService = postService;
+            Load();
+        }
 
-            posts = GetAll();
+        private async Task Load()
+        {
+            posts = await GetAll();
         }
 
         public bool Create(Post post)
@@ -40,6 +52,8 @@ namespace Facebook.DAO
             {
                 // insert ram
                 posts.Add(post);
+
+                var a = posts.Count;
 
                 // insert db
                 _postService.Insert(post);
@@ -56,7 +70,25 @@ namespace Facebook.DAO
             }
         }
 
-        public List<Post> GetAll()
+        public bool Delete(Post post)
+        {
+            try
+            {
+                posts.Remove(post);
+
+                _postService.Delete(post);
+
+                SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<Post>> GetAll()
         {
             return _postService.GetAll().OrderByDescending(p => p.CreatedAt).ToList();
         }
@@ -66,9 +98,17 @@ namespace Facebook.DAO
             return posts.FirstOrDefault(p => p.ID == id);
         }
 
-        public List<Post> GetByUserID(int userID)
+        public async Task<List<Post>> GetByUserID(int userID)
         {
-            return posts.Where(p => p.User.ID == userID).ToList();
+            return posts.Where(p => p.User.ID == userID).ToList().OrderByDescending(p => p.CreatedAt).ToList();
+        }
+
+        public async Task<List<Post>> GetByUserIDByHomePage(int userID)
+        {
+            // các bài post công khai
+            var result = posts.Where(p => p.PostStatusID == 1 || true || p.User.ID == userID);
+
+            return result.OrderByDescending(p => p.CreatedAt).ToList();
         }
 
         public bool SaveChanges()
@@ -83,6 +123,18 @@ namespace Facebook.DAO
             {
                 return false;
             }
+        }
+
+        public async Task<List<Post>> GetByUserIDByFriendPageHaveFriendShip(int userID)
+        {
+            return posts.Where(p => p.User.ID == userID)
+                .Where(p => p.PostStatusID == 1 || p.PostStatusID == 2).ToList().OrderByDescending(p => p.CreatedAt).ToList();
+        }
+
+        public async Task<List<Post>> GetByUserIDByFriendPageNoFriendShip(int userID)
+        {
+            return posts.Where(p => p.User.ID == userID)
+                .Where(p => p.PostStatusID == 1).ToList().OrderByDescending(p => p.CreatedAt).ToList();
         }
     }
 }

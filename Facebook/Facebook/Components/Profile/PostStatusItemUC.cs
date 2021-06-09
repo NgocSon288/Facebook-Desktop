@@ -1,4 +1,5 @@
 ﻿using Facebook.Common;
+using Facebook.Helper;
 using Facebook.Model.Models;
 using FontAwesome.Sharp;
 using System;
@@ -24,11 +25,13 @@ namespace Facebook.Components.Profile
         public PostStatusItemUC(PostStatus postStatus, bool isActive = false)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this.postStatus = postStatus;
             this.isActive = isActive;
 
             Load();
+            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
         }
 
         int margin = 10;
@@ -40,7 +43,7 @@ namespace Facebook.Components.Profile
             lblTitle.Text = postStatus.DisplayName;
             lblParagraph.Text = postStatus.Description;
 
-            picBg.BackgroundImage = Image.FromFile("./../../Assets/Images/Profile/circle-bg.png");
+            picBg.BackgroundImage = ImageHelper.FromFile("./../../Assets/Images/Profile/circle-bg.png");
             picBg.BackgroundImageLayout = ImageLayout.Stretch;
 
             picIcon.IconChar = GetIcon();
@@ -53,6 +56,8 @@ namespace Facebook.Components.Profile
             rdbStatus.Checked = isActive;
             lblTitle.ForeColor = Constants.MAIN_FORE_COLOR;
             lblParagraph.ForeColor = Constants.MAIN_FORE_PARAGRAPH_COLOR;
+
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private IconChar GetIcon()

@@ -1,5 +1,7 @@
 ﻿using Facebook.Common;
 using Facebook.DAO;
+using Facebook.Helper;
+using Facebook.Model.Models;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -19,14 +21,17 @@ namespace Facebook.Components.Profile
         public event HeightChanged OnHeightChanged;
 
         private readonly IProfileDAO _profileDAO;
+        private User user;
 
         private Facebook.Model.Models.Profile profile;
 
-        public InfoProfileUC(IProfileDAO profileDAO)
+        public InfoProfileUC(IProfileDAO profileDAO, User user = null)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this._profileDAO = profileDAO;
+            this.user = user == null ? Constants.UserSession : user;
 
             Load();
         }
@@ -35,7 +40,7 @@ namespace Facebook.Components.Profile
 
         new private void Load()
         {
-            profile = _profileDAO.GetByID(Constants.UserSession.ProfileID.Value);
+            profile = _profileDAO.GetByID(user.ProfileID.Value);
 
             foreach (var item in profile.GetType().GetProperties())
             {
@@ -75,7 +80,7 @@ namespace Facebook.Components.Profile
                         break;
                 }
 
-                var section = new InfoProfileSectionUC(name, title, value == null ? "" : value.ToString(), icon, this._profileDAO);
+                var section = new InfoProfileSectionUC(name, title, value == null ? "" : value.ToString(), icon, this._profileDAO, user != Constants.UserSession);
 
                 flpContent.Controls.Add(section);
             }
@@ -88,6 +93,9 @@ namespace Facebook.Components.Profile
 
             UpdateHeight();
             SetColor();
+
+            UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
 
@@ -121,6 +129,7 @@ namespace Facebook.Components.Profile
             flpContent.Height = pnlContent.Height - topFlp;
 
             OnHeightChanged?.Invoke();
+            UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS);
         }
 
         #endregion

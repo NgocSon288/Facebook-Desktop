@@ -31,7 +31,12 @@ namespace Facebook.FormUC
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlMainContent = new System.Windows.Forms.Panel();
+            this.pnlPostList = new System.Windows.Forms.Panel();
+            this.panelContent = new System.Windows.Forms.Panel();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.pnlMainContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -75,27 +80,57 @@ namespace Facebook.FormUC
             this.btnMinimize.UseVisualStyleBackColor = false;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
-            // label1
+            // flowLayoutPanel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(426, 412);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Home";
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.Controls.Add(this.pnlMainContent);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 30);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1000, 765);
+            this.flowLayoutPanel1.TabIndex = 19;
+            // 
+            // pnlMainContent
+            // 
+            this.pnlMainContent.Controls.Add(this.pnlPostList);
+            this.pnlMainContent.Location = new System.Drawing.Point(0, 0);
+            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMainContent.Name = "pnlMainContent";
+            this.pnlMainContent.Size = new System.Drawing.Size(970, 765);
+            this.pnlMainContent.TabIndex = 0;
+            // 
+            // pnlPostList
+            // 
+            this.pnlPostList.Location = new System.Drawing.Point(248, 0);
+            this.pnlPostList.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlPostList.Name = "pnlPostList";
+            this.pnlPostList.Size = new System.Drawing.Size(491, 759);
+            this.pnlPostList.TabIndex = 0;
+            // 
+            // panelContent
+            // 
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.Location = new System.Drawing.Point(0, 0);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(1000, 800);
+            this.panelContent.TabIndex = 20;
             // 
             // fHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnMinimize);
+            this.Controls.Add(this.panelContent);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "fHome";
             this.Size = new System.Drawing.Size(1000, 800);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.pnlMainContent.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -103,6 +138,9 @@ namespace Facebook.FormUC
 
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Panel pnlMainContent;
+        private System.Windows.Forms.Panel pnlPostList;
+        private System.Windows.Forms.Panel panelContent;
     }
 }

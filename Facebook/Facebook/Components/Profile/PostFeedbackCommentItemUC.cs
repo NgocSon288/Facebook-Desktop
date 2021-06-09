@@ -16,14 +16,21 @@ namespace Facebook.Components.Profile
 {
     public partial class PostFeedbackCommentItemUC : UserControl
     {
+        public delegate void ClickProfileFriend(User user);
+        public event ClickProfileFriend OnClickProfileFriend;
 
-        private CommentFeedback CommentFeedback;
+        private readonly ICommentFeedbackDAO _commentFeedbackDAO;
+        private CommentFeedback commentFeedback;
 
-        public PostFeedbackCommentItemUC(CommentFeedback CommentFeedback)
+        private List<int> likes;    // danh sách các user like
+
+        public PostFeedbackCommentItemUC(ICommentFeedbackDAO commentFeedbackDAO, CommentFeedback CommentFeedback)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
-            this.CommentFeedback = CommentFeedback;
+            this._commentFeedbackDAO = commentFeedbackDAO;
+            this.commentFeedback = CommentFeedback;
 
             Load();
         }
@@ -34,19 +41,85 @@ namespace Facebook.Components.Profile
 
         new private void Load()
         {
-            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR, CommentFeedback.User);
+            if (commentFeedback.Like != null)
+            {
+                likes = StringHelper.StringToStringList(commentFeedback.Like).Select(s => Convert.ToInt32(s)).ToList();
+            }
+            else
+            {
+                likes = new List<int>();
+            }
+
+            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR, commentFeedback.User);
             picAvatar.BackgroundImageLayout = ImageLayout.Stretch;
 
-            lblName.Text = CommentFeedback.User.Name;
-            lblDescription.Text = CommentFeedback.Description;
+            lblName.Text = commentFeedback.User.Name;
+            lblDescription.Text = commentFeedback.Description;
             lblDescription.Height = GetHeightTextBox(lblDescription.Text);
             pnlFeedbackComment.Height = lblDescription.Bottom + 10;
 
+            lblTime.Text = GetTime(commentFeedback.CreatedAt);
+
+            // Like count
+            picLike.BackgroundImage = ImageHelper.FromFile("./../../Assets/Images/Comment/Facebook-Like.png");
+            picLike.BackgroundImageLayout = ImageLayout.Stretch;
+            lblLikeCount.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            lblLikeCount.Text = likes.Count.ToString();
+            lblLikeCount.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+
             SetColor();
             UpdateHeight();
+            SetColorLike();
+
+            UIHelper.BorderRadius(pnlFeedbackComment, Constants.BORDER_RADIUS);
+
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
 
+        private void SetColorLike()
+        {
+            var userID = Constants.UserSession.ID;
+            var check = likes.Any(l => l == userID);
+
+            lblLikeCount.Text = likes.Count.ToString();
+
+            if (check)
+            {
+                lblLike.ForeColor = Constants.LIKED_FORECOLOR;
+            }
+            else
+            {
+                lblLike.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+            }
+        }
+
+
+        public string GetTime(DateTime time)
+        {
+            var tp = DateTime.Now - time;
+            var days = tp.Days;
+            var hours = tp.Hours;
+            var minutes = tp.Minutes;
+            var seconds = tp.Seconds;
+
+            if (days >= 1)
+            {
+                return days.ToString() + " ngày";
+            }
+            else if (hours >= 1)
+            {
+                return hours.ToString() + " giờ";
+            }
+            else if (minutes >= 1)
+            {
+                return minutes.ToString() + " phút";
+            }
+            else
+            {
+                return seconds.ToString() + " giây";
+            }
+        }
 
         private void SetColor()
         {
@@ -97,6 +170,11 @@ namespace Facebook.Components.Profile
             }
         }
 
+        public void UpdateAvatar()
+        {
+            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR, commentFeedback.User);
+        }
+
         #endregion
 
         #region Events
@@ -104,5 +182,36 @@ namespace Facebook.Components.Profile
 
 
         #endregion
+
+        private void lblLike_Click(object sender, EventArgs e)
+        {
+            var userID = Constants.UserSession.ID;
+            var check = likes.Any(l => l == userID);
+
+            if (check)
+            {
+                likes.Remove(userID);
+            }
+            else
+            {
+                likes.Add(userID);
+            }
+
+            SetColorLike();
+
+            // Cập nhật db
+            commentFeedback.Like = StringHelper.StringListToString(likes.Select(l => l.ToString()).ToList());
+            _commentFeedbackDAO.SaveChanges();
+        }
+
+        private void picAvatar_Click(object sender, EventArgs e)
+        {
+            OnClickProfileFriend?.Invoke(commentFeedback.User);
+        }
+
+        private void lblName_Click(object sender, EventArgs e)
+        {
+            OnClickProfileFriend?.Invoke(commentFeedback.User);
+        }
     }
 }

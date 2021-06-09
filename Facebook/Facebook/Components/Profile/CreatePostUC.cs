@@ -30,6 +30,7 @@ namespace Facebook.Components.Profile
         public CreatePostUC(PostStatus postStatus)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this.postStatus = postStatus;
 
@@ -45,8 +46,11 @@ namespace Facebook.Components.Profile
         {
             haveImage = false;
 
-
             SetUpUI();
+
+            UIHelper.BorderRadius(pnlPostStatus, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(picImage, Constants.BORDER_RADIUS);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
 
@@ -110,7 +114,7 @@ namespace Facebook.Components.Profile
             UpdateHeight();
 
             // Add sự kiện remove focus textbox
-            ClickEventToLostFocus(this);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private void UpdateHeight()
@@ -172,23 +176,9 @@ namespace Facebook.Components.Profile
             }
         }
 
-        private void ClickEventToLostFocus(Control control)
+        public void UpdateAvatar()
         {
-            if (control.Controls.Count > 0)
-            {
-                control.Click += (o, s) => this.ActiveControl = null;
-
-                foreach (Control item in control.Controls)
-                {
-                    if (item.Name == "txtDescription")
-                    {
-                        continue;
-                    }
-                    item.Click += (o, s) => this.ActiveControl = null;
-
-                    ClickEventToLostFocus(item);
-                }
-            }
+            picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR, Constants.UserSession);
         }
 
         #endregion
@@ -221,7 +211,7 @@ namespace Facebook.Components.Profile
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Chọn một hình ảnh";
-            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp;)|*.jpg; *.jpeg; *.gif; *.bmp;";
+            openFileDialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.jfif)|*.jpg; *.jpeg; *.gif; *.bmp; *.jfif";
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -229,7 +219,7 @@ namespace Facebook.Components.Profile
 
                 if (File.Exists(fileName))
                 {
-                    var image = Image.FromFile(fileName);
+                    var image = ImageHelper.FromFile(fileName);
                     var width = image.Width;
                     var height = image.Height;
                     var widthPic = picImage.Width;
@@ -244,6 +234,7 @@ namespace Facebook.Components.Profile
                 haveImage = true;
                 pnlSeparator.Visible = true;
                 picImage.Visible = true;
+                UIHelper.BorderRadius(picImage, Constants.BORDER_RADIUS);   // set lai để có height
 
                 UpdateHeight();
                 OnHeightChangeOnd?.Invoke();

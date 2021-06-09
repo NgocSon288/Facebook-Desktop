@@ -48,7 +48,7 @@ namespace Facebook.Components.Profile
             this.picBg.TabIndex = 0;
             this.picBg.TabStop = false;
             this.picBg.Click += new System.EventHandler(this.picBg_Click);
-            this.picBg.MouseHover += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
+            this.picBg.MouseEnter += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
             // 
             // picIcon
             // 
@@ -60,13 +60,13 @@ namespace Facebook.Components.Profile
             this.picIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.picIcon.IconSize = 25;
             this.picIcon.Location = new System.Drawing.Point(25, 26);
-            this.picIcon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picIcon.Margin = new System.Windows.Forms.Padding(2);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(25, 26);
             this.picIcon.TabIndex = 2;
             this.picIcon.TabStop = false;
             this.picIcon.Click += new System.EventHandler(this.picBg_Click);
-            this.picIcon.MouseHover += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
+            this.picIcon.MouseEnter += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
             // 
             // lblParagraph
             // 
@@ -80,7 +80,7 @@ namespace Facebook.Components.Profile
             this.lblParagraph.TabIndex = 4;
             this.lblParagraph.Text = "Mọi  người trên hoặc ngoài facebook";
             this.lblParagraph.Click += new System.EventHandler(this.picBg_Click);
-            this.lblParagraph.MouseHover += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
+            this.lblParagraph.MouseEnter += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
             // 
             // lblTitle
             // 
@@ -94,7 +94,7 @@ namespace Facebook.Components.Profile
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "Công khai";
             this.lblTitle.Click += new System.EventHandler(this.picBg_Click);
-            this.lblTitle.MouseHover += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
+            this.lblTitle.MouseEnter += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
             // 
             // rdbStatus
             // 
@@ -104,12 +104,12 @@ namespace Facebook.Components.Profile
             this.rdbStatus.CheckedOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(205)))), ((int)(((byte)(117)))));
             this.rdbStatus.ForeColor = System.Drawing.Color.White;
             this.rdbStatus.Location = new System.Drawing.Point(469, 32);
-            this.rdbStatus.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.rdbStatus.Margin = new System.Windows.Forms.Padding(6);
             this.rdbStatus.Name = "rdbStatus";
             this.rdbStatus.Size = new System.Drawing.Size(20, 20);
             this.rdbStatus.TabIndex = 6;
             this.rdbStatus.Click += new System.EventHandler(this.picBg_Click);
-            this.rdbStatus.MouseHover += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
+            this.rdbStatus.MouseEnter += new System.EventHandler(this.PostStatusItemUC_MouseEnter);
             // 
             // PostStatusItemUC
             // 

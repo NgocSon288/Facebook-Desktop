@@ -3,6 +3,8 @@ using Facebook.Components.Profile;
 using Facebook.Configure.Autofac;
 using Facebook.ControlCustom.Message;
 using Facebook.DAO;
+using Facebook.Helper;
+using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +20,9 @@ namespace Facebook.FormUC
 {
     public partial class fProfile : UserControl
     {
+        public delegate void UpdatedAvatar();
+        public event UpdatedAvatar OnUpdatedAvatar;
+
         private readonly IUserDAO _userDAO;
 
         private InfoProfileUC infoProfileUC;
@@ -54,6 +59,7 @@ namespace Facebook.FormUC
         {
             var f = new HeaderProfileUC(this._userDAO);
             f.Dock = DockStyle.Fill;
+            f.OnUpdatedAvatar += F_OnUpdatedAvatar; ;
 
             var pnlSeparator = new Panel()
             {
@@ -68,6 +74,14 @@ namespace Facebook.FormUC
 
             pnlHead.Controls.Add(pnlSeparator);
             pnlHead.Controls.Add(f);
+        }
+
+        /// <summary>
+        /// Goi các child update avatar
+        /// </summary>
+        private void F_OnUpdatedAvatar()
+        {
+            postListProfileUC.UpdateAvatar();
         }
 
         private void LoadLeft()
@@ -86,6 +100,7 @@ namespace Facebook.FormUC
             postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get());
             UpdateHeight();
             postListProfileUC.OnHeightChanged += () => UpdateHeight();
+            postListProfileUC.OnClickProfileFriend += LoadProfileByUser;
 
             pnlRight.Controls.Add(postListProfileUC);
             postListProfileUC.Dock = DockStyle.Top;
@@ -103,6 +118,13 @@ namespace Facebook.FormUC
 
             pnlLeft.BackColor = Constants.MAIN_BACK_COLOR;
             pnlRight.BackColor = Constants.MAIN_BACK_COLOR;
+        }
+
+        private void LoadProfileByUser(User user)
+        {
+            var fProfileFriend = new fProfileFriend(_userDAO, user, panelContent);
+
+            UIHelper.ShowControl(fProfileFriend, panelContent);
         }
 
         #endregion

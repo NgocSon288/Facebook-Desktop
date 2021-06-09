@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Facebook.Components.Profile
@@ -15,7 +16,9 @@ namespace Facebook.Components.Profile
     public partial class PostCommentUC : UserControl
     {
         public delegate void HeightChanged();
+        public delegate void ClickProfileFriend(User user);
         public event HeightChanged OnHeightChanged;
+        public event ClickProfileFriend OnClickProfileFriend;
 
         private readonly IPostDAO _postDAO;
         private readonly ICommentDAO _commentDAO;
@@ -25,9 +28,12 @@ namespace Facebook.Components.Profile
         private List<int> likes; // danh sách các userID đã like bài viết
         private List<int> shares; // danh sách các userID đã share bài viết
 
+        private bool isSubmit;
+
         public PostCommentUC(IPostDAO postDAO, ICommentDAO commentDAO, Post post)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this._postDAO = postDAO;
             this._commentDAO = commentDAO;
@@ -53,6 +59,11 @@ namespace Facebook.Components.Profile
             SetColor();
             UpdateHeight();
             SetLike();
+
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            UIHelper.BorderRadius(pnlSectionLike, Constants.BORDER_RADIUS_SECTION_LIKE);
+            UIHelper.BorderRadius(pnlSectionComment, Constants.BORDER_RADIUS_SECTION_LIKE);
+            UIHelper.BorderRadius(pnlSectionShare, Constants.BORDER_RADIUS_SECTION_LIKE);
         }
 
         /// <summary>
@@ -92,6 +103,7 @@ namespace Facebook.Components.Profile
                     var commentItem = new PostCommentItemUC(AutofacFactory<ICommentFeedbackDAO>.Get(), item);
                     commentItem.Margin = new Padding(0, 0, 0, 0);
                     commentItem.OnHeightChanged += CommentItem_OnHeightChanged;
+                    commentItem.OnClickProfileFriend += (u) => OnClickProfileFriend?.Invoke(u);
 
                     flpComment.Controls.Add(commentItem);
                 }
@@ -100,11 +112,18 @@ namespace Facebook.Components.Profile
 
         private void SetUpUI()
         {
-            picLike.BackgroundImage = Image.FromFile("./../../Assets/Images/Comment/Facebook-Like.png");
-            picLike.BackgroundImageLayout = ImageLayout.Stretch;
-            picLike.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
-            picTextBox.BackgroundImage = Image.FromFile("./../../Assets/Images/Comment/textbox-blank.png");     // Cần cắt hình ảnh và chèn vào
-            picTextBox.BackgroundImageLayout = ImageLayout.Stretch;
+            try
+            {
+                picLike.BackgroundImage = ImageHelper.FromFile("./../../Assets/Images/Comment/Facebook-Like.png");
+                picLike.BackgroundImageLayout = ImageLayout.Stretch;
+                picLike.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+                pnlWrapDescription.BackColor = Constants.BACKGROUND_TEXTBOX_MYCOMMENT;
+                UIHelper.BorderRadius(pnlWrapDescription, Constants.BORDER_RADIUS);
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void SetColor()
@@ -142,7 +161,6 @@ namespace Facebook.Components.Profile
             picMyCommentAvatar.BackgroundImageLayout = ImageLayout.Stretch;
 
             txtMyCommentDescription.BackColor = Constants.BACKGROUND_TEXTBOX_MYCOMMENT;
-            picTextBox.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
             // Separator
             pnlSeparator1.Height = pnlSeparator2.Height = 1;
@@ -197,6 +215,16 @@ namespace Facebook.Components.Profile
             }
 
             lblLikeCount.Text = likes.Count.ToString();
+        }
+
+        public void UpdateAvatar()
+        {
+            picMyCommentAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR, Constants.UserSession);
+
+            foreach (PostCommentItemUC item in flpComment.Controls)
+            {
+                item.UpdateAvatar();
+            }
         }
 
         #endregion Methods
@@ -258,8 +286,11 @@ namespace Facebook.Components.Profile
         {
             pnlComment.Visible = !pnlComment.Visible;
 
+            txtMyCommentDescription.Text = "Viết bình luận...";
+
             UpdateHeight();
             OnHeightChanged?.Invoke();
+
         }
 
         private void CommentItem_OnHeightChanged()
@@ -330,6 +361,62 @@ namespace Facebook.Components.Profile
             }
         }
 
+        private void txtMyCommentDescription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                isSubmit = true;
+                txtMyCommentDescription_TextChanged(null, null);
+            }
+        }
+
+        private void txtMyCommentDescription_TextChanged(object sender, EventArgs e)
+        {
+            if (isSubmit)
+            {
+                isSubmit = false;
+                var text = txtMyCommentDescription.Text;
+                txtMyCommentDescription.Text = "";
+                if (string.IsNullOrEmpty(text.Trim()))
+                {
+
+                    return;
+                }
+
+                var cmt = new Comment()
+                {
+                    Description = text,
+                    CreatedAt = DateTime.Now,
+                    Like = null,
+                    PostID = post.ID,
+                    User = Constants.UserSession
+                };
+                // add vào comments của ui
+                comments.Add(cmt);
+
+                // Cập nhật lblCommentCount
+                lblCommentCount.Text = $"{comments.Count} Comments";
+
+                // add vào List ui 
+                var commentItem = new PostCommentItemUC(AutofacFactory<ICommentFeedbackDAO>.Get(), cmt);
+                commentItem.Margin = new Padding(0, 0, 0, 0);
+                commentItem.OnHeightChanged += CommentItem_OnHeightChanged;
+
+                flpComment.Controls.Add(commentItem);
+
+                // Save db
+                _commentDAO.Create(cmt);
+
+                UpdateHeight();
+                OnHeightChanged?.Invoke();
+            }
+        }
+
         #endregion
+
+        private void picMyCommentAvatar_Click(object sender, EventArgs e)
+        {
+            OnClickProfileFriend?.Invoke(post.User);
+        }
     }
 }

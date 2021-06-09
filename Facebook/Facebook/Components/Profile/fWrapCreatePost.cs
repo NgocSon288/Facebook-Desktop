@@ -167,6 +167,7 @@ namespace Facebook.Components.Profile
         private void CreatePostUC_OnChangeToPostStatus()
         {
             lblTitle.Text = "Chọn đối tượng";
+            lblTitle.Left = pnlHeader.Width / 2 - lblTitle.Width / 2;
 
             // Cho ẩn đi các Control trong panelContent trừ PostStatusUC
             createPostUC.Visible = false;
@@ -184,6 +185,7 @@ namespace Facebook.Components.Profile
             this.postStatus = postStatus;
 
             lblTitle.Text = "Tạo bài viết";
+            lblTitle.Left = pnlHeader.Width / 2 - lblTitle.Width / 2;
 
             post.PostStatusID = postStatus.ID;
 

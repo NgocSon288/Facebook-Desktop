@@ -1,5 +1,10 @@
 ﻿using Facebook.Common;
+using Facebook.Components.Profile;
+using Facebook.Configure.Autofac;
 using Facebook.ControlCustom.Message;
+using Facebook.DAO;
+using Facebook.Helper;
+using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,14 +14,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Facebook.Components.Profile.PostListProfileUC;
 
 namespace Facebook.FormUC
 {
     public partial class fHome : UserControl
     {
+
+        private PostListProfileUC postListProfileUC;
+
         public fHome()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             SetUpUI();
             Load();
@@ -26,8 +36,38 @@ namespace Facebook.FormUC
 
         new public void Load()
         {
+            postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get(), Constants.UserSession, PAGE.HOME);
+            postListProfileUC.OnHeightChanged += () => UpdateHeight();
+            postListProfileUC.OnClickProfileFriend += LoadProfileByUser;
 
+            pnlPostList.Controls.Add(postListProfileUC);
+            postListProfileUC.Dock = DockStyle.Top;
+
+            UpdateHeight();
+
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
+
+        /// <summary>
+        /// Show profile friend
+        /// </summary>
+        /// <param name="user"></param>
+        private void LoadProfileByUser(User user)
+        {
+            var fProfileFriend = new fProfileFriend(AutofacFactory<IUserDAO>.Get(), user, panelContent);
+
+            UIHelper.ShowControl(fProfileFriend, panelContent);
+        }
+
+        private void UpdateHeight()
+        {
+            pnlPostList.Height = postListProfileUC.Height;
+            pnlMainContent.Height = postListProfileUC.Height;
+
+            UIHelper.BorderRadius(postListProfileUC, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlPostList, Constants.BORDER_RADIUS);
+        }
+
 
         #endregion
 

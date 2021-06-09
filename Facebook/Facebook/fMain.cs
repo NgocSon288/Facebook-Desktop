@@ -19,15 +19,28 @@ namespace Facebook
 {
     public partial class fMain : Form
     {
-
         private IconButton currentBtn;
         private Panel leftBorderBtn;
 
         private fHome fHome;
+        private fProfile fProfile;
+
+        private BUTTON CURRENT_BUTTON;
+
+        private enum BUTTON
+        {
+            HOME,
+            PROFILE,
+            FRIEND,
+            MESSENGER,
+            ACCOUNT
+        }
 
         public fMain()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
+
 
             Load();
         }
@@ -37,6 +50,7 @@ namespace Facebook
         new private void Load()
         {
             Constants.MainForm = this;
+            CURRENT_BUTTON = BUTTON.HOME;
 
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 100);
@@ -44,6 +58,8 @@ namespace Facebook
 
             Reset();
             ShowAccountForm();
+
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         private void ActivateButton(object senderBtn)
@@ -114,19 +130,55 @@ namespace Facebook
 
         private void imgLogo_Click(object sender, EventArgs e)
         {
+            if (CURRENT_BUTTON == BUTTON.HOME)
+            {
+                return;
+            }
+            CURRENT_BUTTON = BUTTON.HOME;
+
+            try
+            {
+                fProfile.Dispose();
+            }
+            catch (Exception)
+            {
+
+            }
+
             Reset();
         }
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
+            if (CURRENT_BUTTON == BUTTON.PROFILE)
+            {
+                return;
+            }
+            CURRENT_BUTTON = BUTTON.PROFILE;
+
+            try
+            {
+                fHome.Dispose();
+            }
+            catch (Exception)
+            {
+
+            }
+
             ActivateButton(sender);
 
-            var f = new fProfile(AutofacFactory<IUserDAO>.Get());
-            UIHelper.ShowControl(f, panelContent);
+            fProfile = new fProfile(AutofacFactory<IUserDAO>.Get());
+            UIHelper.ShowControl(fProfile, panelContent);
         }
 
         private void btnFriends_Click(object sender, EventArgs e)
         {
+            if (CURRENT_BUTTON == BUTTON.FRIEND)
+            {
+                return;
+            }
+            CURRENT_BUTTON = BUTTON.FRIEND;
+
             ActivateButton(sender);
 
             var f = new fFriend();
@@ -135,6 +187,12 @@ namespace Facebook
 
         private void btnMessenger_Click(object sender, EventArgs e)
         {
+            if (CURRENT_BUTTON == BUTTON.MESSENGER)
+            {
+                return;
+            }
+            CURRENT_BUTTON = BUTTON.MESSENGER;
+
             ActivateButton(sender);
 
             var f = new fMessenger();
@@ -143,6 +201,12 @@ namespace Facebook
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
+            if (CURRENT_BUTTON == BUTTON.ACCOUNT)
+            {
+                return;
+            }
+            CURRENT_BUTTON = BUTTON.ACCOUNT;
+
             ActivateButton(sender);
 
             var f = new fAccount();

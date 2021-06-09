@@ -1,5 +1,6 @@
 ﻿using Facebook.Common;
 using Facebook.ControlCustom.Message;
+using Facebook.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,10 +26,14 @@ namespace Facebook.Components.Profile
         public InfoProfileNewItemUC(string textPlaceholder)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.Selectable, false);
 
             this.textPlaceholder = textPlaceholder;
 
             Load();
+
+            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS_SECTION_LIKE);
+            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
         #region Methods
 

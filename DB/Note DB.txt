@@ -1,3 +1,6 @@
+components  ->  fProfileFriend.cs: cần kiểm tra là fiendship hay không
+
+----------------------------------
 Đăng nhập
 Đăng ký
 Quên mật khẩu
@@ -299,32 +302,114 @@ PostStatucUC
 
 
 -------------------------------------------------------
+Title: Cập nhật bài viết
+PostStatus: theo postStatus truyền vào
+description
+hình ảnh
 
+button là Cập nhật bài viết
+
+
+-------------------------------------------------------
+tạo event cập nhật hình ảnh trước
+sau đo cập nhật thông tin không cần cập nhật hình ảnh
+
+
+-------------------------------------------------------
+ [Key]
+        public int ID { get; set; }
+        public string Description { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public string Like { get; set; 
+
+        //[ForeignKey("User")]
+        //public int UserID { get; set; }
+        [ForeignKey("Post")]
+        public int PostID { get; set; }
+        public User User { get; set; }
+        public Post Post { get; set; }
+        public List<CommentFeedback> CommentFeedbacks { get; set; }
+
+
+-------------------------------------------------------
+- Description, input
+- CreatedAt: datetime.now
+- Like: null
+- PostID: free
+- User: UserSession
+
+
+
+-------------------------------------------------------
+ public int ID { get; set; }
+        public string Description { get; set; }
+        public string Like { get; set; }
+        public DateTime CreatedAt { get; set; }
+        //[ForeignKey("User")]
+        //public int UserID { get; set; }
+        [ForeignKey("Comment")]
+        public int CommentID { get; set; }
+        public User User { get; set; }
+        public Comment Comment { get; set; }
+
+
+-------------------------------------------------------
+- Description: input
+- like: null
+- CreateAt: datetime.now
+- User : usersession
+- comment: comment
+
+
+width 	height
+600	
+
+-------------------------------------------------------
+
+thay các hình ảnh thành border bunifu
+
+
+-------------------------------------------------------
+Nó bị mất một bài
+Khi tạo nick mới, khi thêm bài rồi sửa bài  thì  lỗi
+
+1000 x 370
+1980	732
+
+
+-------------------------------------------------------
+Khi cập nhật
+Chức năng xóa bài bị lỗi, xóa nhắm bài ui
 
 
 -------------------------------------------------------
 
 
-
 -------------------------------------------------------
-
-
-
--------------------------------------------------------
-
 
 
 -------------------------------------------------------
 
 
+-------------------------------------------------------
+
 
 -------------------------------------------------------
 
 
+-------------------------------------------------------
+
 
 -------------------------------------------------------
 
 
+-------------------------------------------------------
+
 
 -------------------------------------------------------
 
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------

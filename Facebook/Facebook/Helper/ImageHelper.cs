@@ -12,6 +12,24 @@ namespace Facebook.Helper
 {
     public static class ImageHelper
     {
+        public static Image FromFile(string path)
+        {
+            Image img = null;
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                try
+                {
+                    img = Image.FromStream(fs);
+                }
+                finally
+                {
+                    fs.Close();
+                }
+            }
+
+            return img;
+        }
+
         /// <summary>
         /// Lấy ra hình ảnh đã  được bo tròn theo user truyền vào
         /// </summary>
@@ -19,18 +37,25 @@ namespace Facebook.Helper
         /// <returns></returns>
         public static Image GetAvatarByUser(Color color, User user = null)
         {
-            if (user == null)
+            try
             {
-                user = Constants.UserSession;
+                if (user == null)
+                {
+                    user = Constants.UserSession;
+                }
+
+                var path = $"./../../Assets/Images/Profile/{user.Avatar}";
+
+                if (!File.Exists(path))
+                {
+                    path = "./../../Assets/Images/Profile/avatar-default.jpg";
+                }
+                return UIHelper.ClipToCircle(new Bitmap(path), color);
             }
-
-            var path = $"./../../Assets/Images/Profile/{user.Avatar}";
-
-            if (!File.Exists(path))
+            catch (Exception)
             {
-                path = "./../../Assets/Images/Profile/avatar-default.jpg";
+                return null;
             }
-            return UIHelper.ClipToCircle(new Bitmap(path), color);
         }
 
         /// <summary>

@@ -78,6 +78,12 @@
     <Compile Include="Components\Profile\fWrapCreatePost.Designer.cs">
       <DependentUpon>fWrapCreatePost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Profile\fWrapUpdatePost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\fWrapUpdatePost.Designer.cs">
+      <DependentUpon>fWrapUpdatePost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\InfoProfileItemUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -108,6 +114,12 @@
     <Compile Include="Components\Profile\PostCommentUC.Designer.cs">
       <DependentUpon>PostCommentUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Profile\PostEmptyItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\PostEmptyItemUC.Designer.cs">
+      <DependentUpon>PostEmptyItemUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\PostFeedbackCommentItemUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,11 +144,36 @@
     <Compile Include="Components\Profile\PostStatusUC.Designer.cs">
       <DependentUpon>PostStatusUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Profile\UpdatePostUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\UpdatePostUC.Designer.cs">
+      <DependentUpon>UpdatePostUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCustom\Image\fImageShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlCustom\Image\fImageShow.Designer.cs">
+      <DependentUpon>fImageShow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlCustom\Image\MyImage.cs" />
+    <Compile Include="ControlCustom\WrapperForm\fParentClickHidden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlCustom\WrapperForm\fParentClickHidden.Designer.cs">
+      <DependentUpon>fParentClickHidden.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAO\CommentDAO.cs" />
     <Compile Include="DAO\PostStatusDAO.cs" />
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="DAO\CommentFeedbackDAO.cs" />
     <Compile Include="DAO\ProfileDAO.cs" />
+    <Compile Include="FormUC\fProfileFriend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fProfileFriend.Designer.cs">
+      <DependentUpon>fProfileFriend.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper\CompareStringHelper.cs" />
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
@@ -263,6 +300,9 @@
     <EmbeddedResource Include="Components\Profile\fWrapCreatePost.resx">
       <DependentUpon>fWrapCreatePost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\fWrapUpdatePost.resx">
+      <DependentUpon>fWrapUpdatePost.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\HeaderProfileUC.resx">
       <DependentUpon>HeaderProfileUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -284,6 +324,9 @@
     <EmbeddedResource Include="Components\Profile\PostCommentUC.resx">
       <DependentUpon>PostCommentUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\PostEmptyItemUC.resx">
+      <DependentUpon>PostEmptyItemUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\PostFeedbackCommentItemUC.resx">
       <DependentUpon>PostFeedbackCommentItemUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +342,12 @@
     <EmbeddedResource Include="Components\Profile\PostStatusUC.resx">
       <DependentUpon>PostStatusUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\UpdatePostUC.resx">
+      <DependentUpon>UpdatePostUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCustom\Image\fImageShow.resx">
+      <DependentUpon>fImageShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlCustom\MessageBox\MessageBoxChild.resx">
       <DependentUpon>MessageBoxChild.cs</DependentUpon>
     </EmbeddedResource>
@@ -307,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlCustom\WrapperForm\fParent.resx">
       <DependentUpon>fParent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlCustom\WrapperForm\fParentClickHidden.resx">
+      <DependentUpon>fParentClickHidden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fAccountForm.resx">
       <DependentUpon>fAccountForm.cs</DependentUpon>
@@ -334,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUC\fProfile.resx">
       <DependentUpon>fProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fProfileFriend.resx">
+      <DependentUpon>fProfileFriend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUC\fRegister.resx">
       <DependentUpon>fRegister.cs</DependentUpon>
@@ -379,8 +434,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\Images\Home\" />
     <Folder Include="Assets\Images\Post\" />
+    <Folder Include="Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\btn-social-facebook.png" />
@@ -395,7 +450,9 @@
     <Content Include="Assets\Images\icon-success-message.png" />
     <Content Include="Assets\Images\icon-warning-message.png" />
     <Content Include="Assets\Images\Profile\circle-bg.png" />
+    <Content Include="Assets\Images\Profile\empty-post-icon.png" />
     <Content Include="Assets\Images\Profile\image-default.jpg" />
+    <Content Include="Assets\Images\Profile\menu-icon.png" />
     <Content Include="Assets\Images\Profile\think-1.png" />
     <Content Include="Assets\Images\Profile\think-2.png" />
   </ItemGroup>
