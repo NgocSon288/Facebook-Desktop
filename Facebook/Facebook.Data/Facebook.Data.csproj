@@ -81,6 +81,14 @@
     <Compile Include="Migrations\202106051544577_Update_Post_Entity.designer.cs">
       <DependentUpon>202106051544577_Update_Post_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106101325495_Update_User_Entity.cs" />
+    <Compile Include="Migrations\202106101325495_Update_User_Entity.designer.cs">
+      <DependentUpon>202106101325495_Update_User_Entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106101412539_Update_User_Entity1.cs" />
+    <Compile Include="Migrations\202106101412539_Update_User_Entity1.designer.cs">
+      <DependentUpon>202106101412539_Update_User_Entity1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\PostStatusRepository.cs" />
@@ -102,6 +110,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106051544577_Update_Post_Entity.resx">
       <DependentUpon>202106051544577_Update_Post_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106101325495_Update_User_Entity.resx">
+      <DependentUpon>202106101325495_Update_User_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106101412539_Update_User_Entity1.resx">
+      <DependentUpon>202106101412539_Update_User_Entity1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

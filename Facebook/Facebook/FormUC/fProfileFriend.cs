@@ -1,5 +1,6 @@
 ﻿using Facebook.Common;
 using Facebook.Components.Profile;
+using Facebook.Configure.Autofac;
 using Facebook.ControlCustom.Message;
 using Facebook.DAO;
 using Facebook.Helper;
@@ -7,6 +8,7 @@ using Facebook.Model.Models;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using static Facebook.Components.Profile.PostListProfileUC;
 
 namespace Facebook.FormUC
 {
@@ -17,14 +19,16 @@ namespace Facebook.FormUC
         private readonly IUserDAO _userDAO;
 
         private Control content;
+        private PAGE page;
 
-        public fProfileFriend(IUserDAO userDAO, User user, Control content)
+        public fProfileFriend(IUserDAO userDAO, User user, Control content, PAGE page)
         {
             InitializeComponent();
 
             this._userDAO = userDAO;
             this.user = user;
             this.content = content;
+            this.page = page;
 
             SetUpUI();
             Load();
@@ -62,7 +66,7 @@ namespace Facebook.FormUC
         {
             pnlMainContent.Controls.Clear();
 
-            var infoProfileIntroduceUC = new InfoProfileIntroduceUC(user);
+            var infoProfileIntroduceUC = new InfoProfileIntroduceUC(user, page);
             pnlMainContent.Height = infoProfileIntroduceUC.Height;
             infoProfileIntroduceUC.Location = new Point(0, 0);
             infoProfileIntroduceUC.OnHeightChanged += UpdateHeight;
@@ -76,10 +80,13 @@ namespace Facebook.FormUC
         {
             pnlMainContent.Controls.Clear();
 
-            var infoProfileFriendsUC = new InfoProfileFriendsUC(user);
-            pnlMainContent.Height = infoProfileFriendsUC.Height;
+            var infoProfileFriendsUC = new InfoProfileFriendsUC(AutofacFactory<IUserDAO>.Get(), user, false);
             infoProfileFriendsUC.Location = new Point(0, 0);
+            infoProfileFriendsUC.OnLinkToProfile += LoadProfileByUser;
+            infoProfileFriendsUC.OnBlockUser += LoadFriends;
+            infoProfileFriendsUC.OnDeleteFriend += LoadFriends;
 
+            pnlMainContent.Height = infoProfileFriendsUC.Height;
             pnlMainContent.Controls.Add(infoProfileFriendsUC);
             UpdateHeight();
         }
@@ -88,10 +95,11 @@ namespace Facebook.FormUC
         {
             pnlMainContent.Controls.Clear();
 
-            var infoProfileImagesUC = new InfoProfileImagesUC(user);
-            pnlMainContent.Height = infoProfileImagesUC.Height;
+            var infoProfileImagesUC = new InfoProfileImagesUC(AutofacFactory<IPostDAO>.Get(), user);
             infoProfileImagesUC.Location = new Point(0, 0);
+            infoProfileImagesUC.OnHeightChanged += UpdateHeight;
 
+            pnlMainContent.Height = infoProfileImagesUC.Height;
             pnlMainContent.Controls.Add(infoProfileImagesUC);
             UpdateHeight();
         }
@@ -110,12 +118,19 @@ namespace Facebook.FormUC
         /// </summary>
         private void UpdateHeight()
         {
-            pnlMainContent.Height = pnlMainContent.Controls[0].Height;
+            try
+            {
+                pnlMainContent.Height = pnlMainContent.Controls[0].Height;
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void LoadProfileByUser(User user)
         {
-            var fProfileFriend = new fProfileFriend(_userDAO, user, panelContent);
+            var fProfileFriend = new fProfileFriend(_userDAO, user, panelContent, PAGE.PROFILE);
 
             UIHelper.ShowControl(fProfileFriend, panelContent);
         }

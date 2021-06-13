@@ -79,18 +79,25 @@ namespace Facebook.Components.Profile
 
         private void SetColorLike()
         {
-            var userID = Constants.UserSession.ID;
-            var check = likes.Any(l => l == userID);
-
-            lblLikeCount.Text = likes.Count.ToString();
-
-            if (check)
+            try
             {
-                lblLike.ForeColor = Constants.LIKED_FORECOLOR;
+                var userID = Constants.UserSession?.ID;
+                var check = likes.Any(l => l == userID);
+
+                lblLikeCount.Text = likes.Count.ToString();
+
+                if (check)
+                {
+                    lblLike.ForeColor = Constants.LIKED_FORECOLOR;
+                }
+                else
+                {
+                    lblLike.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+                }
             }
-            else
+            catch (Exception)
             {
-                lblLike.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+
             }
         }
 

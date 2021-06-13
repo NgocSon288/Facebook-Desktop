@@ -46,7 +46,7 @@ namespace Facebook.Helper
 
                 var path = $"./../../Assets/Images/Profile/{user.Avatar}";
 
-                if (!File.Exists(path))
+                if (string.IsNullOrEmpty(user.Avatar) || !File.Exists(path))
                 {
                     path = "./../../Assets/Images/Profile/avatar-default.jpg";
                 }

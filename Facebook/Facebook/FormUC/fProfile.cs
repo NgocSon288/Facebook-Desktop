@@ -40,39 +40,80 @@ namespace Facebook.FormUC
 
         #region Methods
 
-        new public void Load()
+        new private void Load()
         {
             // Load Header: Image, Avatar
             LoadHeader();
 
-            /// Height của pnlMainContent = Max(heightLeft, heightRight);
-            // Load thông tin bên trái
-            LoadLeft();
+            // Load menu
+            LoadMenu();
 
-            // Load các bài viết bên phải
-            LoadRight();
+            // Tương tự load left right
+            LoadIntroduce();
 
             SetColor();
         }
 
+        private void LoadMenu()
+        {
+            // Sẽ  thay thế
+            var menuProfileUC = new MenuProfileUC();
+            menuProfileUC.OnClickButtonIntro += () => { LoadIntroduce(); };
+            menuProfileUC.OnClickButtonFriends += () => { LoadFriends(); };
+            menuProfileUC.OnClickButtonImages += () => { LoadImages(); };
+
+            pnlMenu.Controls.Add(menuProfileUC);
+            pnlMenu.Height = menuProfileUC.Height + 19;
+        }
+
+        private void LoadIntroduce()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var infoProfileIntroduceUC = new InfoProfileIntroduceUC(Constants.UserSession);
+            pnlMainContent.Height = infoProfileIntroduceUC.Height;
+            infoProfileIntroduceUC.Location = new Point(0, 0);
+            infoProfileIntroduceUC.OnHeightChanged += UpdateHeight;
+            infoProfileIntroduceUC.OnClickProfileFriend += LoadProfileByUser;
+
+            pnlMainContent.Controls.Add(infoProfileIntroduceUC);
+            UpdateHeight();
+        }
+
+        private void LoadFriends()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var infoProfileFriendsUC = new InfoProfileFriendsUC(AutofacFactory<IUserDAO>.Get(), Constants.UserSession, true);
+            infoProfileFriendsUC.Location = new Point(0, 0);
+            infoProfileFriendsUC.OnLinkToProfile += LoadProfileByUser;
+            infoProfileFriendsUC.OnBlockUser += LoadFriends;
+            infoProfileFriendsUC.OnDeleteFriend += LoadFriends;
+
+            pnlMainContent.Height = infoProfileFriendsUC.Height;
+            pnlMainContent.Controls.Add(infoProfileFriendsUC);
+            UpdateHeight();
+        }
+
+        private void LoadImages()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var infoProfileImagesUC = new InfoProfileImagesUC(AutofacFactory<IPostDAO>.Get(), Constants.UserSession);
+            infoProfileImagesUC.Location = new Point(0, 0);
+            infoProfileImagesUC.OnHeightChanged += UpdateHeight;
+
+            pnlMainContent.Height = infoProfileImagesUC.Height;
+            pnlMainContent.Controls.Add(infoProfileImagesUC);
+            UpdateHeight();
+        }
+
         private void LoadHeader()
         {
-            var f = new HeaderProfileUC(this._userDAO);
+            var f = new HeaderProfileUC(this._userDAO, Constants.UserSession);
             f.Dock = DockStyle.Fill;
-            f.OnUpdatedAvatar += F_OnUpdatedAvatar; ;
 
-            var pnlSeparator = new Panel()
-            {
-                Height = 2,
-                BackColor = Color.Gray,
-                Margin = new Padding(20, 20, 20, 20)
-            };
-            pnlSeparator.Dock = DockStyle.Bottom;
-
-
-            pnlHead.Height = f.Height + 50;
-
-            pnlHead.Controls.Add(pnlSeparator);
+            pnlHead.Height = f.Height;
             pnlHead.Controls.Add(f);
         }
 
@@ -84,47 +125,31 @@ namespace Facebook.FormUC
             postListProfileUC.UpdateAvatar();
         }
 
-        private void LoadLeft()
-        {
-            infoProfileUC = new InfoProfileUC(AutofacFactory<IProfileDAO>.Get());   // InfoUC có width bao nhiêu cũng được
-            pnlMainContent.Height = infoProfileUC.Height;   // gán giá height của InfoUC cho pnl chứa nó, vì flp có thể scroll theo độ dày các con bên trong
-            infoProfileUC.OnHeightChanged += () => UpdateHeight();
-
-            pnlLeft.Controls.Add(infoProfileUC);
-            infoProfileUC.Dock = DockStyle.Top;
-
-        }
-
-        private void LoadRight()
-        {
-            postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get());
-            UpdateHeight();
-            postListProfileUC.OnHeightChanged += () => UpdateHeight();
-            postListProfileUC.OnClickProfileFriend += LoadProfileByUser;
-
-            pnlRight.Controls.Add(postListProfileUC);
-            postListProfileUC.Dock = DockStyle.Top;
-        }
-
         private void UpdateHeight()
         {
-            pnlMainContent.Height = infoProfileUC.Height > postListProfileUC.Height ? infoProfileUC.Height : postListProfileUC.Height;
+            try
+            {
+                pnlMainContent.Height = pnlMainContent.Controls[0].Height;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void LoadProfileByUser(User user)
+        {
+            var fProfileFriend = new fProfileFriend(_userDAO, user, panelContent, PostListProfileUC.PAGE.PROFILE);
+
+            UIHelper.ShowControl(fProfileFriend, panelContent);
         }
 
         private void SetColor()
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
             flpContent.BackColor = Constants.MAIN_BACK_COLOR;
-
-            pnlLeft.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlRight.BackColor = Constants.MAIN_BACK_COLOR;
-        }
-
-        private void LoadProfileByUser(User user)
-        {
-            var fProfileFriend = new fProfileFriend(_userDAO, user, panelContent);
-
-            UIHelper.ShowControl(fProfileFriend, panelContent);
+            pnlMainContent.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlMenu.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
         #endregion

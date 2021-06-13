@@ -1,4 +1,7 @@
-﻿using Facebook.Model.Models;
+﻿using Facebook.Common;
+using Facebook.DAO;
+using Facebook.Helper;
+using Facebook.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,13 +16,19 @@ namespace Facebook.Components.Profile
 {
     public partial class InfoProfileImagesUC : UserControl
     {
+        public delegate void HeightChanged();
+        public event HeightChanged OnHeightChanged;
+
+        private IPostDAO _postDAO;
         private User user;
 
+        private List<string> images;
 
-        public InfoProfileImagesUC(User user)
+        public InfoProfileImagesUC(IPostDAO postDAO, User user)
         {
             InitializeComponent();
 
+            this._postDAO = postDAO;
             this.user = user;
 
             Load();
@@ -27,9 +36,120 @@ namespace Facebook.Components.Profile
 
         #region Methods
 
-        new private void Load()
+        new private async void Load()
         {
+            await LoadImage();
 
+            SetUpUI();
+            UpdateImage();
+
+            OnHeightChanged?.Invoke();
+        }
+
+        private async Task LoadImage()
+        {
+            images = new List<string>();
+
+            // Từ Image
+            if (!string.IsNullOrEmpty(user.Image))
+            {
+                images.Add($"./../../Assets/Images/Profile/{user.Image}");
+            }
+
+            // Từ Avatar
+            if (!string.IsNullOrEmpty(user.Avatar))
+            {
+                images.Add($"./../../Assets/Images/Profile/{user.Avatar}");
+            }
+
+            // Từ Post
+            var posts = await _postDAO.GetByUserID(user.ID);
+
+            // Nếu là bạn
+            if (FriendHelper.AIsFriendB(user, Constants.UserSession))
+            {
+                posts = posts.Where(p => p.PostStatusID == 1 || p.PostStatusID == 2).ToList();
+            }
+            // Không là bạn, không là chính bản thân
+            else if (user != Constants.UserSession)
+            {
+                posts = posts.Where(p => p.PostStatusID == 1).ToList();
+            }
+
+            foreach (var item in posts)
+            {
+                if (!string.IsNullOrEmpty(item.Image))
+                {
+                    images.Add($"./../../Assets/Images/Post/{item.Image}");
+                }
+            }
+
+            foreach (var item in images)
+            {
+                var itemUC = new InfoProfileImageItemUC(item);
+
+
+
+                flpContent.Controls.Add(itemUC);
+
+            }
+        }
+
+        private void SetUpUI()
+        {
+            this.BackColor = Constants.MAIN_BACK_COLOR;
+
+            pnlWrap.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            pnlWrap.Location = new Point(20, 0);
+            pnlWrap.Height = this.Height - 2 * 20;
+            pnlWrap.Width = this.Width - 2 * 20 - 15;
+
+            flpContent.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+
+            UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
+        }
+
+        private void UpdateImage()
+        {
+            var count = flpContent.Controls.Count;
+
+            pnlWrap.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+
+            if (count == 0)
+            {
+                var pic = new PictureBox();
+                pic.Width = 300;
+                pic.Height = 300;
+                pic.Location = new Point(776, 150);
+                pic.BackgroundImage = Image.FromFile("./../../Assets/Images/Profile/empty-friend.png");
+                pic.BackgroundImageLayout = ImageLayout.Stretch;
+
+                pnlWrap.Controls.Clear();
+                var lbl = new Label()
+                {
+                    Text = "Chưa có hình ảnh nào",
+                    ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR,
+                    BackColor = Constants.MAIN_BACK_COLOR,
+                    AutoSize = true
+                };
+                lbl.Location = new Point(730, 440);
+
+                pnlWrap.BackColor = Constants.MAIN_BACK_COLOR;
+                pnlWrap.Controls.Add(pic);
+                pnlWrap.Controls.Add(lbl);
+            }
+
+            if (count > 5)
+            {
+                var con = flpContent.Controls[0];
+                var n = (count + 4) / 5;
+                var height = con.Height + con.Margin.Top + con.Margin.Bottom;
+
+                this.Height = height * n + 2 * 20;
+                pnlWrap.Height = height * n;
+
+                UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
+            }
         }
 
         #endregion

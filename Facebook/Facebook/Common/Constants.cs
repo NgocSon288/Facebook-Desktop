@@ -18,6 +18,7 @@ namespace Facebook.Common
 
         public static readonly Color MAIN_BACK_COLOR = Color.FromArgb(36, 37, 38); // all form - màu nền chính cho chương 
         public static readonly Color MAIN_BACK_CONTENT_COLOR = Color.FromArgb(50, 50, 50); // all form - màu nền chính cho chương 
+        public static readonly Color MAIN_BACK_CONTENT_ENTER_COLOR = Color.FromArgb(70, 70, 70); // all form - màu nền khi mouse enter
         public static readonly Color MAIN_FORE_COLOR = Color.FromArgb(228, 230, 235);  // all form - màu chữ chính
         public static readonly Color MAIN_FORE_PARAGRAPH_COLOR = Color.FromArgb(208, 210, 214);  // all form - màu chữ chính paragraph
         public static readonly Color MAIN_FORE_PARAGRAPH_NOT_ACTIVE_COLOR = Color.FromArgb(130, 133, 137);  // all form - màu chữ chính paragraph

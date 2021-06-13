@@ -31,6 +31,7 @@ namespace Facebook.Components.Profile
         private List<Post> posts;
 
         private PAGE page;
+        private List<int> friendList;       // danh sách các bạn  của user hiện tại
 
         public PostListProfileUC(IPostDAO postDAO, User user = null, PAGE page = PAGE.PROFILE)
         {
@@ -63,32 +64,19 @@ namespace Facebook.Components.Profile
 
         new private async Task Load()
         {
+            // Kiểm tra user hiện tại với user truyền vào có là  bạn
+            if (Constants.UserSession != null)
+            {
+                friendList = StringHelper.StringToStringList(Constants.UserSession.Friend).Select(i => Convert.ToInt32(i)).ToList();
+            }
+            else
+            {
+                friendList = new List<int>();
+            }
+
             if (user != null)
             {
-                // TH Home hoặc Profile
-                // Nếu là home thì không có modified 
-                switch (page)
-                {
-                    case PAGE.PROFILE:
-                        posts = await _postDAO.GetByUserID(user.ID);
-                        break;
-                    case PAGE.HOME:
-                        posts = await _postDAO.GetByUserIDByHomePage(user.ID);
-                        break;
-                    case PAGE.FRIEND_FRIENDSHIP:
-                        if (user == Constants.UserSession)
-                        {
-                            posts = await _postDAO.GetByUserID(user.ID);
-                            break;
-                        }
-
-                        posts = await _postDAO.GetByUserIDByFriendPageHaveFriendShip(user.ID);
-                        break;
-                    case PAGE.FRIEND_NO_FRIENDSHIP:
-                        posts = await _postDAO.GetByUserIDByFriendPageNoFriendShip(user.ID);
-                        break;
-                }
-
+                await FilterPost();
 
                 LoadPostItems();
 
@@ -99,6 +87,58 @@ namespace Facebook.Components.Profile
                 SetColor();
 
                 UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            }
+        }
+
+        private async Task FilterPost()
+        {
+            switch (page)
+            {
+                case PAGE.PROFILE:
+                    posts = await _postDAO.GetByUserID(user.ID);
+
+                    if (user.ID != Constants.UserSession.ID)
+                    {
+                        posts = posts.Where(p => p.PostStatusID != 3).ToList();
+
+
+                        if (!friendList.Contains(user.ID))
+                        {
+                            posts = posts.Where(p => p.PostStatusID != 2).ToList();
+                        }
+
+                        // Nếu user và userSession không là bạn thì lọc != 2
+                    }
+
+                    break;
+                case PAGE.HOME:
+                    posts = await _postDAO.GetAll();
+                    // post public
+                    var postPublic = posts.Where(p => p.PostStatusID == 1);
+
+                    // Friend
+                    var postFriend = posts.Where(p => p.PostStatusID == 2 && friendList.Contains(p.User.ID));
+
+                    // Self
+                    var postSelf = posts.Where(p => p.User.ID == Constants.UserSession.ID);
+
+                    posts = postPublic.Union(postFriend).Union(postSelf).OrderByDescending(u => u.CreatedAt).ToList();
+
+                    break;
+                case PAGE.FRIEND_FRIENDSHIP:
+                    MessageBox.Show("Coi lại post list profile");
+                    if (user == Constants.UserSession)
+                    {
+                        posts = await _postDAO.GetByUserID(user.ID);
+                        break;
+                    }
+
+                    posts = await _postDAO.GetByUserIDByFriendPageHaveFriendShip(user.ID);
+                    break;
+                case PAGE.FRIEND_NO_FRIENDSHIP:
+                    MessageBox.Show("Coi lại post list profile");
+                    posts = await _postDAO.GetByUserIDByFriendPageNoFriendShip(user.ID);
+                    break;
             }
         }
 
@@ -196,7 +236,7 @@ namespace Facebook.Components.Profile
             picThink.BackgroundImage = image1;
             picThink.BackgroundImageLayout = ImageLayout.Stretch;
 
-            pnlContent.Location = new Point(margin, 0);
+            pnlContent.Location = new Point(margin + 5, 0);
 
             UIHelper.BorderRadius(pnlThink, Constants.BORDER_RADIUS);
 
@@ -205,7 +245,7 @@ namespace Facebook.Components.Profile
         private void SetColor()
         {
             this.BackColor = Constants.MAIN_BACK_COLOR;
-            pnlContent.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;   //adasd
+            pnlContent.BackColor = Constants.MAIN_BACK_COLOR;   //adasd
             pnlThink.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             flpContent.BackColor = Constants.MAIN_BACK_COLOR;
 
@@ -283,23 +323,7 @@ namespace Facebook.Components.Profile
 
             if (isCreated)
             {
-                // TH Home hoặc Profile
-                // Nếu là home thì không có modified 
-                switch (page)
-                {
-                    case PAGE.PROFILE:
-                        posts = await _postDAO.GetByUserID(user.ID);
-                        break;
-                    case PAGE.HOME:
-                        posts = await _postDAO.GetByUserIDByHomePage(user.ID);
-                        break;
-                    case PAGE.FRIEND_FRIENDSHIP:
-                        posts = await _postDAO.GetByUserIDByFriendPageHaveFriendShip(user.ID);
-                        break;
-                    case PAGE.FRIEND_NO_FRIENDSHIP:
-                        posts = await _postDAO.GetByUserIDByFriendPageNoFriendShip(user.ID);
-                        break;
-                }
+                await FilterPost();
 
                 LoadPostItems();
             }

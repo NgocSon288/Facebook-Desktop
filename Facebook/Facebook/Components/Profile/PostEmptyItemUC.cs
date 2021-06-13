@@ -36,6 +36,7 @@ namespace Facebook.Components.Profile
             lblTitle.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
             lblTitle.Left = this.Width / 2 - lblTitle.Width / 2;
 
+            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
             UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 

@@ -18,6 +18,8 @@ namespace Facebook.DAO
 
         User GetByUsername(string username);
 
+        bool Update(User user);
+
         int Login(string username, string password);
 
         Task<int> Register(string name, string username, string password, string email);
@@ -198,6 +200,11 @@ namespace Facebook.DAO
             {
                 return false;
             }
+        }
+
+        public bool Update(User user)
+        {
+            return true;
         }
     }
 }

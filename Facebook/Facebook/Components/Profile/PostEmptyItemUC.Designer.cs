@@ -36,7 +36,7 @@ namespace Facebook.Components.Profile
             // 
             // picEmpty
             // 
-            this.picEmpty.Location = new System.Drawing.Point(129, 31);
+            this.picEmpty.Location = new System.Drawing.Point(129, 53);
             this.picEmpty.Name = "picEmpty";
             this.picEmpty.Size = new System.Drawing.Size(200, 200);
             this.picEmpty.TabIndex = 0;
@@ -45,10 +45,10 @@ namespace Facebook.Components.Profile
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Consolas", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(42, 264);
+            this.lblTitle.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(95, 285);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(395, 37);
+            this.lblTitle.Size = new System.Drawing.Size(285, 28);
             this.lblTitle.TabIndex = 51;
             this.lblTitle.Text = "Không có bài viết nào";
             // 
@@ -61,7 +61,7 @@ namespace Facebook.Components.Profile
             this.Controls.Add(this.picEmpty);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PostEmptyItemUC";
-            this.Size = new System.Drawing.Size(464, 346);
+            this.Size = new System.Drawing.Size(464, 361);
             ((System.ComponentModel.ISupportInitialize)(this.picEmpty)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

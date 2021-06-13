@@ -54,7 +54,7 @@ namespace Facebook.FormUC
         /// <param name="user"></param>
         private void LoadProfileByUser(User user)
         {
-            var fProfileFriend = new fProfileFriend(AutofacFactory<IUserDAO>.Get(), user, panelContent);
+            var fProfileFriend = new fProfileFriend(AutofacFactory<IUserDAO>.Get(), user, panelContent, PAGE.PROFILE);
 
             UIHelper.ShowControl(fProfileFriend, panelContent);
         }

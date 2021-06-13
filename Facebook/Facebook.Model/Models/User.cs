@@ -33,6 +33,14 @@ namespace Facebook.Model.Models
 
         public string Image { get; set; }       // ảnh bìa
 
+        public string Friend { get; set; }      // danh sách những người bạn
+
+        public string RequestedFriend { get; set; } // danh sách các yêu cầu kết bạn gửi cho người này, show lên
+
+        public string BlockedFriend { get; set; }   // danh sách các user mà người này block
+
+        public string ByBlockedFriend { get; set; } // danh sách các user block người này
+
 
         [ForeignKey("Profile")]
         public int? ProfileID { get; set; }

@@ -66,6 +66,54 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Friend\FriendHeaderProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendHeaderProfileUC.Designer.cs">
+      <DependentUpon>FriendHeaderProfileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendListUC.Designer.cs">
+      <DependentUpon>FriendListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendMenuProfileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendMenuProfileUC.Designer.cs">
+      <DependentUpon>FriendMenuProfileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendRequestedListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendRequestedListUC.Designer.cs">
+      <DependentUpon>FriendRequestedListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendRequestedItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendRequestedItemUC.Designer.cs">
+      <DependentUpon>FriendRequestedItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendSearchBoxUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendSearchBoxUC.Designer.cs">
+      <DependentUpon>FriendSearchBoxUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendUserItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendUserItemUC.Designer.cs">
+      <DependentUpon>FriendUserItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Friend\FriendUserListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Friend\FriendUserListUC.Designer.cs">
+      <DependentUpon>FriendUserListUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\CreatePostUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,6 +131,18 @@
     </Compile>
     <Compile Include="Components\Profile\fWrapUpdatePost.Designer.cs">
       <DependentUpon>fWrapUpdatePost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileFriendItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileFriendItemUC.Designer.cs">
+      <DependentUpon>InfoProfileFriendItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileImageItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileImageItemUC.Designer.cs">
+      <DependentUpon>InfoProfileImageItemUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\Profile\InfoProfileImagesUC.cs">
       <SubType>UserControl</SubType>
@@ -200,6 +260,7 @@
     </Compile>
     <Compile Include="Helper\CompareStringHelper.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Helper\FriendHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Helper\MD5Helper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
@@ -318,6 +379,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Friend\FriendHeaderProfileUC.resx">
+      <DependentUpon>FriendHeaderProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendListUC.resx">
+      <DependentUpon>FriendListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendMenuProfileUC.resx">
+      <DependentUpon>FriendMenuProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendRequestedListUC.resx">
+      <DependentUpon>FriendRequestedListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendRequestedItemUC.resx">
+      <DependentUpon>FriendRequestedItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendSearchBoxUC.resx">
+      <DependentUpon>FriendSearchBoxUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendUserItemUC.resx">
+      <DependentUpon>FriendUserItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Friend\FriendUserListUC.resx">
+      <DependentUpon>FriendUserListUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\CreatePostUC.resx">
       <DependentUpon>CreatePostUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +414,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\HeaderProfileUC.resx">
       <DependentUpon>HeaderProfileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileFriendItemUC.resx">
+      <DependentUpon>InfoProfileFriendItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileImageItemUC.resx">
+      <DependentUpon>InfoProfileImageItemUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\InfoProfileImagesUC.resx">
       <DependentUpon>InfoProfileImagesUC.cs</DependentUpon>
@@ -479,6 +570,7 @@
     <Content Include="Assets\Images\btn-social-twitter.png" />
     <Content Include="Assets\Images\Comment\Facebook-Like.png" />
     <Content Include="Assets\Images\Comment\textbox-blank.png" />
+    <Content Include="Assets\Images\Friend\null-people.png" />
     <Content Include="Assets\Images\Profile\avatar-default.jpg" />
     <Content Include="Assets\Images\icon-error-message.png" />
     <Content Include="Assets\Images\icon-infomation-message.png" />
@@ -486,6 +578,7 @@
     <Content Include="Assets\Images\icon-success-message.png" />
     <Content Include="Assets\Images\icon-warning-message.png" />
     <Content Include="Assets\Images\Profile\circle-bg.png" />
+    <Content Include="Assets\Images\Profile\empty-friend.png" />
     <Content Include="Assets\Images\Profile\empty-post-icon.png" />
     <Content Include="Assets\Images\Profile\image-default.jpg" />
     <Content Include="Assets\Images\Profile\menu-icon.png" />

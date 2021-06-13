@@ -50,14 +50,11 @@ namespace Facebook.Components.Profile
         new private void Load()
         {
             // Home or Profile or...
-            switch (page)
+            btnMenu.Visible = post.User.ID == Constants.UserSession.ID;
+
+            if (page != PAGE.PROFILE)
             {
-                case PAGE.PROFILE:
-                    btnMenu.Visible = true;
-                    break;
-                case PAGE.HOME:
-                    btnMenu.Visible = false;
-                    break;
+                btnMenu.Visible = false;
             }
 
             this.Margin = new Padding(0, 0, 0, margin);

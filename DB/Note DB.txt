@@ -1,6 +1,12 @@
-dong thời gian ... 
-cá nhân: thêm danh sách bạn bè 
-components  ->  fProfileFriend.cs: cần kiểm tra là fiendship hay không
+UPDATE Users
+SET Friend = NULL, RequestedFriend = NULL, BlockedFriend =  NULL, ByBlockedFriend =NULL
+
+----
+dong thời gian ...   
+làm trang cá nhân
+- Cho mất cái scroll bar
+
+- làm google drive
 
 ----------------------------------
 Đăng nhập
@@ -396,30 +402,88 @@ InfoProfileImagesUC - danh sách các hình ảnh của user đó, tùy vào
 
 => dựa vào hình ảnh bài viết sẽ chậm mà dễ làm hơn
 -------------------------------------------------------
+search friend
+all: 1477
+search: 250
+list: 1227
 
-
--------------------------------------------------------
-
-
--------------------------------------------------------
-
-
--------------------------------------------------------
-
+900, 333
+670	245	
 
 -------------------------------------------------------
+982, 660 => 732, 394
+900	=> 	670
+200	=> 
+-------------------------------------------------------
+- Friends
 
+Friend: string
+RequestedFriend: string
+BlockFriend: string
+
+- Friends là 1 chuổi danh sách các id bạn
+- RequestedFriend là danh sách các lời mới kết bạn
+- BlockedFriend là danh sách các bị người đó chặn
+- ByBlockedFriend danh sách các user chặn người  đó
+-------------------------------------------------------
+1 - xác nhận: xóa 1 id trong RequestedFriend, thêm 1 id trong Friend
+2 - Xóa: là xóa 1 id trong RequestedFriend
+3 - Thêm bạn bè: thêm id của mình vào RequestedFriend của user được chọn,
+4 - Xóa
+
+=> (3) kiểm tra có gửi kết bạn hay không thì kiểm tra UserSession.ID sô với chuổi RequestedFriend, có là gửi rồi
+=> Search thì chỉ search ra các user chưa kết bạn
+=> Search loại bỏ các user có id nằm trong BlockedFriend
+
+=> BlockFriend và ByBlockFriend phải đi chung nhau
+=> khi kết bạn thì add cả 2 user
 
 -------------------------------------------------------
+- Nhấn kết bạn
 
+*** UI
+	- nút kết bạn chuyển thành hủy
+	- thông báo cho cha FriendRequestedListUC -> thông báo cho cha FriendListUC -> thông báo cho cha fFriend. nếu User click vào trong CurrentUser thì gọi hàm cập nhật nút thêm bạn bè trong header thành "Hủy yêu cầu"
+	- Ngược lại cũng vậy
+
+- Nhấn nút thêm bạn bè trong detail cũng tương tự như kết bạn
+	- chuyển thành "Hủy yêu cầu"
+	- thông báo ngược, 
+=> Có thể lưu trữ CurrentItem trong Static class
+ 
+-------------------------------------------------------
+Chặn
+
+** UI
+- khi nhấn ok xóa item ra khỏi danh sách uc
+
+- nếu user chặn  bằng user xóa thì clear
+
+** RAM
+- xóa ra khỏi users trong FriendListUC
+-> không cần vì mỗi lần search thì nó getAll lại nên chỉ cần caập nhật db
+** DB
+- xóa requested friend cả 2 bên nếu có
+- cập nhật UserSession: Block += CurrentUser.id
+- Cập nhật User truyền vào: ByBlock += UserSession.id
+-------------------------------------------------------
+- Xóa
+** UI 
+- Xóa itemUC
+- nếu user truyền vào trùng CurrentUser thì hiện empty
+
+** DB
+- Xóa requested friend trong UserSession
 
 -------------------------------------------------------
+- Xác nhận
+** UI
+- Bấm xác nhận  là xóa itemUC
+- Nếu user truyền vào  = CurrentUser thì cho nút đó empty ( cho dễ vì nếu sữa text thì cần xử lý nhiều hơn)
 
+** DB
 
 -------------------------------------------------------
-
-
--------------------------------------------------------
-
+776 540
 
 -------------------------------------------------------

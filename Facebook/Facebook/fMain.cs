@@ -181,7 +181,7 @@ namespace Facebook
 
             ActivateButton(sender);
 
-            var f = new fFriend();
+            var f = new fFriend(AutofacFactory<IUserDAO>.Get());
             UIHelper.ShowControl(f, panelContent);
         }
 
@@ -215,6 +215,8 @@ namespace Facebook
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            CURRENT_BUTTON = BUTTON.HOME;
+
             // Clear session
             Constants.UserSession = null;
 

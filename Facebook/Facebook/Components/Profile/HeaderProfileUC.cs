@@ -121,13 +121,20 @@ namespace Facebook.Components.Profile
                         }
 
                         // Update UI avatar
-                        picAvatar.BackgroundImage = UIHelper.ClipToCircle(ImageHelper.FromFile(fileName), Constants.MAIN_BACK_COLOR);
+                        picAvatar.BackgroundImage = UIHelper.ClipToCircle(ImageHelper.FromFile(fileName), Constants.MAIN_BACK_CONTENT_COLOR);
                     }
                 }
             }
             else
             {
-                MyImage.Show($"./../../Assets/Images/Profile/{user.Avatar}");
+                if (!string.IsNullOrEmpty(user.Avatar))
+                {
+                    MyImage.Show($"./../../Assets/Images/Profile/{user.Avatar}");
+                }
+                else
+                {
+                    MyImage.Show($"./../../Assets/Images/Profile/avatar-default.jpg");
+                }
             }
         }
 
@@ -172,7 +179,14 @@ namespace Facebook.Components.Profile
             }
             else
             {
-                MyImage.Show($"./../../Assets/Images/Profile/{user.Image}");
+                if (!string.IsNullOrEmpty(user.Image))
+                {
+                    MyImage.Show($"./../../Assets/Images/Profile/{user.Image}");
+                }
+                else
+                {
+                    MyImage.Show($"./../../Assets/Images/Profile/image-default.jpg");
+                }
             }
         }
 

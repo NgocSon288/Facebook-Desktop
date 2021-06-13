@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Facebook.Components.Profile.PostListProfileUC;
 
 namespace Facebook.Components.Profile
 {
@@ -21,15 +22,17 @@ namespace Facebook.Components.Profile
         public event HeightChaned OnHeightChanged;
 
         private User user;
+        private PAGE page;
 
         private InfoProfileUC infoProfileUC;
         private PostListProfileUC postListProfileUC;
 
-        public InfoProfileIntroduceUC(User user)
+        public InfoProfileIntroduceUC(User user, PAGE page = PAGE.PROFILE)
         {
             InitializeComponent();
 
             this.user = user;
+            this.page = page;
 
             Load();
         }
@@ -61,7 +64,7 @@ namespace Facebook.Components.Profile
         {
             // Have friendship or no hava firendship thi cần làm xong chức năng kết bạn
 
-            postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get(), user, PostListProfileUC.PAGE.FRIEND_FRIENDSHIP);
+            postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get(), user, page);
             postListProfileUC.OnHeightChanged += () => UpdateHeight();
             postListProfileUC.OnClickProfileFriend += (u) => OnClickProfileFriend?.Invoke(u);
 
