@@ -16,12 +16,19 @@ namespace Facebook.Helper
 
         public static List<string> StringToStringList(string s)
         {
-            if (s == null)
+            try
+            {
+                if (s == null)
+                {
+                    return new List<string>();
+                }
+
+                return new List<string>(s.Split(new string[] { Constants.SEPERATE_CHAR }, StringSplitOptions.RemoveEmptyEntries));
+            }
+            catch (Exception)
             {
                 return new List<string>();
             }
-
-            return new List<string>(s.Split(new string[] { Constants.SEPERATE_CHAR }, StringSplitOptions.RemoveEmptyEntries));
         }
 
         public static List<int> StringToIntList(string s)

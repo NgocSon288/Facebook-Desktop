@@ -195,7 +195,7 @@ namespace Facebook
 
             ActivateButton(sender);
 
-            var f = new fMessenger();
+            var f = new fMessenger(AutofacFactory<IMessageDAO>.Get(), AutofacFactory<IMessageQueueDAO>.Get());
             UIHelper.ShowControl(f, panelContent);
         }
 

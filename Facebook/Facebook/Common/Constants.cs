@@ -52,6 +52,13 @@ namespace Facebook.Common
         public static readonly Color BORDER_IMAGE_COLOR = Color.FromArgb(223, 249, 251); //  Màu border của ảnh đại diện
 
 
+        // Messenger
+        public static readonly int BORDER_RADIUS_MESSAGE_TEXT = 50;
+        public static readonly Color ACTIVE_ITEM_FRIEND_COLOR = Color.FromArgb(37, 47, 60);
+        public static readonly Color HOVER_ITEM_FRIEND_COLOR = Color.FromArgb(50, 50, 50);
+        public static readonly Color FILE_BACKGROUND_COLOR = Color.FromArgb(110, 113, 116);
+        public static Color THEME_COLOR = Color.FromArgb(94, 0, 126);
+
 
 
         // Bootstrap Color

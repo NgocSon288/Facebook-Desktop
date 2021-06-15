@@ -114,6 +114,96 @@
     <Compile Include="Components\Friend\FriendUserListUC.Designer.cs">
       <DependentUpon>FriendUserListUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Messenger\FileAttachItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\FileAttachItemUC.Designer.cs">
+      <DependentUpon>FileAttachItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\FileAttachListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\FileAttachListUC.Designer.cs">
+      <DependentUpon>FileAttachListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ImageAttachItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ImageAttachItemUC.Designer.cs">
+      <DependentUpon>ImageAttachItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ImageAttachListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ImageAttachListUC.Designer.cs">
+      <DependentUpon>ImageAttachListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemFileItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemFileItemUC.Designer.cs">
+      <DependentUpon>MessageItemFileItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemFileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemFileUC.Designer.cs">
+      <DependentUpon>MessageItemFileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemImageItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemImageItemUC.Designer.cs">
+      <DependentUpon>MessageItemImageItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemImageUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemImageUC.Designer.cs">
+      <DependentUpon>MessageItemImageUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemTextUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemTextUC.Designer.cs">
+      <DependentUpon>MessageItemTextUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageItemUC.Designer.cs">
+      <DependentUpon>MessageItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageListUC.Designer.cs">
+      <DependentUpon>MessageListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerContentMessageUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerContentMessageUC.Designer.cs">
+      <DependentUpon>MessengerContentMessageUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerFriendItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerFriendItemUC.Designer.cs">
+      <DependentUpon>MessengerFriendItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerFriendListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerFriendListUC.Designer.cs">
+      <DependentUpon>MessengerFriendListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerHeaderMessageUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessengerHeaderMessageUC.Designer.cs">
+      <DependentUpon>MessengerHeaderMessageUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\CreatePostUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -248,6 +338,8 @@
       <DependentUpon>fParentClickHidden.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\CommentDAO.cs" />
+    <Compile Include="DAO\MessageDAO.cs" />
+    <Compile Include="DAO\MessageQueueDAO.cs" />
     <Compile Include="DAO\PostStatusDAO.cs" />
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="DAO\CommentFeedbackDAO.cs" />
@@ -402,6 +494,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Friend\FriendUserListUC.resx">
       <DependentUpon>FriendUserListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\FileAttachItemUC.resx">
+      <DependentUpon>FileAttachItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\FileAttachListUC.resx">
+      <DependentUpon>FileAttachListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ImageAttachItemUC.resx">
+      <DependentUpon>ImageAttachItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ImageAttachListUC.resx">
+      <DependentUpon>ImageAttachListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageItemFileItemUC.resx">
+      <DependentUpon>MessageItemFileItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageItemFileUC.resx">
+      <DependentUpon>MessageItemFileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageItemImageItemUC.resx">
+      <DependentUpon>MessageItemImageItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageItemImageUC.resx">
+      <DependentUpon>MessageItemImageUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageItemTextUC.resx">
+      <DependentUpon>MessageItemTextUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageItemUC.resx">
+      <DependentUpon>MessageItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageListUC.resx">
+      <DependentUpon>MessageListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessengerContentMessageUC.resx">
+      <DependentUpon>MessengerContentMessageUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessengerFriendItemUC.resx">
+      <DependentUpon>MessengerFriendItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessengerFriendListUC.resx">
+      <DependentUpon>MessengerFriendListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessengerHeaderMessageUC.resx">
+      <DependentUpon>MessengerHeaderMessageUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\CreatePostUC.resx">
       <DependentUpon>CreatePostUC.cs</DependentUpon>
@@ -561,6 +698,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Files\Messenger\" />
     <Folder Include="Assets\Images\Post\" />
     <Folder Include="Home\" />
   </ItemGroup>
@@ -571,6 +709,8 @@
     <Content Include="Assets\Images\Comment\Facebook-Like.png" />
     <Content Include="Assets\Images\Comment\textbox-blank.png" />
     <Content Include="Assets\Images\Friend\null-people.png" />
+    <Content Include="Assets\Images\Messenger\btn-delete.png" />
+    <Content Include="Assets\Images\Messenger\empty-message.png" />
     <Content Include="Assets\Images\Profile\avatar-default.jpg" />
     <Content Include="Assets\Images\icon-error-message.png" />
     <Content Include="Assets\Images\icon-infomation-message.png" />

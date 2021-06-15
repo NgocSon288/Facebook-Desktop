@@ -483,7 +483,193 @@ Chặn
 
 ** DB
 
+------------------------------------------------------- 
+ Chat
+
+Message
+- ID: 
+- senderID: người gửi
+- receiverID: người nhận
+- description
+- image: nếu có, cách nhau chữ CS511
+- file: nếu có, cách nhau chữ CS511
+- isSeen: người nhận đã xem chưa
+- CreatedAt: thời gian
+
+=> Khi thêm tin nhắn thì thêm vào MessageQueue của người nhận, và MessageQueue của người gửi
+
+MessageQueue
+- ID:
+- senderID: người gửi
+- receiverID: người nhận
+- MessageID: id của tin nhắn
+- isRead: đã được đọc chưa
+
+=> MessageQueue chứa các tim nhắn chờ để Timer đọc, tăng perfomance
+=> Tìm ra MessageQueue có receiverID là UserSession.ID
+
+
+=> Đang ở UserSeesion
+- tin nhắn mình gửi đi: 
+	- sẽ thêm dấu tick vào, 
+	- thêm vào MQ của 2 bên
+	
+	- Đọc db 1 giây 1 lần: tìm ra MQ của mình các senderID là mình
+		- nếu có và isRead = false tức là đọc rồi => cập nhật lại dấu tick thành mặt người và xóa ra khỏi DB
+		- nếu có và isRead = true tức là chưa đọc => thì không làm gì
+
+- tin nhắn nhận
+	- sẽ có màu xanh link
+	// vì bên gửi đã thêm MQ rồi
+	- Đọc db 1 giây 1 lần: tìm ra các MQ của mình các receiverID là mình
+		- nếu có và isNew UI = true và MessageID == MessageID truyền vào thì không cần cập nhật lại
+	- Khi nhấn vào xem tin nhắn đó thì cập nhật lại màu trắng
+
+
+=> có thể thêm isNew vào các item để khi cập nhật nếu là isNew = true, thì kiểm tra messageID nếu trung thì không cần cập nhật, nếu trung
+
+
 -------------------------------------------------------
-776 540
+900 560
+400 250
+
+-------------------------------------------------------
+37 - 67
+115
+- Cho flp sẵng đó, nếu có hình  thì hiện  lên, không thì thôi
+
+-------------------------------------------------------
+- Send message
+M
+- ID
+- senderID: UserSession
+- receiverID: MessengerFriendItemUC.CurrentItem.user.ID (user của item hiện tại)
+- description: input
+- image: input
+- file: input
+- CreatedAt: Datetime.Now
+MQ
+- ID
+- OwnID: (mỗi người 1 cái)
+- senderID: UserSession
+- receiverID: MessengerFriendItemUC.CurrentItem.user.ID 
+- MessageID: lấy sau khi thêm db
+- isRead: false ( đối với người gửi, false là chưa đọc cho dấu tick, nếu true là đọc rồi chuyển thành hình avatar, và xóa db)
+
+=> công việc của mỗi  người lọc theo Own
+VD lọc các MQ theo OwnID được 5 cái,
++ 3 cái senderID là mình 
+	+ isRead là false thì chưa đọc
+	+ isRead là true đọc rồi thì xóa DB
++ 2 cái receiverID là mình thì khi nhấn vào xem thì xóa DB
+
+-------------------------------------------------------
+- hình ảnh thể picFriendAvatar thể hiện dựa vaò mess cuaả ai
+
+-------------------------------------------------------
+gửi
+- Bạn: hello world... (chữ trắng)
+- hi...	(chữ xanh nếu chưa đọc)
+- hi... (chữ trăng nếu click vào đọc)
+
+-------------------------------------------------------
+mình gửi : bạn ... 
+mình nhận: Lâm ...
+
+Own là mình
+	+ mình gửi thì mình   gửi
+	
+Own là 
+100 111 109
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
+
+-------------------------------------------------------
+
 
 -------------------------------------------------------

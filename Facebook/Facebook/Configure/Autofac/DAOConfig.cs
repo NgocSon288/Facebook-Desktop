@@ -9,6 +9,8 @@ namespace Facebook.Configure.Autofac
         {
             builder.RegisterType<CommentDAO>().As<ICommentDAO>().InstancePerLifetimeScope();
             builder.RegisterType<CommentFeedbackDAO>().As<ICommentFeedbackDAO>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageDAO>().As<IMessageDAO>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageQueueDAO>().As<IMessageQueueDAO>().InstancePerLifetimeScope();
             builder.RegisterType<PostDAO>().As<IPostDAO>().InstancePerLifetimeScope();
             builder.RegisterType<PostStatusDAO>().As<IPostStatusDAO>().InstancePerLifetimeScope();
             builder.RegisterType<ProfileDAO>().As<IProfileDAO>().InstancePerLifetimeScope();

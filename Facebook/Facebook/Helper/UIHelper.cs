@@ -22,6 +22,7 @@ namespace Facebook.Helper
         {
             Bunifu.Framework.Lib.Elipse.Apply(control, border);
         }
+
         public static void BorderRadius(Form form, int border)
         {
             Bunifu.Framework.Lib.Elipse.Apply(form, border);
@@ -69,6 +70,54 @@ namespace Facebook.Helper
             parent.Controls.Clear();
 
             parent.SendToBack();
+        }
+
+        /// <summary>
+        /// Set chiều cao của TextBox multip line, có width cố định
+        /// </summary>
+        /// <param name="txt"></param>
+        public static void SetSizeTextBox(TextBox txt)
+        {
+            // amount of padding to add
+            const int padding = 3;
+            // get number of lines (first line is 0, so add 1)
+            int numLines = txt.GetLineFromCharIndex(txt.TextLength) + 1;
+            // get border thickness
+            int border = txt.Height - txt.ClientSize.Height;
+            // set height (height of one line * number of lines + spacing)
+            txt.Height = txt.Font.Height * numLines + padding + border;
+        }
+
+        public static void SetSizeTextBoxWithWidth(TextBox txt, int maxWidth)
+        {
+            txt.Width = 50;
+            var numLines = 0;
+            while (numLines <= 1)
+            {
+                if (txt.Width >= maxWidth)
+                {
+                    break;
+                }
+
+                numLines = txt.GetLineFromCharIndex(txt.TextLength) + 1;
+                txt.Width++;
+            }
+
+            // amount of padding to add
+            const int padding = 3;
+            // get number of lines (first line is 0, so add 1)
+            numLines = txt.GetLineFromCharIndex(txt.TextLength) + 1;
+            // get border thickness
+            int border = txt.Height - txt.ClientSize.Height;
+            // set height (height of one line * number of lines + spacing)
+            txt.Height = txt.Font.Height * numLines + padding + border;
+        }
+
+        public static void SetWidth(TextBox txt, int maxWidth)
+        {
+            Size size = TextRenderer.MeasureText(txt.Text, txt.Font);
+            txt.Width = size.Width > maxWidth ? maxWidth : size.Width / 2;
+            txt.Height = size.Height;
         }
 
         public static Image ClipToCircle(Image img, Color bg)

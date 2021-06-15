@@ -29,9 +29,19 @@ namespace Facebook.FormUC
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.pnlWrap = new System.Windows.Forms.Panel();
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.pnlMiddle = new System.Windows.Forms.Panel();
+            this.pnlMiddleCenter = new System.Windows.Forms.Panel();
+            this.pnlMiddleBottom = new System.Windows.Forms.Panel();
+            this.pnlMiddleTop = new System.Windows.Forms.Panel();
+            this.pnlLeft = new System.Windows.Forms.Panel();
+            this.timerMQ = new System.Windows.Forms.Timer(this.components);
+            this.pnlWrap.SuspendLayout();
+            this.pnlMiddle.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -75,28 +85,90 @@ namespace Facebook.FormUC
             this.btnMinimize.UseVisualStyleBackColor = false;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
-            // label1
+            // pnlWrap
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(300, 300);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 24);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Messenger";
+            this.pnlWrap.Controls.Add(this.pnlRight);
+            this.pnlWrap.Controls.Add(this.pnlMiddle);
+            this.pnlWrap.Controls.Add(this.pnlLeft);
+            this.pnlWrap.Location = new System.Drawing.Point(0, 34);
+            this.pnlWrap.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlWrap.Name = "pnlWrap";
+            this.pnlWrap.Size = new System.Drawing.Size(1000, 766);
+            this.pnlWrap.TabIndex = 23;
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.Location = new System.Drawing.Point(702, 1);
+            this.pnlRight.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(298, 765);
+            this.pnlRight.TabIndex = 1;
+            // 
+            // pnlMiddle
+            // 
+            this.pnlMiddle.Controls.Add(this.pnlMiddleCenter);
+            this.pnlMiddle.Controls.Add(this.pnlMiddleBottom);
+            this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
+            this.pnlMiddle.Location = new System.Drawing.Point(301, 1);
+            this.pnlMiddle.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMiddle.Name = "pnlMiddle";
+            this.pnlMiddle.Size = new System.Drawing.Size(400, 765);
+            this.pnlMiddle.TabIndex = 1;
+            // 
+            // pnlMiddleCenter
+            // 
+            this.pnlMiddleCenter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMiddleCenter.Location = new System.Drawing.Point(0, 60);
+            this.pnlMiddleCenter.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMiddleCenter.Name = "pnlMiddleCenter";
+            this.pnlMiddleCenter.Size = new System.Drawing.Size(400, 645);
+            this.pnlMiddleCenter.TabIndex = 2;
+            // 
+            // pnlMiddleBottom
+            // 
+            this.pnlMiddleBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlMiddleBottom.Location = new System.Drawing.Point(0, 705);
+            this.pnlMiddleBottom.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMiddleBottom.Name = "pnlMiddleBottom";
+            this.pnlMiddleBottom.Size = new System.Drawing.Size(400, 60);
+            this.pnlMiddleBottom.TabIndex = 1;
+            // 
+            // pnlMiddleTop
+            // 
+            this.pnlMiddleTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlMiddleTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlMiddleTop.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlMiddleTop.Name = "pnlMiddleTop";
+            this.pnlMiddleTop.Size = new System.Drawing.Size(400, 60);
+            this.pnlMiddleTop.TabIndex = 0;
+            // 
+            // pnlLeft
+            // 
+            this.pnlLeft.Location = new System.Drawing.Point(0, 1);
+            this.pnlLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Size = new System.Drawing.Size(300, 765);
+            this.pnlLeft.TabIndex = 0;
+            // 
+            // timerMQ
+            // 
+            this.timerMQ.Interval = 1000;
+            this.timerMQ.Tick += new System.EventHandler(this.timerMQ_Tick);
             // 
             // fMessenger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pnlWrap);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnMinimize);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "fMessenger";
             this.Size = new System.Drawing.Size(1000, 800);
+            this.pnlWrap.ResumeLayout(false);
+            this.pnlMiddle.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -104,6 +176,13 @@ namespace Facebook.FormUC
 
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel pnlWrap;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.Panel pnlMiddle;
+        private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.Panel pnlMiddleTop;
+        private System.Windows.Forms.Panel pnlMiddleBottom;
+        private System.Windows.Forms.Panel pnlMiddleCenter;
+        private System.Windows.Forms.Timer timerMQ;
     }
 }
