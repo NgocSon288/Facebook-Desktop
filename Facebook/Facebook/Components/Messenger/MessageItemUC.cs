@@ -19,6 +19,10 @@ namespace Facebook.Components.Messenger
         private Message message;
         private bool isSelf;    // true là nằm bên phải, false là bên trái
 
+        private MessageItemImageUC messageItemImageUC;
+        private MessageItemFileUC messageItemFileUC;
+        private MessageItemTextUC messageItemTextUC;
+
         public MessageItemUC(Message message)
         {
             InitializeComponent();
@@ -67,7 +71,7 @@ namespace Facebook.Components.Messenger
             pnlContent.Controls.Add(time);
 
             // Image
-            var messageItemImageUC = new MessageItemImageUC(StringHelper.StringToStringList(message.Image), !isSelf);
+            messageItemImageUC = new MessageItemImageUC(StringHelper.StringToStringList(message.Image), !isSelf);
             if (isSelf)
             {
                 messageItemImageUC.Left = pnlContent.Width - messageItemImageUC.Width;
@@ -76,7 +80,7 @@ namespace Facebook.Components.Messenger
             pnlContent.Controls.Add(messageItemImageUC);
 
             // File
-            var messageItemFileUC = new MessageItemFileUC(StringHelper.StringToStringList(message.File), !isSelf);
+            messageItemFileUC = new MessageItemFileUC(StringHelper.StringToStringList(message.File), !isSelf);
             if (isSelf)
             {
                 messageItemFileUC.Left = pnlContent.Width - messageItemFileUC.Width;
@@ -85,7 +89,7 @@ namespace Facebook.Components.Messenger
             pnlContent.Controls.Add(messageItemFileUC);
 
             // Text
-            var messageItemTextUC = new MessageItemTextUC(message.Description);
+            messageItemTextUC = new MessageItemTextUC(message.Description);
             if (isSelf)
             {
                 messageItemTextUC.Left = pnlContent.Width - messageItemTextUC.Width;
@@ -96,6 +100,11 @@ namespace Facebook.Components.Messenger
             pnlContent.Top = 0;
             pnlContent.Height = messageItemFileUC.Height + messageItemTextUC.Height + time.Height + messageItemImageUC.Height;
             this.Height = pnlContent.Height;
+        }
+
+        public void SetThemeColor()
+        {
+            messageItemTextUC.SetThemeColor();
         }
 
         private void SetColor()

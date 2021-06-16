@@ -44,7 +44,7 @@ namespace Facebook.ControlCustom.WrapperForm
             //thread.Join();
         }
 
-        private void FParentClickHidden_Click(object sender, EventArgs e)
+        public void FParentClickHidden_Click(object sender, EventArgs e)
         {
             this.Invoke(new Action(() =>
             {

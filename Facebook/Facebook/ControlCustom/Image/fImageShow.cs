@@ -60,7 +60,7 @@ namespace Facebook.ControlCustom.Image
 
             this.Height = height + margin * 2;
             this.Width = width + margin * 2;
-            this.BackColor = Constants.ERROR_COLOR;
+            this.BackColor = Constants.MAIN_FORE_COLOR;
         }
 
         #endregion

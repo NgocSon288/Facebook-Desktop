@@ -59,6 +59,8 @@ namespace Facebook.Components.Messenger
                 var saveFile = new SaveFileDialog();
                 saveFile.Title = "Chọn nơi lưu hình ảnh";
                 saveFile.FileName = path.Substring(9);
+                saveFile.Filter = $"Images (*{Path.GetExtension(path)})|*{Path.GetExtension(path)};)";
+                saveFile.DefaultExt = Path.GetExtension(path);
 
                 if (saveFile.ShowDialog() == DialogResult.OK)
                 {

@@ -97,10 +97,15 @@
     <Compile Include="Migrations\202106131512516_Update_MQ_Entity.designer.cs">
       <DependentUpon>202106131512516_Update_MQ_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106160718392_Add_MessageSetting_Entity.cs" />
+    <Compile Include="Migrations\202106160718392_Add_MessageSetting_Entity.designer.cs">
+      <DependentUpon>202106160718392_Add_MessageSetting_Entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\MessageQueueRepository.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
+    <Compile Include="Repositories\MessageSettingRepository.cs" />
     <Compile Include="Repositories\PostStatusRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\CommentFeedbackRepository.cs" />
@@ -132,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106131512516_Update_MQ_Entity.resx">
       <DependentUpon>202106131512516_Update_MQ_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106160718392_Add_MessageSetting_Entity.resx">
+      <DependentUpon>202106160718392_Add_MessageSetting_Entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

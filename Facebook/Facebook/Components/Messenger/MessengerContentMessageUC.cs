@@ -70,6 +70,12 @@ namespace Facebook.Components.Messenger
             UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS * 2);
         }
 
+        public void SetThemeColor()
+        {
+            btnAttach.IconColor = Constants.THEME_COLOR;
+            btnSend.IconColor = Constants.THEME_COLOR;
+        }
+
         private void UpdateHeightText()
         {
             if (txtHeightOld != txtDescription.Height)

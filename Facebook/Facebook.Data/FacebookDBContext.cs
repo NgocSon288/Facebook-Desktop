@@ -14,6 +14,7 @@ namespace Facebook.Data
         public DbSet<CommentFeedback> CommentFeedbacks { set; get; }
         public DbSet<Message> Messages { set; get; }
         public DbSet<MessageQueue> MessageQueues { set; get; }
+        public DbSet<MessageSetting> MessageSettings { set; get; }
         public DbSet<Post> Posts { set; get; }
         public DbSet<PostStatus> PostStatuses { set; get; }
         public DbSet<Profile> Profiles { set; get; }

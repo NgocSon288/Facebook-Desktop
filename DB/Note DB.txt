@@ -583,14 +583,28 @@ Own là
 100 111 109
 
 -------------------------------------------------------
+MessengerSetting
+- ID
+- UserFirstID
+- UserSecondID
+- ThemeColor: string: (LoangMau, The Series...) 
+- UpdatedBy: null
+- UpdatedAt: null 
 
+=> khi lấy ra kiểm tra id1 với F S, id2 với F S
+-------------------------------------------------------
+AngleDown  xuống: khi không sổ ra
+AngleUp		lên: khi đã xổ ra
 
 -------------------------------------------------------
-
-
--------------------------------------------------------
-
-
+5 - bongram 	62,59,189
+6 - kylan	58, 29, 138
+7 - keomut	77,62,194
+8 - thugian 	64, 159, 255
+9 - tao		170, 50,50
+10 - daiduong	54, 83, 232
+11 - camchanh	0,223,187
+12 - timoaihuong	174,160,255
 -------------------------------------------------------
 
 

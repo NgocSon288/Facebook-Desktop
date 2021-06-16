@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ThemeColor.cs" />
     <Compile Include="Components\Friend\FriendHeaderProfileUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -186,6 +187,12 @@
     <Compile Include="Components\Messenger\MessengerContentMessageUC.Designer.cs">
       <DependentUpon>MessengerContentMessageUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Messenger\MessageEmptyUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\MessageEmptyUC.Designer.cs">
+      <DependentUpon>MessageEmptyUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Messenger\MessengerFriendItemUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -203,6 +210,66 @@
     </Compile>
     <Compile Include="Components\Messenger\MessengerHeaderMessageUC.Designer.cs">
       <DependentUpon>MessengerHeaderMessageUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareAvatarUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareAvatarUC.Designer.cs">
+      <DependentUpon>ShareAvatarUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\fShareBoxThemeColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\fShareBoxThemeColor.Designer.cs">
+      <DependentUpon>fShareBoxThemeColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareContentUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareContentUC.Designer.cs">
+      <DependentUpon>ShareContentUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareFilesItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareFilesItemUC.Designer.cs">
+      <DependentUpon>ShareFilesItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareFilesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareFilesUC.Designer.cs">
+      <DependentUpon>ShareFilesUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareImagesItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareImagesItemUC.Designer.cs">
+      <DependentUpon>ShareImagesItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareImagesUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareImagesUC.Designer.cs">
+      <DependentUpon>ShareImagesUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareSettingThemeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareSettingThemeUC.Designer.cs">
+      <DependentUpon>ShareSettingThemeUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareSettingUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareSettingUC.Designer.cs">
+      <DependentUpon>ShareSettingUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareThemColorItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Messenger\ShareThemColorItemUC.Designer.cs">
+      <DependentUpon>ShareThemColorItemUC.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\Profile\CreatePostUC.cs">
       <SubType>UserControl</SubType>
@@ -340,6 +407,7 @@
     <Compile Include="DAO\CommentDAO.cs" />
     <Compile Include="DAO\MessageDAO.cs" />
     <Compile Include="DAO\MessageQueueDAO.cs" />
+    <Compile Include="DAO\MessageSettingDAO.cs" />
     <Compile Include="DAO\PostStatusDAO.cs" />
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="DAO\CommentFeedbackDAO.cs" />
@@ -531,6 +599,9 @@
     <EmbeddedResource Include="Components\Messenger\MessengerContentMessageUC.resx">
       <DependentUpon>MessengerContentMessageUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\MessageEmptyUC.resx">
+      <DependentUpon>MessageEmptyUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Messenger\MessengerFriendItemUC.resx">
       <DependentUpon>MessengerFriendItemUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -539,6 +610,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Messenger\MessengerHeaderMessageUC.resx">
       <DependentUpon>MessengerHeaderMessageUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareAvatarUC.resx">
+      <DependentUpon>ShareAvatarUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\fShareBoxThemeColor.resx">
+      <DependentUpon>fShareBoxThemeColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareContentUC.resx">
+      <DependentUpon>ShareContentUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareFilesItemUC.resx">
+      <DependentUpon>ShareFilesItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareFilesUC.resx">
+      <DependentUpon>ShareFilesUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareImagesItemUC.resx">
+      <DependentUpon>ShareImagesItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareImagesUC.resx">
+      <DependentUpon>ShareImagesUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareSettingThemeUC.resx">
+      <DependentUpon>ShareSettingThemeUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareSettingUC.resx">
+      <DependentUpon>ShareSettingUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Messenger\ShareThemColorItemUC.resx">
+      <DependentUpon>ShareThemColorItemUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\CreatePostUC.resx">
       <DependentUpon>CreatePostUC.cs</DependentUpon>

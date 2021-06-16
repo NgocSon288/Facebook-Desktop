@@ -63,6 +63,7 @@
     <Compile Include="Models\CommentFeedback.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageQueue.cs" />
+    <Compile Include="Models\MessageSetting.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostStatus.cs" />
     <Compile Include="Models\Profile.cs" />

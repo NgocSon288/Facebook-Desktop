@@ -18,7 +18,8 @@ namespace Facebook.Components.Messenger
     {
         private readonly IMessageDAO _messageDAO;
 
-        private List<Message> messages;
+        public List<Message> messages;
+        private MessageEmptyUC messageEmptyUC;
 
         public MessageListUC(IMessageDAO messageDAO)
         {
@@ -35,20 +36,64 @@ namespace Facebook.Components.Messenger
         {
             messages = _messageDAO.GetByMultipUserID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
 
-            foreach (var item in messages)
+            if (messages != null && messages.Count > 0)
             {
-                var itemUC = new MessageItemUC(item);
+                foreach (var item in messages)
+                {
+                    var itemUC = new MessageItemUC(item);
 
-                flpContent.Controls.Add(itemUC);
+                    if (flpContent.InvokeRequired)
+                    {
+
+                        flpContent.BeginInvoke((Action)(() =>
+                        {
+                            flpContent.Controls.Add(itemUC);
+                        }));
+                    }
+                    else
+                    {
+                        flpContent.Controls.Add(itemUC);
+                    }
+                }
+
+                ScrollToBottom();
+            }
+            else
+            {
+                LoadEmpty();
             }
 
-            ScrollToBottom();
 
             this.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
+        public void SetThemeColor()
+        {
+            foreach (Control item in flpContent.Controls)
+            {
+                var itemUC = item as MessageItemUC;
+
+                if (itemUC != null)
+                    itemUC.SetThemeColor();
+            }
+        }
+
+        private void LoadEmpty()
+        {
+            messageEmptyUC = new MessageEmptyUC();
+
+            flpContent.Controls.Add(messageEmptyUC);
+        }
+
         public void AddNewMessage(Message newMessage)
         {
+            // Nếu messages.count == 0 => remove empty
+
+            if (messages.Count <= 0)
+            {
+                flpContent.Controls.Clear();
+            }
+
             messages.Add(newMessage);
 
             var itemUC = new MessageItemUC(newMessage);

@@ -17,6 +17,7 @@ namespace Facebook.Configure.Autofac
             builder.RegisterType<MessageRepository>().As<IMessageRepository>().InstancePerLifetimeScope();
             builder.RegisterType<MessageQueueRepository>().As<IMessageQueueRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PostRepository>().As<IPostRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageSettingRepository>().As<IMessageSettingRepository>().InstancePerLifetimeScope();
             builder.RegisterType<PostStatusRepository>().As<IPostStatusRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ProfileRepository>().As<IProfileRepository>().InstancePerLifetimeScope();
             builder.RegisterType<UserRepository>().As<IUserRepository>().InstancePerLifetimeScope();

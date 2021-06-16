@@ -38,6 +38,7 @@ namespace Facebook.ControlCustom.Image
             // 
             // picImage
             // 
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picImage.Location = new System.Drawing.Point(12, 12);
             this.picImage.Margin = new System.Windows.Forms.Padding(0);
             this.picImage.Name = "picImage";
@@ -62,10 +63,12 @@ namespace Facebook.ControlCustom.Image
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.picImage);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "fImageShow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyImage";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
 

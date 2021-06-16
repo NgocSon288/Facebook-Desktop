@@ -55,6 +55,12 @@ namespace Facebook.Components.Messenger
             tt.SetToolTip(picVideo, "Bắt đầu gọi video");
         }
 
+        public void SetThemeColor()
+        {
+            picPhone.IconColor = Constants.THEME_COLOR;
+            picVideo.IconColor = Constants.THEME_COLOR;
+        }
+
         #endregion
     }
 }

@@ -59,6 +59,12 @@ namespace Facebook.Components.Messenger
             SetUnFocus();
         }
 
+        public void SetThemeColor()
+        {
+            this.BackColor = Constants.THEME_COLOR;
+            txtDescription.BackColor = Constants.THEME_COLOR;
+        }
+
         private void SetUnFocus()
         {
             lblFocus = new Label()

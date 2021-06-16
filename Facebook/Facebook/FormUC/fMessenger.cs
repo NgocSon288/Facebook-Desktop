@@ -23,11 +23,15 @@ namespace Facebook.FormUC
     {
         private readonly IMessageDAO _messageDAO;
         private readonly IMessageQueueDAO _messageQueueDAO;
+        private readonly IMessageSettingDAO _messageSettingDAO;
 
         private MessengerFriendListUC messengerFriendListUC;    // left
-        private MessageListUC messageListUC;
+        private MessengerHeaderMessageUC messengerHeaderMessageUC; // middle top
+        private MessageListUC messageListUC;    // middle cennter
+        private MessengerContentMessageUC messengerContentMessageUC;
+        private ShareContentUC messengerShareContentUC; // right
 
-        public fMessenger(IMessageDAO messageDAO, IMessageQueueDAO messageQueueDAO)
+        public fMessenger(IMessageDAO messageDAO, IMessageQueueDAO messageQueueDAO, IMessageSettingDAO messageSettingDAO)
         {
             InitializeComponent();
 
@@ -35,6 +39,7 @@ namespace Facebook.FormUC
 
             this._messageDAO = messageDAO;
             this._messageQueueDAO = messageQueueDAO;
+            this._messageSettingDAO = messageSettingDAO;
 
             SetUpUI();
             SetColor();
@@ -52,6 +57,8 @@ namespace Facebook.FormUC
                 LoadLeft();
 
                 LoadMiddle();
+
+                LoadRight();
             }
             else
             {
@@ -66,8 +73,23 @@ namespace Facebook.FormUC
             messengerFriendListUC = new MessengerFriendListUC(AutofacFactory<IUserDAO>.Get(), AutofacFactory<IMessageDAO>.Get());
             messengerFriendListUC.OnChangedUser += () =>
             {
+                // cập nhật màu  ngay đây
+                var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
+
+                if (ms != null)
+                {
+                    Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
+                }
+                else
+                {
+                    Constants.THEME_COLOR = ThemeColor.Themes[0].Color;
+                }
+
                 // Load lại thông tin ở giữa
                 LoadMiddle();
+
+                // Load lại right
+                LoadRight();
             };
 
             pnlLeft.Controls.Add(messengerFriendListUC);
@@ -78,6 +100,12 @@ namespace Facebook.FormUC
             if (MessengerFriendItemUC.CurrentItem == null)
             {
                 return;
+            }
+
+            var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
+            if (ms != null)
+            {
+                Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
             }
 
             var senderID = Constants.UserSession.ID;
@@ -100,7 +128,7 @@ namespace Facebook.FormUC
 
             // Load Top
             pnlMiddleTop.Controls.Clear();
-            var messengerHeaderMessageUC = new MessengerHeaderMessageUC(MessengerFriendItemUC.CurrentItem.user);
+            messengerHeaderMessageUC = new MessengerHeaderMessageUC(MessengerFriendItemUC.CurrentItem.user);
 
             pnlMiddleTop.Controls.Add(messengerHeaderMessageUC);
 
@@ -114,7 +142,7 @@ namespace Facebook.FormUC
 
             // Load Bottom
             pnlMiddleBottom.Controls.Clear();
-            var messengerContentMessageUC = new MessengerContentMessageUC();
+            messengerContentMessageUC = new MessengerContentMessageUC();
             messengerContentMessageUC.OnHeightChanged += () =>
             {
                 pnlMiddleBottom.Height = messengerContentMessageUC.Height;
@@ -212,9 +240,37 @@ namespace Facebook.FormUC
 
                   // Có thể cập nhật lại CurrentItem 
                   MessengerFriendItemUC.CurrentItem.SetTextWhenCreateNewMessage(message);
+
+                  // Cập nhật lại file 
+                  messengerShareContentUC.AddFileAndImages(StringHelper.StringToStringList(message.File), StringHelper.StringToStringList(message.Image));
               };
 
             pnlMiddleBottom.Controls.Add(messengerContentMessageUC);
+        }
+
+        private void LoadRight()
+        {
+            pnlRight.Controls.Clear();
+
+            List<string> fileNames = new List<string>();
+            List<string> imagePaths = new List<string>();
+
+            foreach (var item in messageListUC.messages)
+            {
+                if (!string.IsNullOrEmpty(item.File))
+                {
+                    fileNames.AddRange(StringHelper.StringToStringList(item.File));
+                }
+                if (!string.IsNullOrEmpty(item.Image))
+                {
+                    imagePaths.AddRange(StringHelper.StringToStringList(item.Image));
+                }
+            }
+
+            messengerShareContentUC = new ShareContentUC(fileNames, imagePaths);
+            messengerShareContentUC.OnUpdateThemeColor += MessengerShareContentUC_OnUpdateThemeColor;
+
+            pnlRight.Controls.Add(messengerShareContentUC);
         }
 
         private string UpdateLoadImages(List<string> list)
@@ -307,6 +363,54 @@ namespace Facebook.FormUC
             pnlRight.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Update lại DB, UI  khi chọn save
+        /// </summary>
+        private void MessengerShareContentUC_OnUpdateThemeColor()
+        {
+            var theme = ShareThemColorItemUC.CurrentItemUC.theme;
+
+            var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
+
+            if (ms == null)
+            {
+                ms = new MessageSetting()
+                {
+                    ThemeColor = theme.Name,
+                    UpdatedAt = DateTime.Now,
+                    UpdatedBy = Constants.UserSession.ID,
+                    User1 = Constants.UserSession,
+                    User2 = MessengerFriendItemUC.CurrentItem.user
+                };
+
+                _messageSettingDAO.Create(ms);
+            }
+            else
+            {
+                ms.ThemeColor = theme.Name;
+                ms.UpdatedAt = DateTime.Now;
+                ms.UpdatedBy = Constants.UserSession.ID;
+
+                _messageSettingDAO.SaveChanges();
+            }
+
+            // Update UI, cập nhật constants
+            Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
+
+            // Gọi hàm cập nhật lại 3 phần giữa
+
+            //private MessengerHeaderMessageUC messengerHeaderMessageUC; // middle top
+            //private MessageListUC messageListUC;    // middle cennter
+            //private MessengerContentMessageUC messengerContentMessageUC;
+
+            messengerHeaderMessageUC.SetThemeColor();
+            messageListUC.SetThemeColor();
+            messengerContentMessageUC.SetThemeColor();
+        }
 
 
 
