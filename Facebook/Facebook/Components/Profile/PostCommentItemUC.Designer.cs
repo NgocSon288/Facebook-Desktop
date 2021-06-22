@@ -178,10 +178,10 @@ namespace Facebook.Components.Profile
             // 
             this.pnlBackgroundDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.pnlBackgroundDescription.Controls.Add(this.txtMyFeedbackComment);
-            this.pnlBackgroundDescription.Location = new System.Drawing.Point(54, 2);
+            this.pnlBackgroundDescription.Location = new System.Drawing.Point(54, 4);
             this.pnlBackgroundDescription.Margin = new System.Windows.Forms.Padding(0);
             this.pnlBackgroundDescription.Name = "pnlBackgroundDescription";
-            this.pnlBackgroundDescription.Size = new System.Drawing.Size(323, 37);
+            this.pnlBackgroundDescription.Size = new System.Drawing.Size(323, 35);
             this.pnlBackgroundDescription.TabIndex = 12;
             // 
             // txtMyFeedbackComment
@@ -191,7 +191,7 @@ namespace Facebook.Components.Profile
             this.txtMyFeedbackComment.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtMyFeedbackComment.Font = new System.Drawing.Font("Consolas", 21.75F);
             this.txtMyFeedbackComment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
-            this.txtMyFeedbackComment.Location = new System.Drawing.Point(11, 9);
+            this.txtMyFeedbackComment.Location = new System.Drawing.Point(12, 7);
             this.txtMyFeedbackComment.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.txtMyFeedbackComment.Name = "txtMyFeedbackComment";
             this.txtMyFeedbackComment.Size = new System.Drawing.Size(299, 34);

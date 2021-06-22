@@ -39,12 +39,16 @@ namespace Facebook.Components.Profile
 
         string TEXT_COMPARE = "Bạn đang nghĩ gì?";
         int margin = 15;
+        int minHeightTextBox = 0;
+        int oldHeight;
 
         #region Methods
 
         new private void Load()
         {
             haveImage = false;
+            minHeightTextBox = txtDescription.Height;
+            oldHeight = minHeightTextBox;
 
             SetUpUI();
 
@@ -103,8 +107,11 @@ namespace Facebook.Components.Profile
                 Height = 50,
                 Text = "X",
                 ForeColor = Color.Red,
-                BackColor = Color.Transparent
+                BackColor = Constants.MAIN_BACK_COLOR,
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
             };
+            btn.FlatAppearance.BorderSize = 0;
             btn.Click += Btn_Click;
             picImage.Controls.Add(btn);
 
@@ -272,6 +279,14 @@ namespace Facebook.Components.Profile
             var txt = txtDescription.Text;
 
             btnCreate.Enabled = !string.IsNullOrEmpty(txt.Trim()) && txt != "Bạn đang nghĩ gì?";
+
+            UIHelper.SetSizeTextBoxWithMinHeight(txtDescription, minHeightTextBox);
+            if (oldHeight != txtDescription.Height)
+            {
+                oldHeight = txtDescription.Height;
+                UpdateHeight();
+                OnHeightChangeOnd?.Invoke();
+            }
         }
 
         private void btnCreate_Click(object sender, EventArgs e)

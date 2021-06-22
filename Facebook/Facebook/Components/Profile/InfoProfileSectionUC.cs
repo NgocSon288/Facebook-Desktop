@@ -138,7 +138,7 @@ namespace Facebook.Components.Profile
             {
                 foreach (Control item in flpContent.Controls)
                 {
-                    height += item.Height;
+                    height += item.Height + item.Margin.Top + item.Margin.Bottom;
                 }
             }
 
@@ -149,7 +149,7 @@ namespace Facebook.Components.Profile
 
             if (pnlAdd.Visible)
             {
-                pnlAdd.Top = this.Height - heightPnlAdd - pnlSeparator.Height - offsetBottom;
+                pnlAdd.Top = this.Height - heightPnlAdd - pnlSeparator.Height - offsetBottom + 5;
             }
         }
 

@@ -47,8 +47,7 @@ namespace Facebook.Components.Profile
             Load();
         }
 
-        private Image image1;
-        private Image image2;
+
         private int margin = 10;
 
         // Sau này có thể thêm profile của bạn bè
@@ -189,8 +188,21 @@ namespace Facebook.Components.Profile
                 if (posts.Count <= 0)
                 {
                     var emptyItem = new PostEmptyItemUC();
+                    if (flpContent.InvokeRequired)
+                    {
 
-                    flpContent.Controls.Add(emptyItem);
+                        flpContent.BeginInvoke((Action)(() =>
+                        {
+                            flpContent.Controls.Add(emptyItem);
+                            UIHelper.BorderRadius(emptyItem, Constants.BORDER_RADIUS);
+                        }));
+                    }
+                    else
+                    {
+                        flpContent.Controls.Add(emptyItem);
+                    }
+
+                    UpdateHeight();
                 }
             });
 
@@ -226,19 +238,17 @@ namespace Facebook.Components.Profile
 
         private void LoadUI()
         {
-            image1 = ImageHelper.FromFile("./../../Assets/Images/Profile/think-1.png");
-            image2 = ImageHelper.FromFile("./../../Assets/Images/Profile/think-2.png");
-
             // Load image think
             picAvatar.BackgroundImage = ImageHelper.GetAvatarByUser(Constants.MAIN_BACK_CONTENT_COLOR);
             picAvatar.BackgroundImageLayout = ImageLayout.Stretch;
 
-            picThink.BackgroundImage = image1;
-            picThink.BackgroundImageLayout = ImageLayout.Stretch;
+            lblText.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
+            pnlWrapText.BackColor = Constants.BOX_WRAP_TEXT_COLOR;
 
             pnlContent.Location = new Point(margin + 5, 0);
 
             UIHelper.BorderRadius(pnlThink, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlWrapText, Constants.BORDER_RADIUS * 2);
 
         }
 
@@ -294,19 +304,32 @@ namespace Facebook.Components.Profile
 
         #endregion
 
-        #region Events
-
-        private void picThink_MouseEnter(object sender, EventArgs e)
+        #region Events  
+        private void PostItem_OnHeightChaned()
         {
-            picThink.BackgroundImage = image2;
+            UpdateHeight();
+            OnHeightChanged?.Invoke();
         }
 
-        private void picThink_MouseLeave(object sender, EventArgs e)
+        #endregion
+
+        private void pnlWrapText_MouseEnter(object sender, EventArgs e)
         {
-            picThink.BackgroundImage = image1;
+            pnlWrapText.BackColor = Constants.BOX_WRAP_TEXT_ENTER_COLOR;
+            lblText.BackColor = Constants.BOX_WRAP_TEXT_ENTER_COLOR;
+
+            UIHelper.BorderRadius(pnlWrapText, Constants.BORDER_RADIUS * 2);
         }
 
-        private async void picThink_Click(object sender, EventArgs e)
+        private void pnlWrapText_MouseLeave(object sender, EventArgs e)
+        {
+            pnlWrapText.BackColor = Constants.BOX_WRAP_TEXT_COLOR;
+            lblText.BackColor = Constants.BOX_WRAP_TEXT_COLOR;
+
+            UIHelper.BorderRadius(pnlWrapText, Constants.BORDER_RADIUS * 2);
+        }
+
+        private async void pnlWrapText_Click(object sender, EventArgs e)
         {
             var isCreated = false;
             try
@@ -327,15 +350,6 @@ namespace Facebook.Components.Profile
 
                 LoadPostItems();
             }
-
         }
-
-        private void PostItem_OnHeightChaned()
-        {
-            UpdateHeight();
-            OnHeightChanged?.Invoke();
-        }
-
-        #endregion
     }
 }

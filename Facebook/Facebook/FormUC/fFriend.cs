@@ -135,6 +135,8 @@ namespace Facebook.FormUC
             menu.OnClickAddFriend += Menu_OnClickAddFriend; ;
             menu.OnLinkToProfile += () => LoadProfileByUser();
             menu.OnClickAcceptOrDeleteFriend += Menu_OnClickAcceptOrDeleteFriend;
+            menu.OnClickIntro += LoadInfoProfile;
+            menu.OnClickPosts += LoadPostsProfile;
 
             pnlMenu.Height = menu.Height;
             pnlMenu.Controls.Add(menu);
@@ -151,13 +153,35 @@ namespace Facebook.FormUC
             pnlMainContent.Controls.Add(info);
 
             info.Left = pnlMainContent.Width / 2 - info.Width / 2;
+
+            UpdateHeight();
+        }
+
+        private void LoadPostsProfile()
+        {
+            pnlMainContent.Controls.Clear();
+
+            var postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get(), CurrentUser, PostListProfileUC.PAGE.PROFILE);
+            postListProfileUC.OnHeightChanged += () => UpdateHeight();
+            postListProfileUC.OnClickProfileFriend += LoadProfileByUser;
+            postListProfileUC.Left = pnlMainContent.Width / 2 - postListProfileUC.Width / 2;
+
+            pnlMainContent.Controls.Add(postListProfileUC);
+            UpdateHeight();
         }
 
         private void UpdateHeight()
         {
-            if (CurrentUser != null)
+            try
             {
-                pnlMainContent.Height = pnlMainContent.Controls[0].Height;
+                if (CurrentUser != null)
+                {
+                    pnlMainContent.Height = pnlMainContent.Controls[0].Height;
+                }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
@@ -165,9 +189,9 @@ namespace Facebook.FormUC
         /// Show profile friend
         /// </summary>
         /// <param name="user"></param>
-        private void LoadProfileByUser()
+        private void LoadProfileByUser(User user = null)
         {
-            var fProfileFriend = new fProfileFriend(AutofacFactory<IUserDAO>.Get(), CurrentUser, panelContent, PostListProfileUC.PAGE.PROFILE);
+            var fProfileFriend = new fProfileFriend(AutofacFactory<IUserDAO>.Get(), user!=null?user: CurrentUser, panelContent, PostListProfileUC.PAGE.PROFILE);
 
             UIHelper.ShowControl(fProfileFriend, panelContent);
         }

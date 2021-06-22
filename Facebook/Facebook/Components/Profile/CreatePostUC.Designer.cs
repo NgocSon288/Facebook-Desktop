@@ -57,10 +57,10 @@ namespace Facebook.Components.Profile
             this.pnlContent.Controls.Add(this.btnCreate);
             this.pnlContent.Controls.Add(this.txtDescription);
             this.pnlContent.Controls.Add(this.pnlHead);
-            this.pnlContent.Location = new System.Drawing.Point(10, 10);
+            this.pnlContent.Location = new System.Drawing.Point(5, 5);
             this.pnlContent.Margin = new System.Windows.Forms.Padding(0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(960, 992);
+            this.pnlContent.Size = new System.Drawing.Size(480, 437);
             this.pnlContent.TabIndex = 0;
             // 
             // picImage
@@ -68,20 +68,18 @@ namespace Facebook.Components.Profile
             this.picImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.picImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picImage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.picImage.Location = new System.Drawing.Point(0, 519);
-            this.picImage.Margin = new System.Windows.Forms.Padding(6);
+            this.picImage.Location = new System.Drawing.Point(0, 190);
             this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(960, 383);
+            this.picImage.Size = new System.Drawing.Size(480, 191);
             this.picImage.TabIndex = 61;
             this.picImage.TabStop = false;
             // 
             // pnlSeparator
             // 
             this.pnlSeparator.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSeparator.Location = new System.Drawing.Point(0, 479);
-            this.pnlSeparator.Margin = new System.Windows.Forms.Padding(6);
+            this.pnlSeparator.Location = new System.Drawing.Point(0, 169);
             this.pnlSeparator.Name = "pnlSeparator";
-            this.pnlSeparator.Size = new System.Drawing.Size(960, 40);
+            this.pnlSeparator.Size = new System.Drawing.Size(480, 21);
             this.pnlSeparator.TabIndex = 60;
             // 
             // btnCreate
@@ -93,10 +91,9 @@ namespace Facebook.Components.Profile
             this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreate.Font = new System.Drawing.Font("Consolas", 16.125F, System.Drawing.FontStyle.Bold);
             this.btnCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
-            this.btnCreate.Location = new System.Drawing.Point(6, 908);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(6);
+            this.btnCreate.Location = new System.Drawing.Point(3, 391);
             this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(934, 80);
+            this.btnCreate.Size = new System.Drawing.Size(467, 42);
             this.btnCreate.TabIndex = 59;
             this.btnCreate.Text = "Đăng bài viết";
             this.btnCreate.UseVisualStyleBackColor = true;
@@ -109,11 +106,11 @@ namespace Facebook.Components.Profile
             this.txtDescription.Dock = System.Windows.Forms.DockStyle.Top;
             this.txtDescription.Font = new System.Drawing.Font("Consolas", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
-            this.txtDescription.Location = new System.Drawing.Point(0, 135);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(200, 6, 6, 6);
+            this.txtDescription.Location = new System.Drawing.Point(0, 70);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(960, 344);
+            this.txtDescription.Size = new System.Drawing.Size(480, 99);
             this.txtDescription.TabIndex = 58;
             this.txtDescription.Text = "Bạn đang nghĩ gì?";
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
@@ -130,7 +127,7 @@ namespace Facebook.Components.Profile
             this.pnlHead.Location = new System.Drawing.Point(0, 0);
             this.pnlHead.Margin = new System.Windows.Forms.Padding(0);
             this.pnlHead.Name = "pnlHead";
-            this.pnlHead.Size = new System.Drawing.Size(960, 135);
+            this.pnlHead.Size = new System.Drawing.Size(480, 70);
             this.pnlHead.TabIndex = 1;
             // 
             // btnAddImage
@@ -142,10 +139,9 @@ namespace Facebook.Components.Profile
             this.btnAddImage.IconChar = FontAwesome.Sharp.IconChar.Images;
             this.btnAddImage.IconColor = System.Drawing.Color.Black;
             this.btnAddImage.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAddImage.Location = new System.Drawing.Point(874, 6);
-            this.btnAddImage.Margin = new System.Windows.Forms.Padding(6);
+            this.btnAddImage.Location = new System.Drawing.Point(437, 3);
             this.btnAddImage.Name = "btnAddImage";
-            this.btnAddImage.Size = new System.Drawing.Size(80, 77);
+            this.btnAddImage.Size = new System.Drawing.Size(40, 40);
             this.btnAddImage.TabIndex = 65;
             this.btnAddImage.UseVisualStyleBackColor = false;
             this.btnAddImage.Click += new System.EventHandler(this.btnAddImage_Click);
@@ -156,10 +152,9 @@ namespace Facebook.Components.Profile
             this.pnlPostStatus.Controls.Add(this.lblPostStatus);
             this.pnlPostStatus.Controls.Add(this.btnLeft);
             this.pnlPostStatus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlPostStatus.Location = new System.Drawing.Point(174, 67);
-            this.pnlPostStatus.Margin = new System.Windows.Forms.Padding(6);
+            this.pnlPostStatus.Location = new System.Drawing.Point(87, 35);
             this.pnlPostStatus.Name = "pnlPostStatus";
-            this.pnlPostStatus.Size = new System.Drawing.Size(498, 62);
+            this.pnlPostStatus.Size = new System.Drawing.Size(249, 32);
             this.pnlPostStatus.TabIndex = 2;
             this.pnlPostStatus.Click += new System.EventHandler(this.btnLeft_Click);
             // 
@@ -172,10 +167,9 @@ namespace Facebook.Components.Profile
             this.btnRight.IconChar = FontAwesome.Sharp.IconChar.AngleDoubleDown;
             this.btnRight.IconColor = System.Drawing.Color.Black;
             this.btnRight.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRight.Location = new System.Drawing.Point(398, -4);
-            this.btnRight.Margin = new System.Windows.Forms.Padding(6);
+            this.btnRight.Location = new System.Drawing.Point(199, -2);
             this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(80, 77);
+            this.btnRight.Size = new System.Drawing.Size(40, 40);
             this.btnRight.TabIndex = 64;
             this.btnRight.UseVisualStyleBackColor = false;
             this.btnRight.Click += new System.EventHandler(this.btnLeft_Click);
@@ -185,10 +179,10 @@ namespace Facebook.Components.Profile
             this.lblPostStatus.AutoSize = true;
             this.lblPostStatus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblPostStatus.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPostStatus.Location = new System.Drawing.Point(98, 0);
+            this.lblPostStatus.Location = new System.Drawing.Point(49, 0);
             this.lblPostStatus.Margin = new System.Windows.Forms.Padding(0);
             this.lblPostStatus.Name = "lblPostStatus";
-            this.lblPostStatus.Size = new System.Drawing.Size(209, 45);
+            this.lblPostStatus.Size = new System.Drawing.Size(100, 22);
             this.lblPostStatus.TabIndex = 63;
             this.lblPostStatus.Text = "Công khai";
             this.lblPostStatus.Click += new System.EventHandler(this.btnLeft_Click);
@@ -202,10 +196,10 @@ namespace Facebook.Components.Profile
             this.btnLeft.IconChar = FontAwesome.Sharp.IconChar.UserFriends;
             this.btnLeft.IconColor = System.Drawing.Color.Black;
             this.btnLeft.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLeft.Location = new System.Drawing.Point(6, -4);
+            this.btnLeft.Location = new System.Drawing.Point(3, -2);
             this.btnLeft.Margin = new System.Windows.Forms.Padding(0);
             this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(80, 77);
+            this.btnLeft.Size = new System.Drawing.Size(40, 40);
             this.btnLeft.TabIndex = 62;
             this.btnLeft.UseVisualStyleBackColor = false;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
@@ -214,10 +208,9 @@ namespace Facebook.Components.Profile
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(166, 0);
-            this.lblName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblName.Location = new System.Drawing.Point(83, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(180, 56);
+            this.lblName.Size = new System.Drawing.Size(90, 28);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "label1";
             // 
@@ -227,19 +220,19 @@ namespace Facebook.Components.Profile
             this.picAvatar.Location = new System.Drawing.Point(0, 0);
             this.picAvatar.Margin = new System.Windows.Forms.Padding(0);
             this.picAvatar.Name = "picAvatar";
-            this.picAvatar.Size = new System.Drawing.Size(140, 135);
+            this.picAvatar.Size = new System.Drawing.Size(70, 70);
             this.picAvatar.TabIndex = 0;
             this.picAvatar.TabStop = false;
             // 
             // CreatePostUC
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Controls.Add(this.pnlContent);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "CreatePostUC";
-            this.Size = new System.Drawing.Size(980, 1019);
+            this.Size = new System.Drawing.Size(490, 447);
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();

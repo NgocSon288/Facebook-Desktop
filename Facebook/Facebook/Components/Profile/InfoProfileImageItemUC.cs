@@ -59,6 +59,7 @@ namespace Facebook.Components.Profile
             MyImage.Show(path);
         }
 
+
         #endregion
     }
 }

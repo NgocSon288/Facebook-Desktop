@@ -34,11 +34,12 @@ namespace Facebook.Components.Profile
             this.pnlSeparator = new System.Windows.Forms.Panel();
             this.pnlThink = new System.Windows.Forms.Panel();
             this.picAvatar = new System.Windows.Forms.PictureBox();
-            this.picThink = new System.Windows.Forms.PictureBox();
+            this.pnlWrapText = new System.Windows.Forms.Panel();
+            this.lblText = new System.Windows.Forms.Label();
             this.pnlContent.SuspendLayout();
             this.pnlThink.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picThink)).BeginInit();
+            this.pnlWrapText.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlContent
@@ -72,8 +73,8 @@ namespace Facebook.Components.Profile
             // 
             // pnlThink
             // 
+            this.pnlThink.Controls.Add(this.pnlWrapText);
             this.pnlThink.Controls.Add(this.picAvatar);
-            this.pnlThink.Controls.Add(this.picThink);
             this.pnlThink.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlThink.Location = new System.Drawing.Point(0, 0);
             this.pnlThink.Name = "pnlThink";
@@ -89,18 +90,30 @@ namespace Facebook.Components.Profile
             this.picAvatar.TabIndex = 0;
             this.picAvatar.TabStop = false;
             // 
-            // picThink
+            // pnlWrapText
             // 
-            this.picThink.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picThink.Location = new System.Drawing.Point(79, 11);
-            this.picThink.Margin = new System.Windows.Forms.Padding(0);
-            this.picThink.Name = "picThink";
-            this.picThink.Size = new System.Drawing.Size(367, 35);
-            this.picThink.TabIndex = 0;
-            this.picThink.TabStop = false;
-            this.picThink.Click += new System.EventHandler(this.picThink_Click);
-            this.picThink.MouseEnter += new System.EventHandler(this.picThink_MouseEnter);
-            this.picThink.MouseLeave += new System.EventHandler(this.picThink_MouseLeave);
+            this.pnlWrapText.Controls.Add(this.lblText);
+            this.pnlWrapText.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pnlWrapText.Location = new System.Drawing.Point(78, 12);
+            this.pnlWrapText.Name = "pnlWrapText";
+            this.pnlWrapText.Size = new System.Drawing.Size(367, 35);
+            this.pnlWrapText.TabIndex = 1;
+            this.pnlWrapText.Click += new System.EventHandler(this.pnlWrapText_Click);
+            this.pnlWrapText.MouseEnter += new System.EventHandler(this.pnlWrapText_MouseEnter);
+            this.pnlWrapText.MouseLeave += new System.EventHandler(this.pnlWrapText_MouseLeave);
+            // 
+            // lblText
+            // 
+            this.lblText.AutoSize = true;
+            this.lblText.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblText.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText.Location = new System.Drawing.Point(12, 4);
+            this.lblText.Name = "lblText";
+            this.lblText.Size = new System.Drawing.Size(180, 22);
+            this.lblText.TabIndex = 0;
+            this.lblText.Text = "Bạn đang nghĩ gì?";
+            this.lblText.Click += new System.EventHandler(this.pnlWrapText_Click);
+            this.lblText.MouseEnter += new System.EventHandler(this.pnlWrapText_MouseEnter);
             // 
             // PostListProfileUC
             // 
@@ -114,7 +127,8 @@ namespace Facebook.Components.Profile
             this.pnlContent.ResumeLayout(false);
             this.pnlThink.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picThink)).EndInit();
+            this.pnlWrapText.ResumeLayout(false);
+            this.pnlWrapText.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -125,7 +139,8 @@ namespace Facebook.Components.Profile
         private System.Windows.Forms.Panel pnlThink;
         private System.Windows.Forms.Panel pnlSeparator;
         private System.Windows.Forms.FlowLayoutPanel flpContent;
-        private System.Windows.Forms.PictureBox picThink;
         private System.Windows.Forms.PictureBox picAvatar;
+        private System.Windows.Forms.Panel pnlWrapText;
+        private System.Windows.Forms.Label lblText;
     }
 }

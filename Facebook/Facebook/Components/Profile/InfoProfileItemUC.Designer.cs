@@ -39,7 +39,7 @@ namespace Facebook.Components.Profile
             // 
             this.pnlBottomText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
             this.pnlBottomText.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pnlBottomText.Location = new System.Drawing.Point(3, 32);
+            this.pnlBottomText.Location = new System.Drawing.Point(3, 23);
             this.pnlBottomText.Name = "pnlBottomText";
             this.pnlBottomText.Size = new System.Drawing.Size(356, 2);
             this.pnlBottomText.TabIndex = 60;
@@ -53,7 +53,7 @@ namespace Facebook.Components.Profile
             this.txtText.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtText.Font = new System.Drawing.Font("Consolas", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
-            this.txtText.Location = new System.Drawing.Point(10, 6);
+            this.txtText.Location = new System.Drawing.Point(10, 4);
             this.txtText.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.txtText.Name = "txtText";
             this.txtText.Size = new System.Drawing.Size(343, 41);
@@ -74,7 +74,7 @@ namespace Facebook.Components.Profile
             this.btnEditOrUpdate.IconColor = System.Drawing.Color.Black;
             this.btnEditOrUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEditOrUpdate.IconSize = 36;
-            this.btnEditOrUpdate.Location = new System.Drawing.Point(365, 3);
+            this.btnEditOrUpdate.Location = new System.Drawing.Point(365, -3);
             this.btnEditOrUpdate.Name = "btnEditOrUpdate";
             this.btnEditOrUpdate.Size = new System.Drawing.Size(40, 40);
             this.btnEditOrUpdate.TabIndex = 61;
@@ -93,7 +93,7 @@ namespace Facebook.Components.Profile
             this.btnDeleteOrCancel.IconColor = System.Drawing.Color.Black;
             this.btnDeleteOrCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDeleteOrCancel.IconSize = 36;
-            this.btnDeleteOrCancel.Location = new System.Drawing.Point(411, 3);
+            this.btnDeleteOrCancel.Location = new System.Drawing.Point(411, -3);
             this.btnDeleteOrCancel.Name = "btnDeleteOrCancel";
             this.btnDeleteOrCancel.Size = new System.Drawing.Size(40, 40);
             this.btnDeleteOrCancel.TabIndex = 62;
@@ -112,9 +112,9 @@ namespace Facebook.Components.Profile
             this.Controls.Add(this.pnlBottomText);
             this.Controls.Add(this.txtText);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Margin = new System.Windows.Forms.Padding(0);
+            this.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.Name = "InfoProfileItemUC";
-            this.Size = new System.Drawing.Size(461, 40);
+            this.Size = new System.Drawing.Size(461, 31);
             this.MouseEnter += new System.EventHandler(this.InfoProfileItemUC_MouseEnter1);
             this.MouseLeave += new System.EventHandler(this.InfoProfileItemUC_MouseLeave);
             this.ResumeLayout(false);

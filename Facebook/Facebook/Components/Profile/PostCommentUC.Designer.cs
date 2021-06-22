@@ -116,9 +116,9 @@ namespace Facebook.Components.Profile
             // pnlWrapDescription
             // 
             this.pnlWrapDescription.Controls.Add(this.txtMyCommentDescription);
-            this.pnlWrapDescription.Location = new System.Drawing.Point(64, 5);
+            this.pnlWrapDescription.Location = new System.Drawing.Point(64, 9);
             this.pnlWrapDescription.Name = "pnlWrapDescription";
-            this.pnlWrapDescription.Size = new System.Drawing.Size(377, 41);
+            this.pnlWrapDescription.Size = new System.Drawing.Size(377, 35);
             this.pnlWrapDescription.TabIndex = 61;
             // 
             // txtMyCommentDescription
@@ -128,10 +128,10 @@ namespace Facebook.Components.Profile
             this.txtMyCommentDescription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.txtMyCommentDescription.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMyCommentDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(149)))), ((int)(((byte)(167)))));
-            this.txtMyCommentDescription.Location = new System.Drawing.Point(9, 12);
+            this.txtMyCommentDescription.Location = new System.Drawing.Point(12, 8);
             this.txtMyCommentDescription.Margin = new System.Windows.Forms.Padding(100, 3, 3, 3);
             this.txtMyCommentDescription.Name = "txtMyCommentDescription";
-            this.txtMyCommentDescription.Size = new System.Drawing.Size(364, 34);
+            this.txtMyCommentDescription.Size = new System.Drawing.Size(355, 34);
             this.txtMyCommentDescription.TabIndex = 60;
             this.txtMyCommentDescription.Text = "Viết bình luận...";
             this.txtMyCommentDescription.TextChanged += new System.EventHandler(this.txtMyCommentDescription_TextChanged);

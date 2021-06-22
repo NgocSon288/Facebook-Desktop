@@ -78,6 +78,25 @@ namespace Facebook.Helper
         /// <param name="txt"></param>
         public static void SetSizeTextBox(TextBox txt)
         {
+            try
+            {
+                // amount of padding to add
+                const int padding = 3;
+                // get number of lines (first line is 0, so add 1)
+                int numLines = txt.GetLineFromCharIndex(txt.TextLength) + 1;
+                // get border thickness
+                int border = txt.Height - txt.ClientSize.Height;
+                // set height (height of one line * number of lines + spacing)
+                txt.Height = txt.Font.Height * numLines + padding + border;
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        public static void SetSizeTextBoxWithMinHeight(TextBox txt, int minHeight)
+        {
             // amount of padding to add
             const int padding = 3;
             // get number of lines (first line is 0, so add 1)
@@ -85,7 +104,8 @@ namespace Facebook.Helper
             // get border thickness
             int border = txt.Height - txt.ClientSize.Height;
             // set height (height of one line * number of lines + spacing)
-            txt.Height = txt.Font.Height * numLines + padding + border;
+            int height = txt.Font.Height * numLines + padding + border;
+            txt.Height = height < minHeight ? minHeight : height; ;
         }
 
         public static void SetSizeTextBoxWithWidth(TextBox txt, int maxWidth)

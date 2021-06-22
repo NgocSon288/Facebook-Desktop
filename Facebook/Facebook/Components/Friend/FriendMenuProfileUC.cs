@@ -18,12 +18,25 @@ namespace Facebook.Components.Friend
         public delegate void ClickAddFriend();
         public delegate void ClickAcceptOrDeleteFriend();
         public delegate void LinkToProfile();
+        public delegate void ClickIntro();
+        public delegate void ClickPosts();
         public event ClickAddFriend OnClickAddFriend;
         public event ClickAcceptOrDeleteFriend OnClickAcceptOrDeleteFriend;
         public event LinkToProfile OnLinkToProfile;
+        public event ClickIntro OnClickIntro;
+        public event ClickPosts OnClickPosts;
 
         private bool isRequested;
         private bool isFriend;
+
+
+        public static BUTTON BUTTON_CURRENT = BUTTON.INTRO;
+
+        public enum BUTTON
+        {
+            INTRO,
+            POSTS
+        }
 
         public FriendMenuProfileUC(bool isRequested, bool isFriend)
         {
@@ -62,6 +75,9 @@ namespace Facebook.Components.Friend
             // Giới thiệu 
             SetButtonVirtual(pnlWrapIntro, lblIntro, pnlBorderIntro);
 
+            // Post
+            SetButtonVirtual(pnlWrapPost, lblPost, pnlBorderPost);
+
             pnlBorderIntro.Left = pnlWrapIntro.Left;
 
             // btn add friend
@@ -79,10 +95,10 @@ namespace Facebook.Components.Friend
 
         private void SetButtonVirtual(Panel pnlWrap, Label lbl, Panel pnlBorder)
         {
-            pnlWrap.Width = widthButton;
+            pnlWrap.Width = widthButton + 30;
             pnlWrap.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
-            pnlWrap.Height = pnlWrap.Height - 2 * marginContent;
-            pnlWrap.Top = marginContent;
+            pnlWrap.Height = pnlWrap.Height - 2 * marginContent - 10;
+            pnlWrap.Top = 30;
             lbl.Left = pnlWrap.Width / 2 - lbl.Width / 2;
             lbl.Top = pnlWrap.Height / 2 - lbl.Height / 2;
             lbl.ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
@@ -149,11 +165,84 @@ namespace Facebook.Components.Friend
             OnClickAddFriend?.Invoke();
         }
 
+        private void SetColorEnter(Panel pnlWrap, Panel pnlBorder, Label lbl, bool isActive)
+        {
+            pnlBorder.BackColor = isActive ? Constants.MAIN_FORE_LINK_COLOR : Constants.MAIN_BACK_CONTENT_COLOR;
+            lbl.ForeColor = isActive ? Constants.MAIN_FORE_LINK_COLOR : Constants.MAIN_FORE_SMALLTEXT_COLOR;
+            pnlWrap.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            lbl.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+        }
+
+        private void ResetColor(BUTTON buttonCur)
+        {
+            BUTTON_CURRENT = buttonCur;
+            SetColorEnter(pnlWrapIntro, pnlBorderIntro, lblIntro, false);
+            SetColorEnter(pnlWrapPost, pnlBorderPost, lblPost, false);
+
+            switch (BUTTON_CURRENT)
+            {
+                case BUTTON.INTRO:
+                    SetColorEnter(pnlWrapIntro, pnlBorderIntro, lblIntro, true);
+                    break;
+                case BUTTON.POSTS:
+                    SetColorEnter(pnlWrapPost, pnlBorderPost, lblPost, true);
+                    break;
+            }
+        }
+
         #endregion
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
             OnLinkToProfile?.Invoke();
+        }
+
+        private void pnlWrapIntro_MouseEnter(object sender, EventArgs e)
+        {
+            if (BUTTON_CURRENT == BUTTON.INTRO)
+                return;
+
+            pnlWrapIntro.BackColor = Constants.EXPAND_HEADER_COLOR;
+            lblIntro.BackColor = Constants.EXPAND_HEADER_COLOR;
+        }
+
+        private void pnlWrapIntro_MouseLeave(object sender, EventArgs e)
+        {
+            if (BUTTON_CURRENT == BUTTON.INTRO)
+                return;
+
+            pnlWrapIntro.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            lblIntro.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+        }
+
+        private void pnlWrapPost_MouseEnter(object sender, EventArgs e)
+        {
+            if (BUTTON_CURRENT == BUTTON.POSTS)
+                return;
+
+            pnlWrapPost.BackColor = Constants.EXPAND_HEADER_COLOR;
+            lblPost.BackColor = Constants.EXPAND_HEADER_COLOR;
+        }
+
+        private void pnlWrapPost_MouseLeave(object sender, EventArgs e)
+        {
+            if (BUTTON_CURRENT == BUTTON.POSTS)
+                return;
+
+            pnlWrapPost.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+            lblPost.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
+        }
+
+        private void lblPost_Click(object sender, EventArgs e)
+        {
+            ResetColor(BUTTON.POSTS);
+            OnClickPosts?.Invoke();
+        }
+
+        private void lblIntro_Click(object sender, EventArgs e)
+        {
+            ResetColor(BUTTON.INTRO);
+            OnClickIntro?.Invoke();
         }
     }
 }

@@ -823,8 +823,6 @@
     <Content Include="Assets\Images\Profile\empty-post-icon.png" />
     <Content Include="Assets\Images\Profile\image-default.jpg" />
     <Content Include="Assets\Images\Profile\menu-icon.png" />
-    <Content Include="Assets\Images\Profile\think-1.png" />
-    <Content Include="Assets\Images\Profile\think-2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

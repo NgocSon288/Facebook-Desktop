@@ -79,11 +79,11 @@ namespace Facebook.Components.Profile
             // flpContent
             // 
             this.flpContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
-            this.flpContent.Location = new System.Drawing.Point(0, 34);
+            this.flpContent.Location = new System.Drawing.Point(0, 37);
             this.flpContent.Margin = new System.Windows.Forms.Padding(0);
             this.flpContent.Name = "flpContent";
             this.flpContent.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.flpContent.Size = new System.Drawing.Size(471, 238);
+            this.flpContent.Size = new System.Drawing.Size(471, 235);
             this.flpContent.TabIndex = 42;
             // 
             // btnExpand
@@ -118,7 +118,7 @@ namespace Facebook.Components.Profile
             this.pnlHeadTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeadTitle.Location = new System.Drawing.Point(0, 0);
             this.pnlHeadTitle.Name = "pnlHeadTitle";
-            this.pnlHeadTitle.Size = new System.Drawing.Size(471, 31);
+            this.pnlHeadTitle.Size = new System.Drawing.Size(471, 40);
             this.pnlHeadTitle.TabIndex = 43;
             this.pnlHeadTitle.Click += new System.EventHandler(this.btnTitle_Click);
             this.pnlHeadTitle.MouseEnter += new System.EventHandler(this.pnlHeadTitle_MouseEnter);
@@ -159,7 +159,7 @@ namespace Facebook.Components.Profile
             this.lblAdd.Font = new System.Drawing.Font("Consolas", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdd.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.lblAdd.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(52)))), ((int)(((byte)(212)))));
-            this.lblAdd.Location = new System.Drawing.Point(41, 8);
+            this.lblAdd.Location = new System.Drawing.Point(41, 11);
             this.lblAdd.Name = "lblAdd";
             this.lblAdd.Size = new System.Drawing.Size(72, 20);
             this.lblAdd.TabIndex = 45;

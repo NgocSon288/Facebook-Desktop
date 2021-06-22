@@ -123,6 +123,10 @@ namespace Facebook.Components.Messenger
             var name = user.Name.Substring(user.Name.LastIndexOf(" ") + 1);
             var self = isSelf ? "Bạn" : name;
             var mess = "";
+            if (!string.IsNullOrEmpty(text) && text.Length > 23)
+            {
+                text = text.Substring(20) + "...";
+            }
             if (imageCount > 0)
             {
                 mess = $"{self} đã gửi {imageCount} ảnh.";

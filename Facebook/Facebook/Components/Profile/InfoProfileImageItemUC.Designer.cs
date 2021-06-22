@@ -29,22 +29,11 @@ namespace Facebook.Components.Profile
         /// </summary>
         private void InitializeComponent()
         {
-            this.picImage = new System.Windows.Forms.PictureBox();
             this.pnlWrap = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
+            this.picImage = new System.Windows.Forms.PictureBox();
             this.pnlWrap.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picImage
-            // 
-            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picImage.Location = new System.Drawing.Point(14, 15);
-            this.picImage.Margin = new System.Windows.Forms.Padding(0);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(144, 153);
-            this.picImage.TabIndex = 0;
-            this.picImage.TabStop = false;
-            this.picImage.Click += new System.EventHandler(this.picImage_Click);
             // 
             // pnlWrap
             // 
@@ -54,6 +43,17 @@ namespace Facebook.Components.Profile
             this.pnlWrap.Size = new System.Drawing.Size(180, 179);
             this.pnlWrap.TabIndex = 1;
             // 
+            // picImage
+            // 
+            this.picImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picImage.Location = new System.Drawing.Point(11, 9);
+            this.picImage.Margin = new System.Windows.Forms.Padding(0);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(144, 153);
+            this.picImage.TabIndex = 2;
+            this.picImage.TabStop = false;
+            this.picImage.Click += new System.EventHandler(this.picImage_Click);
+            // 
             // InfoProfileImageItemUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -62,15 +62,14 @@ namespace Facebook.Components.Profile
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "InfoProfileImageItemUC";
             this.Size = new System.Drawing.Size(190, 190);
-            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.pnlWrap.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picImage;
         private System.Windows.Forms.Panel pnlWrap;
+        private System.Windows.Forms.PictureBox picImage;
     }
 }

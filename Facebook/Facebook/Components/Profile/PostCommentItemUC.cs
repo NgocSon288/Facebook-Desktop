@@ -68,7 +68,7 @@ namespace Facebook.Components.Profile
             SetColorLike();
 
             UIHelper.BorderRadius(pnlMyComment, Constants.BORDER_RADIUS);
-            UIHelper.BorderRadius(pnlBackgroundDescription, Constants.BORDER_RADIUS);
+            UIHelper.BorderRadius(pnlBackgroundDescription, Constants.BORDER_RADIUS * 2);
 
             UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
@@ -91,7 +91,7 @@ namespace Facebook.Components.Profile
 
                         UpdateHeight();
 
-                        UIHelper.BorderRadius(pnlBackgroundDescription, Constants.BORDER_RADIUS);
+                        UIHelper.BorderRadius(pnlBackgroundDescription, Constants.BORDER_RADIUS * 2);
                     }
                 }
             });
@@ -389,5 +389,6 @@ namespace Facebook.Components.Profile
         {
             OnClickProfileFriend?.Invoke(comment.User);
         }
+
     }
 }

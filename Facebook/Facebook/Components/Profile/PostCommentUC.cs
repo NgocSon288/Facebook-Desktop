@@ -118,7 +118,7 @@ namespace Facebook.Components.Profile
                 picLike.BackgroundImageLayout = ImageLayout.Stretch;
                 picLike.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
                 pnlWrapDescription.BackColor = Constants.BACKGROUND_TEXTBOX_MYCOMMENT;
-                UIHelper.BorderRadius(pnlWrapDescription, Constants.BORDER_RADIUS);
+                UIHelper.BorderRadius(pnlWrapDescription, Constants.BORDER_RADIUS * 2);
             }
             catch (Exception)
             {

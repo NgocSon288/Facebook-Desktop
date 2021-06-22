@@ -35,7 +35,8 @@ namespace Facebook.Common
 
         public static readonly Color TEXTBOX_ENTER_FORECOLOR = MAIN_FORE_COLOR; // Account - màu chữ khi nhấn vào textbox 
         public static readonly Color TEXTBOX_LEAVE_FORECOLOR = Color.FromArgb(131, 149, 167); // Account - màu chữ khi nhấn vào textbox, border bottom
-
+        public static readonly Color BOX_WRAP_TEXT_COLOR = Color.FromArgb(70, 70, 70);
+        public static readonly Color BOX_WRAP_TEXT_ENTER_COLOR = Color.FromArgb(80, 80, 80);
 
         // Profile
         public static readonly Color DEFAULT_IMAGE_COLOR = Color.White; // Màu mặc định khi user không có ảnh bìa

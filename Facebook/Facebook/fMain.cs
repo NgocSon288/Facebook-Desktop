@@ -24,6 +24,8 @@ namespace Facebook
 
         private fHome fHome;
         private fProfile fProfile;
+        private fFriend fFriend;
+        private fMessenger fMessenger;
 
         private BUTTON CURRENT_BUTTON;
 
@@ -115,6 +117,14 @@ namespace Facebook
             fAccountForm.ShowDialog();
         }
 
+        private void DisposeForm()
+        {
+            try { fHome?.Dispose(); } catch (Exception) { }
+            try { fProfile?.Dispose(); } catch (Exception) { }
+            try { fFriend?.Dispose(); } catch (Exception) { }
+            try { fMessenger?.Dispose(); } catch (Exception) { }
+        }
+
         #endregion
 
 
@@ -136,14 +146,7 @@ namespace Facebook
             }
             CURRENT_BUTTON = BUTTON.HOME;
 
-            try
-            {
-                fProfile?.Dispose();
-            }
-            catch (Exception)
-            {
-
-            }
+            DisposeForm();
 
             Reset();
         }
@@ -156,14 +159,7 @@ namespace Facebook
             }
             CURRENT_BUTTON = BUTTON.PROFILE;
 
-            try
-            {
-                fHome.Dispose();
-            }
-            catch (Exception)
-            {
-
-            }
+            DisposeForm();
 
             ActivateButton(sender);
 
@@ -179,6 +175,8 @@ namespace Facebook
             }
             CURRENT_BUTTON = BUTTON.FRIEND;
 
+            DisposeForm();
+
             ActivateButton(sender);
 
             var f = new fFriend(AutofacFactory<IUserDAO>.Get());
@@ -192,6 +190,8 @@ namespace Facebook
                 return;
             }
             CURRENT_BUTTON = BUTTON.MESSENGER;
+
+            DisposeForm();
 
             ActivateButton(sender);
 
