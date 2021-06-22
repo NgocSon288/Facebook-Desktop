@@ -376,27 +376,22 @@ namespace Facebook.FormUC
 
             var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
 
-            if (ms == null)
+            if (ms != null)
             {
-                ms = new MessageSetting()
-                {
-                    ThemeColor = theme.Name,
-                    UpdatedAt = DateTime.Now,
-                    UpdatedBy = Constants.UserSession.ID,
-                    User1 = Constants.UserSession,
-                    User2 = MessengerFriendItemUC.CurrentItem.user
-                };
-
-                _messageSettingDAO.Create(ms);
+                _messageSettingDAO.Delete(ms);
             }
-            else
+
+            ms = new MessageSetting()
             {
-                ms.ThemeColor = theme.Name;
-                ms.UpdatedAt = DateTime.Now;
-                ms.UpdatedBy = Constants.UserSession.ID;
+                ThemeColor = theme.Name,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = Constants.UserSession.ID,
+                User1 = Constants.UserSession,
+                User2 = MessengerFriendItemUC.CurrentItem.user
+            };
 
-                _messageSettingDAO.SaveChanges();
-            }
+            _messageSettingDAO.Create(ms);
+
 
             // Update UI, cập nhật constants
             Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
@@ -412,7 +407,24 @@ namespace Facebook.FormUC
             messengerContentMessageUC.SetThemeColor();
         }
 
+        public void SetThemeColor()
+        {
+            var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
 
+            if (ms == null || ThemeColor.GetThemeByName(ms.ThemeColor).Color == Constants.THEME_COLOR)
+            {
+                return;
+            }
+
+            // Update UI, cập nhật constants
+            Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
+
+            messengerShareContentUC.SetThemeColor();
+
+            messengerHeaderMessageUC.SetThemeColor();
+            messageListUC.SetThemeColor();
+            messengerContentMessageUC.SetThemeColor();
+        }
 
         #endregion
 
@@ -452,6 +464,8 @@ namespace Facebook.FormUC
         /// <param name="e"></param>
         private void timerMQ_Tick(object sender, EventArgs e)
         {
+            SetThemeColor();
+
             try
             {
                 if (Constants.UserSession == null || MessengerFriendItemUC.CurrentItem == null || MessengerFriendItemUC.CurrentItem.user == null)
@@ -495,6 +509,9 @@ namespace Facebook.FormUC
 
                             // add vào message 
                             messageListUC.AddNewMessage(message);
+
+                            // add file and image
+                            messengerShareContentUC.AddFileAndImages(StringHelper.StringToStringList(message.File), StringHelper.StringToStringList(message.Image));
                         }
 
                         // nếu không đang ở current, không nhắn tin trực tiếp thì gọi cập nhật current thành màu xanh thôi

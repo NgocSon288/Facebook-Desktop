@@ -50,9 +50,9 @@ namespace Facebook.Components.Friend
 
                 itemUC.OnClickSection += () => OnClickUser(item);
                 itemUC.OnClickSendOrCancelRequest += (isSend) => OnClickSendOrCancelRequest?.Invoke(item, isSend);
-                itemUC.OnClickBlock += () =>
+                itemUC.OnClickBlock += (itemDelete) =>
                 {
-                    flpItems.Controls.Remove(itemUC);   // xóa ra khỏi  danh sách  userList
+                    flpItems.Controls.Remove(itemDelete);   // xóa ra khỏi  danh sách  userList
                     UpdateHeight();
                     OnClickBlockUser(item);
                 };

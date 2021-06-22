@@ -22,6 +22,8 @@ namespace Facebook.Components.Messenger
 
         private bool isExpanded;
 
+        private ShareSettingThemeUC themeUC;
+
         public ShareSettingUC()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace Facebook.Components.Messenger
 
         new private void Load()
         {
-            var themeUC = new ShareSettingThemeUC(AutofacFactory<IMessageSettingDAO>.Get());
+            themeUC = new ShareSettingThemeUC(AutofacFactory<IMessageSettingDAO>.Get());
             themeUC.OnUpdateThemeColor += () => OnUpdateThemeColor?.Invoke();
 
             flpContent.Controls.Add(themeUC);
@@ -41,6 +43,11 @@ namespace Facebook.Components.Messenger
             ChangesStatus(true);
             lblTitle.ForeColor = Constants.MAIN_FORE_COLOR;
             picIcon.IconColor = Constants.MAIN_FORE_COLOR;
+        }
+
+        public void SetThemeColor()
+        {
+            themeUC.SetThemeColor();
         }
 
         private void ChangesStatus(bool isInit = false)

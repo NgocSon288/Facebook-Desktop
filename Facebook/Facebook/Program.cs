@@ -26,12 +26,19 @@ namespace Facebook
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
 
-            Container = AutofacConfig.Configure();
+                Container = AutofacConfig.Configure();
 
-            Application.Run(new fMain());
+                Application.Run(new fMain());
+            }
+            catch (Exception)
+            {
+
+            }
 
         }
 

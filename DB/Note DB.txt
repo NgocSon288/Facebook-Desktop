@@ -606,7 +606,12 @@ AngleUp		lên: khi đã xổ ra
 11 - camchanh	0,223,187
 12 - timoaihuong	174,160,255
 -------------------------------------------------------
-
+*** Folder
+- ID
+- Name: tên thể hiện ra ngoài
+- FolderParentID: int
+- FolderChildren: string (danh sách các id cách nhau CS511)
+- Files: string (danh sách file name)
 
 -------------------------------------------------------
 

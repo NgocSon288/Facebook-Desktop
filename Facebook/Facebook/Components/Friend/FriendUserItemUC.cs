@@ -18,7 +18,7 @@ namespace Facebook.Components.Friend
     {
         public delegate void ClickSection();
         public delegate void ClickSendOrCancelRequest(bool isSend);
-        public delegate void ClickBlock();
+        public delegate void ClickBlock(FriendUserItemUC itemDelete);
         public event ClickSection OnClickSection;
         public event ClickSendOrCancelRequest OnClickSendOrCancelRequest;
         public event ClickBlock OnClickBlock;
@@ -115,7 +115,7 @@ namespace Facebook.Components.Friend
         {
             if (MyMessageBox.Show("Nếu bạn chặn thì các bạn sẽ không tìm thấy nhau trên Facebook", MessageBoxType.Question).Value == DialogResult.OK)
             {
-                OnClickBlock?.Invoke();
+                OnClickBlock?.Invoke(this);
             }
         }
     }

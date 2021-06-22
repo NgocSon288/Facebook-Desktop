@@ -25,8 +25,6 @@ namespace Facebook.DAO
     {
         private readonly IMessageSettingService _messageSettingService;
 
-        private List<MessageSetting> messageSettings;
-
         public MessageSettingDAO(IMessageSettingService messageSettingService)
         {
             this._messageSettingService = messageSettingService;
@@ -35,16 +33,12 @@ namespace Facebook.DAO
 
         private void Load()
         {
-            messageSettings = GetAll();
         }
 
         public bool Create(MessageSetting messageSetting)
         {
             try
             {
-                // insert ram
-                messageSettings.Add(messageSetting);
-
                 // insert db
                 _messageSettingService.Insert(messageSetting);
 
@@ -64,8 +58,6 @@ namespace Facebook.DAO
         {
             try
             {
-                messageSettings.Remove(messageSetting);
-
                 _messageSettingService.Delete(messageSetting);
 
                 SaveChanges();
@@ -99,7 +91,7 @@ namespace Facebook.DAO
 
         public MessageSetting GetByMultipID(int userID1, int userID2)
         {
-            return messageSettings.FirstOrDefault(m => (m.User1.ID == userID1 && m.User2.ID == userID2) || (m.User1.ID == userID2 && m.User2.ID == userID1));
+            return _messageSettingService.GetAll().FirstOrDefault(m => (m.User1.ID == userID1 && m.User2.ID == userID2) || (m.User1.ID == userID2 && m.User2.ID == userID1));
         }
     }
 }

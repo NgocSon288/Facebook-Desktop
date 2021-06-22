@@ -21,6 +21,8 @@ namespace Facebook.Components.Messenger
         private ShareFilesUC shareFilesUC;
         private ShareImagesUC shareImagesUC;
 
+        private ShareSettingUC shareSettingUC;
+
         public ShareContentUC(List<string> fileNames, List<string> imagePaths)
         {
             InitializeComponent();
@@ -55,7 +57,7 @@ namespace Facebook.Components.Messenger
 
         private void LoadSetting()
         {
-            var shareSettingUC = new ShareSettingUC()
+            shareSettingUC = new ShareSettingUC()
             {
                 Left = 0,
                 Margin = new Padding(0, 0, 0, 0)
@@ -63,6 +65,11 @@ namespace Facebook.Components.Messenger
             shareSettingUC.OnUpdateThemeColor += () => OnUpdateThemeColor?.Invoke();
 
             flpContent.Controls.Add(shareSettingUC);
+        }
+
+        public void SetThemeColor()
+        {
+            shareSettingUC.SetThemeColor();
         }
 
         private void LoadShareFiles()

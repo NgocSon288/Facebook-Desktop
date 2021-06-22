@@ -54,10 +54,10 @@ namespace Facebook.FormUC
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(970, 0);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(6);
+            this.btnClose.Location = new System.Drawing.Point(1940, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(30, 30);
+            this.btnClose.Size = new System.Drawing.Size(60, 58);
             this.btnClose.TabIndex = 21;
             this.btnClose.TabStop = false;
             this.btnClose.Text = "X";
@@ -74,10 +74,10 @@ namespace Facebook.FormUC
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(937, 0);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(6);
+            this.btnMinimize.Location = new System.Drawing.Point(1874, 0);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(12, 12, 12, 12);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(30, 30);
+            this.btnMinimize.Size = new System.Drawing.Size(60, 58);
             this.btnMinimize.TabIndex = 22;
             this.btnMinimize.TabStop = false;
             this.btnMinimize.Text = "--";
@@ -90,18 +90,18 @@ namespace Facebook.FormUC
             this.pnlWrap.Controls.Add(this.pnlRight);
             this.pnlWrap.Controls.Add(this.pnlMiddle);
             this.pnlWrap.Controls.Add(this.pnlLeft);
-            this.pnlWrap.Location = new System.Drawing.Point(0, 34);
+            this.pnlWrap.Location = new System.Drawing.Point(0, 65);
             this.pnlWrap.Margin = new System.Windows.Forms.Padding(0);
             this.pnlWrap.Name = "pnlWrap";
-            this.pnlWrap.Size = new System.Drawing.Size(1000, 766);
+            this.pnlWrap.Size = new System.Drawing.Size(2000, 1473);
             this.pnlWrap.TabIndex = 23;
             // 
             // pnlRight
             // 
-            this.pnlRight.Location = new System.Drawing.Point(702, 1);
+            this.pnlRight.Location = new System.Drawing.Point(1404, 2);
             this.pnlRight.Margin = new System.Windows.Forms.Padding(0);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(298, 765);
+            this.pnlRight.Size = new System.Drawing.Size(596, 1471);
             this.pnlRight.TabIndex = 1;
             // 
             // pnlMiddle
@@ -109,28 +109,28 @@ namespace Facebook.FormUC
             this.pnlMiddle.Controls.Add(this.pnlMiddleCenter);
             this.pnlMiddle.Controls.Add(this.pnlMiddleBottom);
             this.pnlMiddle.Controls.Add(this.pnlMiddleTop);
-            this.pnlMiddle.Location = new System.Drawing.Point(301, 1);
+            this.pnlMiddle.Location = new System.Drawing.Point(602, 2);
             this.pnlMiddle.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMiddle.Name = "pnlMiddle";
-            this.pnlMiddle.Size = new System.Drawing.Size(400, 765);
+            this.pnlMiddle.Size = new System.Drawing.Size(800, 1471);
             this.pnlMiddle.TabIndex = 1;
             // 
             // pnlMiddleCenter
             // 
             this.pnlMiddleCenter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMiddleCenter.Location = new System.Drawing.Point(0, 60);
+            this.pnlMiddleCenter.Location = new System.Drawing.Point(0, 115);
             this.pnlMiddleCenter.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMiddleCenter.Name = "pnlMiddleCenter";
-            this.pnlMiddleCenter.Size = new System.Drawing.Size(400, 645);
+            this.pnlMiddleCenter.Size = new System.Drawing.Size(800, 1241);
             this.pnlMiddleCenter.TabIndex = 2;
             // 
             // pnlMiddleBottom
             // 
             this.pnlMiddleBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlMiddleBottom.Location = new System.Drawing.Point(0, 705);
+            this.pnlMiddleBottom.Location = new System.Drawing.Point(0, 1356);
             this.pnlMiddleBottom.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMiddleBottom.Name = "pnlMiddleBottom";
-            this.pnlMiddleBottom.Size = new System.Drawing.Size(400, 60);
+            this.pnlMiddleBottom.Size = new System.Drawing.Size(800, 115);
             this.pnlMiddleBottom.TabIndex = 1;
             // 
             // pnlMiddleTop
@@ -139,25 +139,25 @@ namespace Facebook.FormUC
             this.pnlMiddleTop.Location = new System.Drawing.Point(0, 0);
             this.pnlMiddleTop.Margin = new System.Windows.Forms.Padding(0);
             this.pnlMiddleTop.Name = "pnlMiddleTop";
-            this.pnlMiddleTop.Size = new System.Drawing.Size(400, 60);
+            this.pnlMiddleTop.Size = new System.Drawing.Size(800, 115);
             this.pnlMiddleTop.TabIndex = 0;
             // 
             // pnlLeft
             // 
-            this.pnlLeft.Location = new System.Drawing.Point(0, 1);
+            this.pnlLeft.Location = new System.Drawing.Point(0, 2);
             this.pnlLeft.Margin = new System.Windows.Forms.Padding(0);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(300, 765);
+            this.pnlLeft.Size = new System.Drawing.Size(600, 1471);
             this.pnlLeft.TabIndex = 0;
             // 
             // timerMQ
             // 
-            this.timerMQ.Interval = 1000;
+            this.timerMQ.Interval = 1500;
             this.timerMQ.Tick += new System.EventHandler(this.timerMQ_Tick);
             // 
             // fMessenger
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(206)))), ((int)(((byte)(229)))));
             this.Controls.Add(this.pnlWrap);
@@ -165,7 +165,7 @@ namespace Facebook.FormUC
             this.Controls.Add(this.btnMinimize);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "fMessenger";
-            this.Size = new System.Drawing.Size(1000, 800);
+            this.Size = new System.Drawing.Size(2000, 1538);
             this.pnlWrap.ResumeLayout(false);
             this.pnlMiddle.ResumeLayout(false);
             this.ResumeLayout(false);

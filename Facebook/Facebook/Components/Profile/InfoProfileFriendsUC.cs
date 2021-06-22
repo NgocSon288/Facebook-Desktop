@@ -154,7 +154,7 @@ namespace Facebook.Components.Profile
 
             foreach (Control item in flpContentLeft.Controls)
             {
-                height += item.Height;
+                height += item.Height + item.Margin.Top + item.Margin.Bottom;
             }
 
             if (height == 0)

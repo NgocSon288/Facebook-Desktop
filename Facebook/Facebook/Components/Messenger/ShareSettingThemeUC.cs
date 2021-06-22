@@ -43,6 +43,10 @@ namespace Facebook.Components.Messenger
             lblTitle.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
+        public void SetThemeColor()
+        {
+            picIcon.IconColor = Constants.THEME_COLOR;
+        }
 
         #endregion
 
