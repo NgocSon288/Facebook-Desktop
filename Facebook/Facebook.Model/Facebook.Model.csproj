@@ -61,6 +61,7 @@
     <Compile Include="Abstract\IAuditable.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentFeedback.cs" />
+    <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageQueue.cs" />
     <Compile Include="Models\MessageSetting.cs" />

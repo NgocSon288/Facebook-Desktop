@@ -265,31 +265,37 @@ namespace Facebook.Components.Profile
 
         private void UpdateHeight()
         {
-            var mar = margin * 2;
-            var heightHead = pnlThink.Visible ? pnlThink.Height : 0;
-            var heightSe = pnlThink.Visible ? pnlSeparator.Height : 0;
-            var heightContent = 0;
-
-            foreach (Control item in flpContent.Controls)
+            try
             {
-                heightContent += item.Height + item.Margin.Bottom;
+                var mar = margin * 2;
+                var heightHead = pnlThink.Visible ? pnlThink.Height : 0;
+                var heightSe = pnlThink.Visible ? pnlSeparator.Height : 0;
+                var heightContent = 0;
+
+                foreach (Control item in flpContent.Controls)
+                {
+                    heightContent += item.Height + item.Margin.Bottom;
+                }
+
+                this.Height = mar + heightHead + heightSe + heightContent;
+                pnlContent.Height = this.Height - mar;
+                flpContent.Height = heightContent;
+
+                OnHeightChanged?.Invoke();
+
+                if (!pnlThink.Visible)
+                {
+                    //pnlContent.Top = -10;
+                }
+
+                UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
+                UIHelper.BorderRadius(flpContent, Constants.BORDER_RADIUS);
+                UIHelper.BorderRadius(pnlThink, Constants.BORDER_RADIUS);
+                UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS);
             }
-
-            this.Height = mar + heightHead + heightSe + heightContent;
-            pnlContent.Height = this.Height - mar;
-            flpContent.Height = heightContent;
-
-            OnHeightChanged?.Invoke();
-
-            if (!pnlThink.Visible)
+            catch (Exception)
             {
-                //pnlContent.Top = -10;
             }
-
-            UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
-            UIHelper.BorderRadius(flpContent, Constants.BORDER_RADIUS);
-            UIHelper.BorderRadius(pnlThink, Constants.BORDER_RADIUS);
-            UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS);
         }
 
         public void UpdateAvatar()

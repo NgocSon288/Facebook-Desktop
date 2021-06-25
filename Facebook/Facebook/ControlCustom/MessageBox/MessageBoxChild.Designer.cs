@@ -32,11 +32,11 @@ namespace Facebook.ControlCustom.Message
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.pnlWrap = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.pnlSeparator = new System.Windows.Forms.Panel();
             this.picImage = new System.Windows.Forms.PictureBox();
             this.pnlBottom = new System.Windows.Forms.Panel();
-            this.pnlSeparator = new System.Windows.Forms.Panel();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.pnlWrap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
@@ -75,30 +75,23 @@ namespace Facebook.ControlCustom.Message
             this.pnlWrap.Size = new System.Drawing.Size(476, 288);
             this.pnlWrap.TabIndex = 58;
             // 
-            // picImage
+            // btnCancel
             // 
-            this.picImage.Location = new System.Drawing.Point(198, 2);
-            this.picImage.Margin = new System.Windows.Forms.Padding(0);
-            this.picImage.Name = "picImage";
-            this.picImage.Size = new System.Drawing.Size(80, 80);
-            this.picImage.TabIndex = 58;
-            this.picImage.TabStop = false;
-            // 
-            // pnlBottom
-            // 
-            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottom.Location = new System.Drawing.Point(0, 290);
-            this.pnlBottom.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlBottom.Name = "pnlBottom";
-            this.pnlBottom.Size = new System.Drawing.Size(500, 10);
-            this.pnlBottom.TabIndex = 59;
-            // 
-            // pnlSeparator
-            // 
-            this.pnlSeparator.Location = new System.Drawing.Point(208, 135);
-            this.pnlSeparator.Name = "pnlSeparator";
-            this.pnlSeparator.Size = new System.Drawing.Size(50, 3);
-            this.pnlSeparator.TabIndex = 59;
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatAppearance.BorderSize = 2;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
+            this.btnCancel.Location = new System.Drawing.Point(32, 251);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(113, 34);
+            this.btnCancel.TabIndex = 61;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.MouseEnter += new System.EventHandler(this.btnOk_MouseEnter);
+            this.btnCancel.MouseLeave += new System.EventHandler(this.btnOk_MouseLeave);
             // 
             // btnOk
             // 
@@ -117,22 +110,30 @@ namespace Facebook.ControlCustom.Message
             this.btnOk.MouseEnter += new System.EventHandler(this.btnOk_MouseEnter);
             this.btnOk.MouseLeave += new System.EventHandler(this.btnOk_MouseLeave);
             // 
-            // btnCancel
+            // pnlSeparator
             // 
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.FlatAppearance.BorderSize = 2;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(34)))), ((int)(((byte)(101)))));
-            this.btnCancel.Location = new System.Drawing.Point(32, 251);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(113, 34);
-            this.btnCancel.TabIndex = 61;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            this.btnCancel.MouseEnter += new System.EventHandler(this.btnOk_MouseEnter);
-            this.btnCancel.MouseLeave += new System.EventHandler(this.btnOk_MouseLeave);
+            this.pnlSeparator.Location = new System.Drawing.Point(208, 135);
+            this.pnlSeparator.Name = "pnlSeparator";
+            this.pnlSeparator.Size = new System.Drawing.Size(50, 3);
+            this.pnlSeparator.TabIndex = 59;
+            // 
+            // picImage
+            // 
+            this.picImage.Location = new System.Drawing.Point(198, 2);
+            this.picImage.Margin = new System.Windows.Forms.Padding(0);
+            this.picImage.Name = "picImage";
+            this.picImage.Size = new System.Drawing.Size(80, 80);
+            this.picImage.TabIndex = 58;
+            this.picImage.TabStop = false;
+            // 
+            // pnlBottom
+            // 
+            this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.Location = new System.Drawing.Point(0, 290);
+            this.pnlBottom.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlBottom.Name = "pnlBottom";
+            this.pnlBottom.Size = new System.Drawing.Size(500, 10);
+            this.pnlBottom.TabIndex = 59;
             // 
             // MessageBoxChild
             // 
@@ -148,6 +149,7 @@ namespace Facebook.ControlCustom.Message
             this.Name = "MessageBoxChild";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
+            this.TopMost = true;
             this.pnlWrap.ResumeLayout(false);
             this.pnlWrap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();

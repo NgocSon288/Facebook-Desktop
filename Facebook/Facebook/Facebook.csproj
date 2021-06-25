@@ -48,6 +48,15 @@
     <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net45\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Core.1.1.0.0\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.ShellExtensions, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.WindowsAPICodePack-Shell.1.1.0.0\lib\Microsoft.WindowsAPICodePack.ShellExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleInjector.5.3.0\lib\net45\SimpleInjector.dll</HintPath>
     </Reference>
@@ -66,7 +75,87 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Clipboard.cs" />
+    <Compile Include="Common\ExtensionIcon.cs" />
     <Compile Include="Common\ThemeColor.cs" />
+    <Compile Include="Components\Drive\ControlsFileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsFileUC.Designer.cs">
+      <DependentUpon>ControlsFileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsFolderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsFolderUC.Designer.cs">
+      <DependentUpon>ControlsFolderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsItemUC.Designer.cs">
+      <DependentUpon>ControlsItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveContentEmptyUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveContentEmptyUC.Designer.cs">
+      <DependentUpon>DriveContentEmptyUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveContentUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveContentUC.Designer.cs">
+      <DependentUpon>DriveContentUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsGlobalUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\ControlsGlobalUC.Designer.cs">
+      <DependentUpon>ControlsGlobalUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFileItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFileItemUC.Designer.cs">
+      <DependentUpon>DriveFileItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFileUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFileUC.Designer.cs">
+      <DependentUpon>DriveFileUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFolderItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFolderItemUC.Designer.cs">
+      <DependentUpon>DriveFolderItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFolderUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveFolderUC.Designer.cs">
+      <DependentUpon>DriveFolderUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveLinkItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveLinkItemUC.Designer.cs">
+      <DependentUpon>DriveLinkItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\DriveLinkUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\DriveLinkUC.Designer.cs">
+      <DependentUpon>DriveLinkUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Global\NewFolder\fNewFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Global\NewFolder\fNewFolder.Designer.cs">
+      <DependentUpon>fNewFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Friend\FriendHeaderProfileUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -405,6 +494,7 @@
       <DependentUpon>fParentClickHidden.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\CommentDAO.cs" />
+    <Compile Include="DAO\FolderDAO.cs" />
     <Compile Include="DAO\MessageDAO.cs" />
     <Compile Include="DAO\MessageQueueDAO.cs" />
     <Compile Include="DAO\MessageSettingDAO.cs" />
@@ -471,11 +561,11 @@
       <DependentUpon>fParent.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="FormUC\fAccount.cs">
+    <Compile Include="FormUC\fDrive.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormUC\fAccount.Designer.cs">
-      <DependentUpon>fAccount.cs</DependentUpon>
+    <Compile Include="FormUC\fDrive.Designer.cs">
+      <DependentUpon>fDrive.cs</DependentUpon>
     </Compile>
     <Compile Include="fAccountForm.cs">
       <SubType>Form</SubType>
@@ -539,6 +629,45 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Components\Drive\ControlsFileUC.resx">
+      <DependentUpon>ControlsFileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\ControlsFolderUC.resx">
+      <DependentUpon>ControlsFolderUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\ControlsItemUC.resx">
+      <DependentUpon>ControlsItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveContentEmptyUC.resx">
+      <DependentUpon>DriveContentEmptyUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveContentUC.resx">
+      <DependentUpon>DriveContentUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\ControlsGlobalUC.resx">
+      <DependentUpon>ControlsGlobalUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveFileItemUC.resx">
+      <DependentUpon>DriveFileItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveFileUC.resx">
+      <DependentUpon>DriveFileUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveFolderItemUC.resx">
+      <DependentUpon>DriveFolderItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveFolderUC.resx">
+      <DependentUpon>DriveFolderUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveLinkItemUC.resx">
+      <DependentUpon>DriveLinkItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\DriveLinkUC.resx">
+      <DependentUpon>DriveLinkUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Global\NewFolder\fNewFolder.resx">
+      <DependentUpon>fNewFolder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Friend\FriendHeaderProfileUC.resx">
       <DependentUpon>FriendHeaderProfileUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -728,8 +857,8 @@
     <EmbeddedResource Include="fAccountForm.resx">
       <DependentUpon>fAccountForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormUC\fAccount.resx">
-      <DependentUpon>fAccount.cs</DependentUpon>
+    <EmbeddedResource Include="FormUC\fDrive.resx">
+      <DependentUpon>fDrive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUC\fFogetPassword.resx">
       <DependentUpon>fFogetPassword.cs</DependentUpon>
@@ -799,6 +928,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\Files\Drive\" />
     <Folder Include="Assets\Files\Messenger\" />
     <Folder Include="Assets\Images\Post\" />
     <Folder Include="Home\" />
@@ -809,6 +939,7 @@
     <Content Include="Assets\Images\btn-social-twitter.png" />
     <Content Include="Assets\Images\Comment\Facebook-Like.png" />
     <Content Include="Assets\Images\Comment\textbox-blank.png" />
+    <Content Include="Assets\Images\Drive\drive-empty.png" />
     <Content Include="Assets\Images\Friend\null-people.png" />
     <Content Include="Assets\Images\Messenger\btn-delete.png" />
     <Content Include="Assets\Images\Messenger\empty-message.png" />

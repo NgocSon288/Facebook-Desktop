@@ -101,8 +101,21 @@
     <Compile Include="Migrations\202106160718392_Add_MessageSetting_Entity.designer.cs">
       <DependentUpon>202106160718392_Add_MessageSetting_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106220711438_Add_Folder_Entity.cs" />
+    <Compile Include="Migrations\202106220711438_Add_Folder_Entity.designer.cs">
+      <DependentUpon>202106220711438_Add_Folder_Entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106230840270_Update_Folder_Entity.cs" />
+    <Compile Include="Migrations\202106230840270_Update_Folder_Entity.designer.cs">
+      <DependentUpon>202106230840270_Update_Folder_Entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106230845055_Update_Folder_Entity1.cs" />
+    <Compile Include="Migrations\202106230845055_Update_Folder_Entity1.designer.cs">
+      <DependentUpon>202106230845055_Update_Folder_Entity1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\FolderRepository.cs" />
     <Compile Include="Repositories\MessageQueueRepository.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
     <Compile Include="Repositories\MessageSettingRepository.cs" />
@@ -140,6 +153,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106160718392_Add_MessageSetting_Entity.resx">
       <DependentUpon>202106160718392_Add_MessageSetting_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106220711438_Add_Folder_Entity.resx">
+      <DependentUpon>202106220711438_Add_Folder_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106230840270_Update_Folder_Entity.resx">
+      <DependentUpon>202106230840270_Update_Folder_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106230845055_Update_Folder_Entity1.resx">
+      <DependentUpon>202106230845055_Update_Folder_Entity1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

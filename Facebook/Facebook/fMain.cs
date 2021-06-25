@@ -209,7 +209,7 @@ namespace Facebook
 
             ActivateButton(sender);
 
-            var f = new fAccount();
+            var f = new fDrive(AutofacFactory<IFolderDAO>.Get());
             UIHelper.ShowControl(f, panelContent);
         }
 

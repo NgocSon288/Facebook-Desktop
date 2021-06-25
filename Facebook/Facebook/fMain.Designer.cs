@@ -85,6 +85,7 @@ namespace Facebook
             this.btnLogout.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
             this.btnLogout.Size = new System.Drawing.Size(200, 51);
             this.btnLogout.TabIndex = 5;
+            this.btnLogout.TabStop = false;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -100,7 +101,7 @@ namespace Facebook
             this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnAccount.ForeColor = System.Drawing.Color.White;
-            this.btnAccount.IconChar = FontAwesome.Sharp.IconChar.Neos;
+            this.btnAccount.IconChar = FontAwesome.Sharp.IconChar.EnvelopeOpenText;
             this.btnAccount.IconColor = System.Drawing.Color.White;
             this.btnAccount.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -110,7 +111,8 @@ namespace Facebook
             this.btnAccount.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
             this.btnAccount.Size = new System.Drawing.Size(200, 51);
             this.btnAccount.TabIndex = 4;
-            this.btnAccount.Text = "Tài khoản";
+            this.btnAccount.TabStop = false;
+            this.btnAccount.Text = "Drive";
             this.btnAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAccount.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAccount.UseVisualStyleBackColor = false;
@@ -135,6 +137,7 @@ namespace Facebook
             this.btnMessenger.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
             this.btnMessenger.Size = new System.Drawing.Size(200, 51);
             this.btnMessenger.TabIndex = 3;
+            this.btnMessenger.TabStop = false;
             this.btnMessenger.Text = "Messenger";
             this.btnMessenger.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMessenger.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -160,6 +163,7 @@ namespace Facebook
             this.btnFriends.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
             this.btnFriends.Size = new System.Drawing.Size(200, 51);
             this.btnFriends.TabIndex = 2;
+            this.btnFriends.TabStop = false;
             this.btnFriends.Text = "Bạn bè";
             this.btnFriends.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnFriends.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -185,6 +189,7 @@ namespace Facebook
             this.btnProfile.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
             this.btnProfile.Size = new System.Drawing.Size(200, 51);
             this.btnProfile.TabIndex = 1;
+            this.btnProfile.TabStop = false;
             this.btnProfile.Text = "Cá nhân";
             this.btnProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

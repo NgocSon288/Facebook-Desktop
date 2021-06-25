@@ -1,0 +1,11 @@
+Install-Package Microsoft.WindowsAPICodePack-Shell
+
+using Microsoft.WindowsAPICodePack.Dialogs;
+
+CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+dialog.InitialDirectory = "C:\\Users";
+dialog.IsFolderPicker = true;
+if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+{
+    MessageBox.Show("You selected: " + dialog.FileName);
+}

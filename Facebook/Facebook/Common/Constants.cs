@@ -60,6 +60,13 @@ namespace Facebook.Common
         public static readonly Color FILE_BACKGROUND_COLOR = Color.FromArgb(110, 113, 116);
         public static Color THEME_COLOR = Color.FromArgb(94, 0, 126);
 
+        // Drive
+        public static readonly Color FOLDER_ITEM_COLOR = Color.FromArgb(80, 80, 80);
+        public static readonly Color FOLDER_ITEM_ENTER_COLOR = Color.FromArgb(109, 115, 122);
+        public static readonly Color FOLDER_ITEM_CUTED_BG__COLOR = Color.FromArgb(60, 60, 60);
+        public static readonly Color FOLDER_ITEM_CUTED_FG_COLOR = Color.FromArgb(150, 150, 150);
+        public static readonly Color FOLDER_BORDER_ITEM_ENTER_COLOR = Color.FromArgb(126, 214, 223);
+        public static readonly Color FOLDER_BACKGROUND_DRAG_ENTER_COLOR = Color.FromArgb(56, 57, 58);
 
 
         // Bootstrap Color
@@ -76,5 +83,7 @@ namespace Facebook.Common
         public static User UserSession = null;      // Giống như session Web, lưu user hiện tại
         public static Profile ProfileSession = null;      // Giống như session Web, lưu profile hiện tại, giúp trang Profile
 
+        public static Clipboard Clipboard = null;
+        public static Control CurrentCut = null;
     }
 }

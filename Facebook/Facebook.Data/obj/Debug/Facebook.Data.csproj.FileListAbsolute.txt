@@ -27,3 +27,6 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desk
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Add_M_MQ_Entity.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Update_MQ_Entity.resources
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Add_MessageSetting_Entity.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Add_Folder_Entity.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Update_Folder_Entity.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook.Data\obj\Debug\Facebook.Data.Migrations.Update_Folder_Entity1.resources

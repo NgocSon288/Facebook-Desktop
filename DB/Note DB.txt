@@ -1,3 +1,7 @@
+Like: ThumbsUp
+EllipsisH: dầu 3 gách ngang
+gim: Paperclip
+
 UPDATE Users
 SET Friend = NULL, RequestedFriend = NULL, BlockedFriend =  NULL, ByBlockedFriend =NULL
 
@@ -612,22 +616,89 @@ AngleUp		lên: khi đã xổ ra
 - FolderParentID: int
 - FolderChildren: string (danh sách các id cách nhau CS511)
 - Files: string (danh sách file name)
+- ShareList: string (danh sách id user được share)
+- IsPublic: bool true là bạn bè
 
 -------------------------------------------------------
-
-
--------------------------------------------------------
-
-
--------------------------------------------------------
-
-
--------------------------------------------------------
+- kéo vào lọc ra các file, các folder riêng
+- files thì truyền vào file để add vào ui
+	+ add file vào folder hiện  tại
+- folder thì truyền vào folder truyền vào
+	+ tạo ra các Folder: đệ quy tạo file folder trong mỗi  folder
 
 
 -------------------------------------------------------
+input: files + folders
+List: chứa các file cần copy
+
+khi so sánh thì  so sánh không random trước
+khi lưu thì thêm random
 
 
+-------------------------------------------------------
+- panel 40,40
+- pic: 26,26
+- Load content = click vào khoảng trắng: 
+	+ new folder	: 20,10  	FolderPlus	
+	+ upload folder	: 70,10		FolderOpen
+	+ upload file	: 120, 10	FileUpload
+	+ paste: nếu có cut, nếu cut 2 lần thì bỏ cái cut lúc đầu: 170,10	Paste
+		
+- click vào folder 1 click
+	+ get link share	Link	
+	+ share			ShareAltSquare
+	+ delete		Times
+	+ download		Download
+	+ rename		Edit		
+	+ change color		Palette
+	+ move			PaperPlane
+	+ paste: nếu có cut	Paste
+	
+- Click vào file 1 click
+	+ get link share	Link
+	+ share			ShareAltSquare
+	+ delete		Times
+	+ download		Download
+	+ rename		Edit 
+	+ move			PaperPlane
+	+ paste
+	
+-------------------------------------------------------
+Chú ý: mỗi loại file có 1 color riêng
+
+-------------------------------------------------------
+class CurrentCut{
+	bool  isFolder;	là cut folder hay file
+	Folder parentFolder	: phải có
+
+	int? folderID: có thể lưu id folder
+
+	string fileName: có thể lưu fileName
+}
+
+Constants.CurrentCut = null
+
+cut file:
+	isFolder = false
+	parentFolder = DriveLinkUC.CurrentFolder
+	folderID = null
+	fileName= fileName (có random: 1021312file1.txt)
+
+cut folder:
+	isFolder = true
+	parentFolder = DriveLinkUC.CurrentFolder
+	folderID = folder mà cut
+	fileName = null
+	
+paste:
+	Constants.CurrentCut = null
+	nếu paste vào folder trùng parent thì cập nhật null và màu sắc folder là xong
+	- khi paste thì folder hay file trùng tên thì thêm (i)
+	- Paste vào folder focus nếu là controls của folder
+	- Paste vào current folder nếu là controls của global
+
+
+=> folder hay file nào được cut thì  đổi màu nhạt
 -------------------------------------------------------
 
 
