@@ -14,6 +14,8 @@ namespace Facebook.DAO
 
         PostStatus GetByID(int id);
 
+        bool InsertRange(List<PostStatus> postStatuses);
+
         bool SaveChanges();
     }
 
@@ -38,6 +40,24 @@ namespace Facebook.DAO
         public PostStatus GetByID(int id)
         {
             return postStatuss.FirstOrDefault(p => p.ID == id);
+        }
+
+        public bool InsertRange(List<PostStatus> postStatuses)
+        {
+            try
+            {
+                foreach (var item in postStatuses)
+                {
+                    _postStatusService.Insert(item);
+                }
+
+                _postStatusService.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool SaveChanges()

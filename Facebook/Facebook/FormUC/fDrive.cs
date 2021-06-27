@@ -354,18 +354,32 @@ namespace Facebook.FormUC
         private void LoadGlobalControls()
         {
             globalUC = new ControlsGlobalUC(AutofacFactory<IFolderDAO>.Get()) { Location = new Point(0, 0), Visible = false };
-            globalUC.OnClickSpace += () =>
-            {
-                DriveFileItemUC.CurrentFileItemUCFocus?.ResetColor();
-                DriveFolderItemUC.CurrentFolderItemUCFocus?.ResetColor();
-
-                LoadControls(CONTROL.GLOBAL);
-            };
+            globalUC.OnClickSpace += GlobalUC_OnClickSpace;
             globalUC.OnCreateNewFolder += GlobalUC_OnCreateNewFolder;
             globalUC.OnUploadFolder += GlobalUC_OnUploadFolder;
             globalUC.OnUploadFile += GlobalUC_OnUploadFile;
+            globalUC.OnPaste += GlobalUC_OnPaste;
 
             pnlControls.Controls.Add(globalUC);
+        }
+
+        /// <summary>
+        /// Paste folder hoặc file vào global
+        /// </summary>
+        private void GlobalUC_OnPaste()
+        {
+            driveContentUC.CreateOrUpdate();
+        }
+
+        /// <summary>
+        /// Click vào space
+        /// </summary>
+        private void GlobalUC_OnClickSpace()
+        {
+            DriveFileItemUC.CurrentFileItemUCFocus?.ResetColor();
+            DriveFolderItemUC.CurrentFolderItemUCFocus?.ResetColor();
+
+            LoadControls(CONTROL.GLOBAL);
         }
 
         /// <summary>
@@ -433,25 +447,62 @@ namespace Facebook.FormUC
         }
 
 
-
-        #endregion Controls Global
+        #endregion
 
         #region Controls Folder
 
         private void LoadFolderControls()
         {
-            folderUC = new ControlsFolderUC() { Location = new Point(0, 0), Visible = false };
-            folderUC.OnClickSpace += () =>
-            {
-                DriveFileItemUC.CurrentFileItemUCFocus?.ResetColor();
-                DriveFolderItemUC.CurrentFolderItemUCFocus?.ResetColor();
+            folderUC = new ControlsFolderUC(AutofacFactory<IFolderDAO>.Get()) { Location = new Point(0, 0), Visible = false };
+            folderUC.OnClickSpace += FolderUC_OnClickSpace;
+            folderUC.OnPaste += FolderUC_OnPaste;
+            folderUC.OnRenameFolder += FolderUC_OnRenameFolder;
+            folderUC.OnDeleteFolder += FolderUC_OnDeleteFolder;
 
-                LoadControls(CONTROL.GLOBAL);
-            };
             pnlControls.Controls.Add(folderUC);
         }
 
-        #endregion Controls Folder
+        private void FolderUC_OnDeleteFolder()
+        {
+            // cập nhật ui
+            driveContentUC.CreateOrUpdate();
+
+            // Load controls
+            LoadControls(CONTROL.GLOBAL);
+        }
+
+        /// <summary>
+        /// Đổi tên folder
+        /// </summary>
+        /// <param name="name"></param>
+        private void FolderUC_OnRenameFolder(string name)
+        {
+            DriveFolderItemUC.CurrentFolderItemUCFocus.folder.Name = name;
+            _folderDAO.SaveChanges();
+
+            DriveFolderItemUC.CurrentFolderItemUCFocus.Rename(name);
+        }
+
+        /// <summary>
+        /// Paste folde file vào folder
+        /// </summary>
+        private void FolderUC_OnPaste()
+        {
+            driveContentUC.PasteFileOrFolder();
+        }
+
+        /// <summary>
+        /// Click vào  space
+        /// </summary>
+        private void FolderUC_OnClickSpace()
+        {
+            DriveFileItemUC.CurrentFileItemUCFocus?.ResetColor();
+            DriveFolderItemUC.CurrentFolderItemUCFocus?.ResetColor();
+
+            LoadControls(CONTROL.GLOBAL);
+        }
+
+        #endregion
 
         #region Controls File
 
@@ -465,11 +516,61 @@ namespace Facebook.FormUC
 
                 LoadControls(CONTROL.GLOBAL);
             };
+            fileUC.OnUpdateFileName += FileUC_OnUpdateFileName;
+            fileUC.OnDeleteFile += FileUC_OnDeleteFile;
+            fileUC.OnChangeColorExtension += FileUC_OnChangeColorExtension;
 
             pnlControls.Controls.Add(fileUC);
         }
 
-        #endregion Controls File
+        /// <summary>
+        /// Đổi màu đại trà file
+        /// </summary>
+        private void FileUC_OnChangeColorExtension()
+        {
+            driveContentUC.ChangeColorExtension();
+        }
+
+        private void FileUC_OnDeleteFile()
+        {
+            // vì trong kia chưa save
+            _folderDAO.SaveChanges();
+
+            // cập nhật ui
+            driveContentUC.CreateOrUpdate();
+
+            // Load controls
+            LoadControls(CONTROL.GLOBAL);
+        }
+
+        /// <summary>
+        /// Đổi tên file
+        /// </summary>
+        /// <param name="fileName"></param>
+        private void FileUC_OnUpdateFileName(string fileName)
+        {
+            var oldName = DriveFileItemUC.CurrentFileItemUCFocus.fileName;
+            var rand = oldName.Substring(0, 9);
+            var ext = oldName.Substring(oldName.IndexOf("."));
+            fileName = rand + fileName + ext;
+
+            DriveFileItemUC.CurrentFileItemUCFocus.fileName = fileName;
+            DriveFileItemUC.CurrentFileItemUCFocus.RenameFile();
+
+            // thay đổi tên file trong folder global
+            var fileNames = StringHelper.StringToStringList(DriveLinkUC.CurrentFolder.Files);
+
+            fileNames.Remove(oldName);
+            fileNames.Add(fileName);
+
+            DriveLinkUC.CurrentFolder.Files = StringHelper.StringListToString(fileNames);
+
+            _folderDAO.SaveChanges();
+
+            File.Move($"./../../Assets/Files/Drive/{oldName}", $"./../../Assets/Files/Drive/{fileName}");
+        }
+
+        #endregion
 
         #region SetUpUI
 
@@ -547,6 +648,7 @@ namespace Facebook.FormUC
 
         private void pnlContent_DragEnter(object sender, DragEventArgs e)
         {
+            driveContentUC.DragEnter();
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
             {
                 e.Effect = DragDropEffects.All;

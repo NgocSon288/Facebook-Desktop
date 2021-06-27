@@ -44,7 +44,7 @@ namespace Facebook.Components.Messenger
             this.pnlHead.Location = new System.Drawing.Point(1, 1);
             this.pnlHead.Margin = new System.Windows.Forms.Padding(0);
             this.pnlHead.Name = "pnlHead";
-            this.pnlHead.Size = new System.Drawing.Size(289, 75);
+            this.pnlHead.Size = new System.Drawing.Size(385, 75);
             this.pnlHead.TabIndex = 0;
             // 
             // label1
@@ -64,7 +64,7 @@ namespace Facebook.Components.Messenger
             this.pnlWrap.Location = new System.Drawing.Point(1, 77);
             this.pnlWrap.Margin = new System.Windows.Forms.Padding(0);
             this.pnlWrap.Name = "pnlWrap";
-            this.pnlWrap.Size = new System.Drawing.Size(289, 425);
+            this.pnlWrap.Size = new System.Drawing.Size(385, 510);
             this.pnlWrap.TabIndex = 1;
             // 
             // btnSave
@@ -73,7 +73,7 @@ namespace Facebook.Components.Messenger
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(231, 383);
+            this.btnSave.Location = new System.Drawing.Point(315, 474);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(47, 31);
             this.btnSave.TabIndex = 1;
@@ -86,14 +86,14 @@ namespace Facebook.Components.Messenger
             this.flpContent.Location = new System.Drawing.Point(0, 0);
             this.flpContent.Margin = new System.Windows.Forms.Padding(0);
             this.flpContent.Name = "flpContent";
-            this.flpContent.Size = new System.Drawing.Size(289, 374);
+            this.flpContent.Size = new System.Drawing.Size(385, 465);
             this.flpContent.TabIndex = 0;
             // 
             // fShareBoxThemeColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(291, 503);
+            this.ClientSize = new System.Drawing.Size(388, 589);
             this.Controls.Add(this.pnlWrap);
             this.Controls.Add(this.pnlHead);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

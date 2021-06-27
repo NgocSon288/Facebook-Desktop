@@ -150,6 +150,60 @@
     <Compile Include="Components\Drive\DriveLinkUC.Designer.cs">
       <DependentUpon>DriveLinkUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\ColorItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\ColorItemUC.Designer.cs">
+      <DependentUpon>ColorItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\ColorListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\ColorListUC.Designer.cs">
+      <DependentUpon>ColorListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\fFileColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\fFileColor.Designer.cs">
+      <DependentUpon>fFileColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\FileItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\FileItemUC.Designer.cs">
+      <DependentUpon>FileItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\FileListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Files\ChangeColor\FileListUC.Designer.cs">
+      <DependentUpon>FileListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Files\Rename\fRenameFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Files\Rename\fRenameFile.Designer.cs">
+      <DependentUpon>fRenameFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\ChangeColor\fFolderColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\ChangeColor\fFolderColor.Designer.cs">
+      <DependentUpon>fFolderColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\ChangeColor\FolderColorItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\ChangeColor\FolderColorItemUC.Designer.cs">
+      <DependentUpon>FolderColorItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Rename\fRenameFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Rename\fRenameFolder.Designer.cs">
+      <DependentUpon>fRenameFolder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Drive\Global\NewFolder\fNewFolder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -494,6 +548,7 @@
       <DependentUpon>fParentClickHidden.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\CommentDAO.cs" />
+    <Compile Include="DAO\FileColorDAO.cs" />
     <Compile Include="DAO\FolderDAO.cs" />
     <Compile Include="DAO\MessageDAO.cs" />
     <Compile Include="DAO\MessageQueueDAO.cs" />
@@ -629,6 +684,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\StartSetup.cs" />
     <EmbeddedResource Include="Components\Drive\ControlsFileUC.resx">
       <DependentUpon>ControlsFileUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -664,6 +720,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Drive\DriveLinkUC.resx">
       <DependentUpon>DriveLinkUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Files\ChangeColor\ColorListUC.resx">
+      <DependentUpon>ColorListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Files\ChangeColor\fFileColor.resx">
+      <DependentUpon>fFileColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Files\ChangeColor\FileItemUC.resx">
+      <DependentUpon>FileItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Files\ChangeColor\FileListUC.resx">
+      <DependentUpon>FileListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Files\Rename\fRenameFile.resx">
+      <DependentUpon>fRenameFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Folders\ChangeColor\fFolderColor.resx">
+      <DependentUpon>fFolderColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Folders\Rename\fRenameFolder.resx">
+      <DependentUpon>fRenameFolder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\Drive\Global\NewFolder\fNewFolder.resx">
       <DependentUpon>fNewFolder.cs</DependentUpon>

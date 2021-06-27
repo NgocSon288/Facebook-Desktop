@@ -38,7 +38,7 @@ namespace Facebook.Components.Drive
             this.flpContent.Location = new System.Drawing.Point(0, 0);
             this.flpContent.Margin = new System.Windows.Forms.Padding(0);
             this.flpContent.Name = "flpContent";
-            this.flpContent.Size = new System.Drawing.Size(992, 366);
+            this.flpContent.Size = new System.Drawing.Size(988, 366);
             this.flpContent.TabIndex = 0;
             this.flpContent.Click += new System.EventHandler(this.flpContent_Click);
             // 
@@ -49,7 +49,7 @@ namespace Facebook.Components.Drive
             this.Controls.Add(this.flpContent);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DriveFileUC";
-            this.Size = new System.Drawing.Size(992, 366);
+            this.Size = new System.Drawing.Size(988, 366);
             this.ResumeLayout(false);
 
         }

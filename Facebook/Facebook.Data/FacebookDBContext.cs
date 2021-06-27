@@ -12,6 +12,7 @@ namespace Facebook.Data
 
         public DbSet<CommentFeedback> CommentFeedbacks { set; get; }
         public DbSet<Comment> Comments { set; get; }
+        public DbSet<FileColor> FileColors { set; get; }
         public DbSet<Folder> Folders { set; get; }
         public DbSet<MessageQueue> MessageQueues { set; get; }
         public DbSet<Message> Messages { set; get; }

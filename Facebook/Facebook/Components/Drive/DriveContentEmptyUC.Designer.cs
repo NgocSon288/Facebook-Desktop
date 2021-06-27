@@ -82,7 +82,7 @@ namespace Facebook.Components.Drive
             this.Controls.Add(this.pnlWrap);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "DriveContentEmptyUC";
-            this.Size = new System.Drawing.Size(992, 700);
+            this.Size = new System.Drawing.Size(992, 649);
             this.pnlWrap.ResumeLayout(false);
             this.pnlWrap.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).EndInit();

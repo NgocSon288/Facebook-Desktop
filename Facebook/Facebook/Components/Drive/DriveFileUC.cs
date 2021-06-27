@@ -1,4 +1,5 @@
 ﻿using Facebook.Common;
+using Facebook.Configure.Autofac;
 using Facebook.DAO;
 using Facebook.Helper;
 using System;
@@ -44,7 +45,7 @@ namespace Facebook.Components.Drive
 
             foreach (var item in files)
             {
-                var itemUC = new DriveFileItemUC(item);
+                var itemUC = new DriveFileItemUC(AutofacFactory<IFileColorDAO>.Get(), item);
                 itemUC.OnOneClick += () => OnOneClick?.Invoke(item);
 
                 flpContent.Controls.Add(itemUC);
@@ -59,6 +60,7 @@ namespace Facebook.Components.Drive
         {
             var fis = StringHelper.StringToStringList(DriveLinkUC.CurrentFolder.Files); // danh sách các tên file(có random) bao gồm cũ và mới
             var fisNew = new List<string>();
+            var fisDel = new List<string>();
             // tìm ra danh sách các file mới
             foreach (var item in fis)
             {
@@ -68,18 +70,40 @@ namespace Facebook.Components.Drive
                 }
             }
 
+            foreach (var item in files)
+            {
+                if (!fis.Contains(item))
+                {
+                    fisDel.Add(item);
+                }
+            }
+
             // Cập nhật Ram
             files.AddRange(fisNew);
+
+            // Xóa các file cũ
+            foreach (var item in fisDel)
+            {
+                files.Remove(item);
+            }
 
             // Cập nhật UI với các file mới
             foreach (var item in fisNew)
             {
-                var itemUC = new DriveFileItemUC(item);
+                var itemUC = new DriveFileItemUC(AutofacFactory<IFileColorDAO>.Get(), item);
                 itemUC.OnOneClick += () => OnOneClick?.Invoke(item);
 
                 flpContent.Controls.Add(itemUC);
             }
 
+            // Xóa ui với các file bị xóa
+            foreach (DriveFileItemUC item in flpContent.Controls)
+            {
+                if (fisDel.Contains(item.fileName))
+                {
+                    flpContent.Controls.Remove(item);
+                }
+            }
 
             UpdateHeight();
             OnHeightChanged?.Invoke();
@@ -102,6 +126,14 @@ namespace Facebook.Components.Drive
             }
         }
 
+        public void ChangeColorExtension()
+        {
+            foreach (DriveFileItemUC item in flpContent.Controls)
+            {
+                item.SetColorAfterChangeColor();
+            }
+        }
+
         public void DragEnter()
         {
             flpContent.BackColor = this.BackColor = Constants.FOLDER_BACKGROUND_DRAG_ENTER_COLOR;
@@ -115,6 +147,16 @@ namespace Facebook.Components.Drive
         private void flpContent_Click(object sender, EventArgs e)
         {
             OnClickSpace?.Invoke();
+        }
+
+        public void RemoveItem(DriveFileItemUC item)
+        {
+            // Xóa ram
+            files.Remove(item.fileName);
+
+            // Xóa ui
+            flpContent.Controls.Remove(item);
+            UpdateHeight();
         }
 
         #endregion

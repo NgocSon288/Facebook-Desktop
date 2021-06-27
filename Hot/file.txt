@@ -1,0 +1,10 @@
+-- Rename file
+
+File.Move("./../../Assets/Files/Drive/123.jpg", "./../../Assets/Files/Drive/118588376drive_empty (4).jpg");
+
+-- chọn folder path
+var dialog = new FolderBrowserDialog();
+if (dialog.ShowDialog() == DialogResult.OK)
+{
+	string folderName = dialog.SelectedPath;
+}

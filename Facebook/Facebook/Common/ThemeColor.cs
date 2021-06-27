@@ -24,11 +24,26 @@ namespace Facebook.Common
             new ThemeColorItem("tao", Color.FromArgb(170, 50,50)),
             new ThemeColorItem("daiduong", Color.FromArgb(54, 83, 232)),
             new ThemeColorItem("camchanh", Color.FromArgb(0,223,187)),
-            new ThemeColorItem("timoaihuong", Color.FromArgb(174,160,255))
+            new ThemeColorItem("timoaihuong", Color.FromArgb(174,160,255)),
+
+            new ThemeColorItem("keongot", Color.FromArgb(0,229,255)),
+            new ThemeColorItem("matong", Color.FromArgb(250,175,0)),
+            new ThemeColorItem("quamong", Color.FromArgb(255,46,25)),
+            new ThemeColorItem("xucthanh", Color.FromArgb(249,0,90)),
+
+            new ThemeColorItem("sushi", Color.FromArgb(247,178,103)),
+            new ThemeColorItem("tinitan", Color.FromArgb(224,129,215)),
+            new ThemeColorItem("tuhao", Color.FromArgb(255,75,9)),
+            new ThemeColorItem("gophong", Color.FromArgb(217,169,0))
         };
 
         public static ThemeColorItem GetThemeByName(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                return Themes[0];
+            }
+
             return Themes.FirstOrDefault(t => string.Equals(t.Name, name, StringComparison.OrdinalIgnoreCase));
         }
     }

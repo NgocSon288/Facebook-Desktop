@@ -43,11 +43,11 @@ namespace Facebook.Components.Drive
             this.picIcon.IconChar = FontAwesome.Sharp.IconChar.CompressArrowsAlt;
             this.picIcon.IconColor = System.Drawing.SystemColors.ControlText;
             this.picIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.picIcon.IconSize = 26;
-            this.picIcon.Location = new System.Drawing.Point(7, 7);
+            this.picIcon.IconSize = 20;
+            this.picIcon.Location = new System.Drawing.Point(10, 10);
             this.picIcon.Margin = new System.Windows.Forms.Padding(0);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(26, 26);
+            this.picIcon.Size = new System.Drawing.Size(20, 20);
             this.picIcon.TabIndex = 0;
             this.picIcon.TabStop = false;
             this.picIcon.Click += new System.EventHandler(this.picIcon_Click);

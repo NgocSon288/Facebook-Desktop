@@ -125,6 +125,7 @@ namespace Facebook.Components.Drive.Global.NewFolder
             this.Name = "fNewFolder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fNewFolder";
+            this.TopMost = true;
             this.pnlWrap.ResumeLayout(false);
             this.pnlWrap.PerformLayout();
             this.ResumeLayout(false);

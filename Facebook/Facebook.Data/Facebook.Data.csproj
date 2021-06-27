@@ -113,8 +113,21 @@
     <Compile Include="Migrations\202106230845055_Update_Folder_Entity1.designer.cs">
       <DependentUpon>202106230845055_Update_Folder_Entity1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106261320286_Update_Folder_Entity2.cs" />
+    <Compile Include="Migrations\202106261320286_Update_Folder_Entity2.designer.cs">
+      <DependentUpon>202106261320286_Update_Folder_Entity2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106270652194_Add_FileColor_Entity.cs" />
+    <Compile Include="Migrations\202106270652194_Add_FileColor_Entity.designer.cs">
+      <DependentUpon>202106270652194_Add_FileColor_Entity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106270813251_Update_FileColor_Entity.cs" />
+    <Compile Include="Migrations\202106270813251_Update_FileColor_Entity.designer.cs">
+      <DependentUpon>202106270813251_Update_FileColor_Entity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\FileColorRepository.cs" />
     <Compile Include="Repositories\FolderRepository.cs" />
     <Compile Include="Repositories\MessageQueueRepository.cs" />
     <Compile Include="Repositories\MessageRepository.cs" />
@@ -162,6 +175,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106230845055_Update_Folder_Entity1.resx">
       <DependentUpon>202106230845055_Update_Folder_Entity1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106261320286_Update_Folder_Entity2.resx">
+      <DependentUpon>202106261320286_Update_Folder_Entity2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106270652194_Add_FileColor_Entity.resx">
+      <DependentUpon>202106270652194_Add_FileColor_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106270813251_Update_FileColor_Entity.resx">
+      <DependentUpon>202106270813251_Update_FileColor_Entity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

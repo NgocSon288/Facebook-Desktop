@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Abstract\Auditable.cs" />
     <Compile Include="Abstract\IAuditable.cs" />
+    <Compile Include="Models\FileColor.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentFeedback.cs" />
     <Compile Include="Models\Folder.cs" />

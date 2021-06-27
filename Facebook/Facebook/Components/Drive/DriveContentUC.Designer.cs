@@ -30,23 +30,23 @@ namespace Facebook.Components.Drive
         private void InitializeComponent()
         {
             this.flpContent = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlFolders = new System.Windows.Forms.Panel();
-            this.lblFolders = new System.Windows.Forms.Label();
+            this.pnlWrap = new System.Windows.Forms.Panel();
+            this.pnlEmpty = new System.Windows.Forms.Panel();
             this.pnlFiles = new System.Windows.Forms.Panel();
             this.lblFiles = new System.Windows.Forms.Label();
-            this.pnlEmpty = new System.Windows.Forms.Panel();
+            this.pnlFolders = new System.Windows.Forms.Panel();
+            this.lblFolders = new System.Windows.Forms.Label();
             this.flpContent.SuspendLayout();
-            this.pnlFolders.SuspendLayout();
+            this.pnlWrap.SuspendLayout();
             this.pnlFiles.SuspendLayout();
+            this.pnlFolders.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpContent
             // 
             this.flpContent.AutoScroll = true;
             this.flpContent.AutoSize = true;
-            this.flpContent.Controls.Add(this.pnlFolders);
-            this.flpContent.Controls.Add(this.pnlFiles);
-            this.flpContent.Controls.Add(this.pnlEmpty);
+            this.flpContent.Controls.Add(this.pnlWrap);
             this.flpContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpContent.Location = new System.Drawing.Point(0, 0);
             this.flpContent.Margin = new System.Windows.Forms.Padding(0);
@@ -55,36 +55,36 @@ namespace Facebook.Components.Drive
             this.flpContent.TabIndex = 0;
             this.flpContent.Click += new System.EventHandler(this.flpContent_Click);
             // 
-            // pnlFolders
+            // pnlWrap
             // 
-            this.pnlFolders.BackColor = System.Drawing.Color.Gainsboro;
-            this.pnlFolders.Controls.Add(this.lblFolders);
-            this.pnlFolders.Location = new System.Drawing.Point(0, 0);
-            this.pnlFolders.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlFolders.Name = "pnlFolders";
-            this.pnlFolders.Size = new System.Drawing.Size(992, 187);
-            this.pnlFolders.TabIndex = 0;
-            this.pnlFolders.Click += new System.EventHandler(this.flpContent_Click);
+            this.pnlWrap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            this.pnlWrap.Controls.Add(this.pnlEmpty);
+            this.pnlWrap.Controls.Add(this.pnlFiles);
+            this.pnlWrap.Controls.Add(this.pnlFolders);
+            this.pnlWrap.Location = new System.Drawing.Point(0, 0);
+            this.pnlWrap.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlWrap.Name = "pnlWrap";
+            this.pnlWrap.Size = new System.Drawing.Size(992, 433);
+            this.pnlWrap.TabIndex = 3;
             // 
-            // lblFolders
+            // pnlEmpty
             // 
-            this.lblFolders.AutoSize = true;
-            this.lblFolders.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFolders.Location = new System.Drawing.Point(5, 6);
-            this.lblFolders.Name = "lblFolders";
-            this.lblFolders.Size = new System.Drawing.Size(94, 24);
-            this.lblFolders.TabIndex = 1;
-            this.lblFolders.Text = "Folders";
-            this.lblFolders.Click += new System.EventHandler(this.flpContent_Click);
+            this.pnlEmpty.BackColor = System.Drawing.Color.Gainsboro;
+            this.pnlEmpty.Location = new System.Drawing.Point(2, 202);
+            this.pnlEmpty.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlEmpty.Name = "pnlEmpty";
+            this.pnlEmpty.Size = new System.Drawing.Size(988, 94);
+            this.pnlEmpty.TabIndex = 2;
+            this.pnlEmpty.Click += new System.EventHandler(this.flpContent_Click);
             // 
             // pnlFiles
             // 
             this.pnlFiles.BackColor = System.Drawing.Color.Gainsboro;
             this.pnlFiles.Controls.Add(this.lblFiles);
-            this.pnlFiles.Location = new System.Drawing.Point(0, 187);
+            this.pnlFiles.Location = new System.Drawing.Point(2, 91);
             this.pnlFiles.Margin = new System.Windows.Forms.Padding(0);
             this.pnlFiles.Name = "pnlFiles";
-            this.pnlFiles.Size = new System.Drawing.Size(992, 204);
+            this.pnlFiles.Size = new System.Drawing.Size(988, 111);
             this.pnlFiles.TabIndex = 1;
             this.pnlFiles.Click += new System.EventHandler(this.flpContent_Click);
             // 
@@ -99,15 +99,27 @@ namespace Facebook.Components.Drive
             this.lblFiles.Text = "Files";
             this.lblFiles.Click += new System.EventHandler(this.flpContent_Click);
             // 
-            // pnlEmpty
+            // pnlFolders
             // 
-            this.pnlEmpty.BackColor = System.Drawing.Color.Gainsboro;
-            this.pnlEmpty.Location = new System.Drawing.Point(0, 391);
-            this.pnlEmpty.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlEmpty.Name = "pnlEmpty";
-            this.pnlEmpty.Size = new System.Drawing.Size(992, 204);
-            this.pnlEmpty.TabIndex = 2;
-            this.pnlEmpty.Click += new System.EventHandler(this.flpContent_Click);
+            this.pnlFolders.BackColor = System.Drawing.Color.Gainsboro;
+            this.pnlFolders.Controls.Add(this.lblFolders);
+            this.pnlFolders.Location = new System.Drawing.Point(2, 2);
+            this.pnlFolders.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlFolders.Name = "pnlFolders";
+            this.pnlFolders.Size = new System.Drawing.Size(988, 89);
+            this.pnlFolders.TabIndex = 0;
+            this.pnlFolders.Click += new System.EventHandler(this.flpContent_Click);
+            // 
+            // lblFolders
+            // 
+            this.lblFolders.AutoSize = true;
+            this.lblFolders.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFolders.Location = new System.Drawing.Point(5, 6);
+            this.lblFolders.Name = "lblFolders";
+            this.lblFolders.Size = new System.Drawing.Size(94, 24);
+            this.lblFolders.TabIndex = 1;
+            this.lblFolders.Text = "Folders";
+            this.lblFolders.Click += new System.EventHandler(this.flpContent_Click);
             // 
             // DriveContentUC
             // 
@@ -118,10 +130,11 @@ namespace Facebook.Components.Drive
             this.Name = "DriveContentUC";
             this.Size = new System.Drawing.Size(1009, 651);
             this.flpContent.ResumeLayout(false);
-            this.pnlFolders.ResumeLayout(false);
-            this.pnlFolders.PerformLayout();
+            this.pnlWrap.ResumeLayout(false);
             this.pnlFiles.ResumeLayout(false);
             this.pnlFiles.PerformLayout();
+            this.pnlFolders.ResumeLayout(false);
+            this.pnlFolders.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,5 +148,6 @@ namespace Facebook.Components.Drive
         private System.Windows.Forms.Label lblFiles;
         private System.Windows.Forms.Label lblFolders;
         private System.Windows.Forms.Panel pnlEmpty;
+        private System.Windows.Forms.Panel pnlWrap;
     }
 }

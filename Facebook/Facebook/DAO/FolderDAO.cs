@@ -17,6 +17,8 @@ namespace Facebook.DAO
 
         Folder GetByUserID(int userID);
 
+        bool DeleteRange(List<Folder> folders);
+
         bool Create(Folder folder);
 
         bool SaveChanges();
@@ -40,6 +42,25 @@ namespace Facebook.DAO
 
                 // save db
                 SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteRange(List<Folder> folders)
+        {
+            try
+            {
+                foreach (var item in folders)
+                {
+                    _folderService.Delete(item);
+                }
+
+                _folderService.SaveChanges();
 
                 return true;
             }

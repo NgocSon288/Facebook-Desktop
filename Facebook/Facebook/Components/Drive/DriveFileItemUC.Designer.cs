@@ -42,7 +42,7 @@ namespace Facebook.Components.Drive
             // 
             this.picIcon.BackColor = System.Drawing.SystemColors.Control;
             this.picIcon.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.picIcon.IconChar = FontAwesome.Sharp.IconChar.FileAlt;
+            this.picIcon.IconChar = FontAwesome.Sharp.IconChar.FilePrescription;
             this.picIcon.IconColor = System.Drawing.SystemColors.ControlText;
             this.picIcon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.picIcon.IconSize = 24;

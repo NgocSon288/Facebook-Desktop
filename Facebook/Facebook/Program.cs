@@ -7,6 +7,7 @@ using Facebook.Data.Infrastructure;
 using Facebook.Data.Repositories;
 using Facebook.FormUC;
 using Facebook.Service.Service;
+using Facebook.Setup;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,11 @@ namespace Facebook
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
+                // Config DI
                 Container = AutofacConfig.Configure();
+
+                // Setup data
+                new StartSetup().SetUp(AutofacFactory<IPostStatusDAO>.Get(), AutofacFactory<IFileColorDAO>.Get());
 
                 Application.Run(new fMain());
             }

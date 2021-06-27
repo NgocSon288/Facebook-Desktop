@@ -58,6 +58,7 @@ namespace Facebook.Components.Drive
 
             LoadFolder();
             LoadFile();
+            UpdateHeight();
         }
 
         private void LoadFolder()
@@ -74,6 +75,8 @@ namespace Facebook.Components.Drive
 
             pnlFolders.Controls.Add(driveFolderUC);
             pnlFolders.Height = lblFolders.Height + driveFolderUC.Height + margin;
+
+            UpdateHeight();
         }
 
         private void LoadFile()
@@ -89,6 +92,8 @@ namespace Facebook.Components.Drive
 
             pnlFiles.Controls.Add(driveFileUC);
             pnlFiles.Height = lblFiles.Height + driveFileUC.Height + margin;
+
+            UpdateHeight();
         }
 
         private void CheckEmpty()
@@ -106,25 +111,103 @@ namespace Facebook.Components.Drive
             driveFolderUC.CreateOrUpdate();
             driveFileUC.CreateOrUpdate();
 
+            UpdateHeight();
         }
 
+        public void ChangeColorExtension()
+        {
+            driveFileUC.ChangeColorExtension();
+        }
+
+        public void PasteFileOrFolder()
+        {
+            // xóa ra khỏi list
+            var itemUC1 = Constants.CurrentCut as DriveFolderItemUC;
+            var itemUC2 = Constants.CurrentCut as DriveFileItemUC;
+
+            if (itemUC1 != null)
+            {
+                driveFolderUC.RemoveItem(itemUC1);
+                pnlFolders.Height = lblFolders.Height + driveFolderUC.Height + margin;
+            }
+
+            if (itemUC2 != null)
+            {
+                driveFileUC.RemoveItem(itemUC2);
+                pnlFiles.Height = lblFiles.Height + driveFileUC.Height + margin;
+            }
+
+            UpdateHeight();
+        }
+
+        private void UpdateHeight()
+        {
+            var mar = 2;
+            var height = (pnlEmpty.Visible ? pnlEmpty.Height : 0) + (pnlFiles.Visible ? pnlFiles.Height : 0) + (pnlFolders.Visible ? pnlFolders.Height : 0) + mar * 2;
+
+            var minHeight = 1252;
+            pnlWrap.Height = height < minHeight ? minHeight : height;
+
+            if (!pnlEmpty.Visible)
+            {
+                if (pnlFolders.Visible)
+                {
+                    pnlFolders.Top = mar;
+                }
+                else
+                {
+                    pnlFolders.Height = 0;
+                }
+
+                if (pnlFiles.Visible)
+                {
+                    pnlFiles.Top = pnlFolders.Bottom;
+                }
+            }
+            else
+            {
+                pnlEmpty.Top = mar;
+            }
+
+            if (height < 1252)
+            {
+                if (pnlFiles.Visible && pnlFolders.Visible)
+                {
+                    // cho file height dài ra 
+                    var heightSub = pnlWrap.Height - pnlFiles.Bottom;
+                    pnlFiles.Height = pnlFiles.Height + heightSub - mar;
+                }
+                else if (pnlFiles.Visible)
+                {
+                    // cho file height dài ra 
+                    var heightSub = pnlWrap.Height - pnlFiles.Bottom;
+                    pnlFiles.Height = pnlFiles.Height + heightSub - mar;
+                }
+                else
+                {
+                    // cho folder dai ra 
+                    var heightSub = pnlWrap.Height - pnlFolders.Bottom;
+                    pnlFolders.Height = pnlFolders.Height + heightSub - mar;
+                }
+            }
+        }
 
         public void DragEnter()
         {
             lblFiles.BackColor = lblFolders.BackColor = pnlEmpty.BackColor = pnlFiles.BackColor = pnlFolders.BackColor = this.BackColor = Constants.FOLDER_BACKGROUND_DRAG_ENTER_COLOR;
-            //lblFiles.ForeColor = lblFolders.ForeColor = Constants.MAIN_BACK_COLOR;
             driveFolderUC.DragEnter();
             driveFileUC.DragEnter();
             driveContentEmptyUC.DragEnter();
+            pnlWrap.BackColor = Constants.FOLDER_BORDER_DRAG_ENTER_COLOR;
         }
 
         public void DragLeave()
         {
             lblFiles.BackColor = lblFolders.BackColor = pnlEmpty.BackColor = pnlFiles.BackColor = pnlFolders.BackColor = this.BackColor = Constants.MAIN_BACK_COLOR;
-            //lblFiles.ForeColor = lblFolders.ForeColor = Constants.MAIN_FORE_COLOR;
             driveFolderUC.DragLeave();
             driveFileUC.DragLeave();
             driveContentEmptyUC.DragLeave();
+            pnlWrap.BackColor = Constants.MAIN_BACK_COLOR;
         }
 
         private void flpContent_Click(object sender, EventArgs e)
@@ -132,6 +215,6 @@ namespace Facebook.Components.Drive
             OnClickSpace?.Invoke();
         }
 
-        #endregion
+        #endregion 
     }
 }

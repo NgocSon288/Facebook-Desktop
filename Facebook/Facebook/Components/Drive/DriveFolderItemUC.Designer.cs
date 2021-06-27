@@ -71,6 +71,7 @@ namespace Facebook.Components.Drive
             // 
             // pnlWrap
             // 
+            this.pnlWrap.AllowDrop = true;
             this.pnlWrap.Controls.Add(this.lblName);
             this.pnlWrap.Controls.Add(this.picIcon);
             this.pnlWrap.Location = new System.Drawing.Point(3, 3);
@@ -78,6 +79,9 @@ namespace Facebook.Components.Drive
             this.pnlWrap.Size = new System.Drawing.Size(224, 44);
             this.pnlWrap.TabIndex = 2;
             this.pnlWrap.Click += new System.EventHandler(this.lblName_Click);
+            this.pnlWrap.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlWrap_DragDrop);
+            this.pnlWrap.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlWrap_DragEnter);
+            this.pnlWrap.DragLeave += new System.EventHandler(this.pnlWrap_DragLeave);
             this.pnlWrap.DoubleClick += new System.EventHandler(this.picIcon_DoubleClick);
             this.pnlWrap.MouseEnter += new System.EventHandler(this.lblName_MouseEnter);
             this.pnlWrap.MouseLeave += new System.EventHandler(this.DriveFileItemUC_MouseLeave);

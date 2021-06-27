@@ -62,6 +62,8 @@ namespace Facebook.Components.Drive
         {
             var fds = _folderDAO.GetByListID(StringHelper.StringToIntList(DriveLinkUC.CurrentFolder.ChildrenID)); // danh sách các Folder bao gồm cũ và mới
             var fdsNew = new List<Folder>();
+            var fdsDel = new List<Folder>();
+
             // tìm ra danh sách các file mới
             foreach (var item in fds)
             {
@@ -71,10 +73,25 @@ namespace Facebook.Components.Drive
                 }
             }
 
+            // tìm ra các folder sẽ xóa
+            foreach (var item in folders)
+            {
+                if (!fds.Contains(item))
+                {
+                    fdsDel.Add(item);
+                }
+            }
+
             // Cập nhật Ram
             folders.AddRange(fdsNew);
 
-            // Cập nhật UI với các file mới
+            // Xóa folder cũ
+            foreach (var item in fdsDel)
+            {
+                folders.Remove(item);
+            }
+
+            // Cập nhật UI với các folder mới
             foreach (var item in fdsNew)
             {
                 var itemUC = new DriveFolderItemUC(item);
@@ -84,6 +101,14 @@ namespace Facebook.Components.Drive
                 flpContent.Controls.Add(itemUC);
             }
 
+            // Xoá các folder cũ
+            foreach (DriveFolderItemUC item in flpContent.Controls)
+            {
+                if (fdsDel.Any(f => f.ID == item.folder.ID))
+                {
+                    flpContent.Controls.Remove(item);
+                }
+            }
 
             UpdateHeight();
             OnHeightChanged?.Invoke();
@@ -119,6 +144,16 @@ namespace Facebook.Components.Drive
         private void flpContent_Click(object sender, EventArgs e)
         {
             OnClickSpace?.Invoke();
+        }
+
+        public void RemoveItem(DriveFolderItemUC item)
+        {
+            // Xóa ram
+            folders.Remove(item.folder);
+
+            // Xóa ui
+            flpContent.Controls.Remove(item);
+            UpdateHeight();
         }
 
         #endregion

@@ -67,6 +67,7 @@ namespace Facebook.Common
         public static readonly Color FOLDER_ITEM_CUTED_FG_COLOR = Color.FromArgb(150, 150, 150);
         public static readonly Color FOLDER_BORDER_ITEM_ENTER_COLOR = Color.FromArgb(126, 214, 223);
         public static readonly Color FOLDER_BACKGROUND_DRAG_ENTER_COLOR = Color.FromArgb(56, 57, 58);
+        public static readonly Color FOLDER_BORDER_DRAG_ENTER_COLOR = Color.FromArgb(104, 109, 224);
 
 
         // Bootstrap Color

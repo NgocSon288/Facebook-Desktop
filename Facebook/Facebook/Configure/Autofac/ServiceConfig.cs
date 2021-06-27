@@ -14,6 +14,7 @@ namespace Facebook.Configure.Autofac
         {
             builder.RegisterType<CommentService>().As<ICommentService>().InstancePerLifetimeScope();
             builder.RegisterType<CommentFeedbackService>().As<ICommentFeedbackService>().InstancePerLifetimeScope();
+            builder.RegisterType<FileColorService>().As<IFileColorService>().InstancePerLifetimeScope();
             builder.RegisterType<FolderService>().As<IFolderService>().InstancePerLifetimeScope();
             builder.RegisterType<MessageService>().As<IMessageService>().InstancePerLifetimeScope();
             builder.RegisterType<MessageQueueService>().As<IMessageQueueService>().InstancePerLifetimeScope();

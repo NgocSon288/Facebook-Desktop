@@ -609,6 +609,18 @@ AngleUp		lên: khi đã xổ ra
 10 - daiduong	54, 83, 232
 11 - camchanh	0,223,187
 12 - timoaihuong	174,160,255
+
+13 - keongot	0,229,255	
+14 - matong	250,175,0
+15 - quamong	255,46,25
+16 - xucthanh 	249,0,90
+
+17 - sushi 	247,178,103
+18 - tinitan	224,129,215
+19 - tuhao	255,75,9
+20 - gophong	217,169,0
+
+
 -------------------------------------------------------
 *** Folder
 - ID
@@ -700,16 +712,53 @@ paste:
 
 => folder hay file nào được cut thì  đổi màu nhạt
 -------------------------------------------------------
+*** paste vào global
+- folder đang được copy có parent trùng currentFolder
+ - chính mình
+- folder đang copy paste vào folder con cháu hoặc 
+- không làm gì
+
+
+- file
+- file đang được copy có parent trùng với currentFolder
+- 
+
+
+*** paste folder vào folder
+- folder đang được copy
+- hoặc folder con cháu của folder được copy
+- hoặc folder cha
+
+- paste file vào folder cha 
+
+- folder khác 
+	cập nhật lại child của parent folder hoặc files trong clipboard	phụ thuộc vào isFolder
+
+	ParentID = id Folder được focus
+ 
+-----------
+- cập nhật parent
+- nếu folder tồn tại thì đổi tên name
+
 
 
 -------------------------------------------------------
+- copy folder
+- cập nhật childID của currentFolder
+- cập nhật childID của ParentFoldrr trong clipboard
+- rename tên folder nếu trùng tên
 
+- copy file
+- cập nhật files của currentFolder
+- cập nhật files của ParentFolder trong clipboard
 
 -------------------------------------------------------
-
+- 1984 1392
 
 -------------------------------------------------------
-
+FileColor:
+extension: vd .docs, .xls
+ColorName: vd timnho, sushi
 
 -------------------------------------------------------
 

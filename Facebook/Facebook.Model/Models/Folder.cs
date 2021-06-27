@@ -26,5 +26,7 @@ namespace Facebook.Model.Models
         public bool IsPublic { get; set; }
 
         public int UserID { get; set; }
+
+        public string ColorName { get; set; }
     }
 }

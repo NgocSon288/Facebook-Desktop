@@ -122,3 +122,10 @@ C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desk
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
 C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Folders.Rename.fRenameFolder.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Files.Rename.fRenameFile.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Folders.ChangeColor.fFolderColor.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Files.ChangeColor.fFileColor.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Files.ChangeColor.FileListUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Files.ChangeColor.FileItemUC.resources
+C:\Desktop\HK2-năm 3\Ngôn ngữ lập trình C# - CS511.L21\Doan\Facebook-Desktop\Facebook\Facebook\obj\Debug\Facebook.Components.Drive.Files.ChangeColor.ColorListUC.resources

@@ -83,6 +83,9 @@ namespace Facebook.Components.Drive
 
         private void pnlWrap_Click(object sender, EventArgs e)
         {
+            pnlWrap.BackColor = Constants.MAIN_BACK_COLOR;
+            UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
+
             OnChangedFolder?.Invoke();
         }
 

@@ -33,12 +33,12 @@ namespace Facebook.FormUC
             this.btnMinimize = new System.Windows.Forms.Button();
             this.pnlWrap = new System.Windows.Forms.Panel();
             this.pnlWrapContent = new System.Windows.Forms.Panel();
+            this.pnlContent = new System.Windows.Forms.Panel();
+            this.pnlSeparator3 = new System.Windows.Forms.Panel();
             this.pnlControls = new System.Windows.Forms.Panel();
             this.pnlSeparator2 = new System.Windows.Forms.Panel();
             this.pnlHead = new System.Windows.Forms.Panel();
             this.pnlSeparator1 = new System.Windows.Forms.Panel();
-            this.pnlSeparator3 = new System.Windows.Forms.Panel();
-            this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlWrap.SuspendLayout();
             this.pnlWrapContent.SuspendLayout();
             this.SuspendLayout();
@@ -113,6 +113,24 @@ namespace Facebook.FormUC
             this.pnlWrapContent.DragOver += new System.Windows.Forms.DragEventHandler(this.pnlContent_DragOver);
             this.pnlWrapContent.DragLeave += new System.EventHandler(this.pnlContent_DragLeave);
             // 
+            // pnlContent
+            // 
+            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlContent.Location = new System.Drawing.Point(0, 62);
+            this.pnlContent.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlContent.Name = "pnlContent";
+            this.pnlContent.Size = new System.Drawing.Size(1000, 649);
+            this.pnlContent.TabIndex = 3;
+            // 
+            // pnlSeparator3
+            // 
+            this.pnlSeparator3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSeparator3.Location = new System.Drawing.Point(0, 60);
+            this.pnlSeparator3.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlSeparator3.Name = "pnlSeparator3";
+            this.pnlSeparator3.Size = new System.Drawing.Size(1000, 2);
+            this.pnlSeparator3.TabIndex = 1;
+            // 
             // pnlControls
             // 
             this.pnlControls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
@@ -150,24 +168,6 @@ namespace Facebook.FormUC
             this.pnlSeparator1.Name = "pnlSeparator1";
             this.pnlSeparator1.Size = new System.Drawing.Size(1000, 3);
             this.pnlSeparator1.TabIndex = 2;
-            // 
-            // pnlSeparator3
-            // 
-            this.pnlSeparator3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSeparator3.Location = new System.Drawing.Point(0, 60);
-            this.pnlSeparator3.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlSeparator3.Name = "pnlSeparator3";
-            this.pnlSeparator3.Size = new System.Drawing.Size(1000, 2);
-            this.pnlSeparator3.TabIndex = 1;
-            // 
-            // pnlContent
-            // 
-            this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 62);
-            this.pnlContent.Margin = new System.Windows.Forms.Padding(0);
-            this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(1000, 649);
-            this.pnlContent.TabIndex = 3;
             // 
             // fDrive
             // 
