@@ -90,7 +90,7 @@ namespace Facebook.Components.Profile
             btnTitle_Click(null, null);
 
             UIHelper.BorderRadius(pnlHeadTitle, Constants.BORDER_RADIUS_SECTION_LIKE);
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void SetColor()

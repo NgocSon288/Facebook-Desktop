@@ -33,7 +33,7 @@ namespace Facebook
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnLogout = new FontAwesome.Sharp.IconButton();
-            this.btnAccount = new FontAwesome.Sharp.IconButton();
+            this.btnDrive = new FontAwesome.Sharp.IconButton();
             this.btnMessenger = new FontAwesome.Sharp.IconButton();
             this.btnFriends = new FontAwesome.Sharp.IconButton();
             this.btnProfile = new FontAwesome.Sharp.IconButton();
@@ -55,7 +55,7 @@ namespace Facebook
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
             this.panelMenu.Controls.Add(this.btnLogout);
-            this.panelMenu.Controls.Add(this.btnAccount);
+            this.panelMenu.Controls.Add(this.btnDrive);
             this.panelMenu.Controls.Add(this.btnMessenger);
             this.panelMenu.Controls.Add(this.btnFriends);
             this.panelMenu.Controls.Add(this.btnProfile);
@@ -92,31 +92,31 @@ namespace Facebook
             this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // btnAccount
+            // btnDrive
             // 
-            this.btnAccount.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAccount.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAccount.FlatAppearance.BorderSize = 0;
-            this.btnAccount.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
-            this.btnAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.btnAccount.ForeColor = System.Drawing.Color.White;
-            this.btnAccount.IconChar = FontAwesome.Sharp.IconChar.EnvelopeOpenText;
-            this.btnAccount.IconColor = System.Drawing.Color.White;
-            this.btnAccount.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccount.Location = new System.Drawing.Point(0, 223);
-            this.btnAccount.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAccount.Name = "btnAccount";
-            this.btnAccount.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
-            this.btnAccount.Size = new System.Drawing.Size(200, 51);
-            this.btnAccount.TabIndex = 4;
-            this.btnAccount.TabStop = false;
-            this.btnAccount.Text = "Drive";
-            this.btnAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccount.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAccount.UseVisualStyleBackColor = false;
-            this.btnAccount.Click += new System.EventHandler(this.btnAccount_Click);
+            this.btnDrive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDrive.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDrive.FlatAppearance.BorderSize = 0;
+            this.btnDrive.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(50)))), ((int)(((byte)(88)))));
+            this.btnDrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDrive.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnDrive.ForeColor = System.Drawing.Color.White;
+            this.btnDrive.IconChar = FontAwesome.Sharp.IconChar.DiceD6;
+            this.btnDrive.IconColor = System.Drawing.Color.White;
+            this.btnDrive.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDrive.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDrive.Location = new System.Drawing.Point(0, 223);
+            this.btnDrive.Margin = new System.Windows.Forms.Padding(0);
+            this.btnDrive.Name = "btnDrive";
+            this.btnDrive.Padding = new System.Windows.Forms.Padding(10, 0, 40, 0);
+            this.btnDrive.Size = new System.Drawing.Size(200, 51);
+            this.btnDrive.TabIndex = 4;
+            this.btnDrive.TabStop = false;
+            this.btnDrive.Text = "Drive";
+            this.btnDrive.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDrive.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDrive.UseVisualStyleBackColor = false;
+            this.btnDrive.Click += new System.EventHandler(this.btnAccount_Click);
             // 
             // btnMessenger
             // 
@@ -127,7 +127,7 @@ namespace Facebook
             this.btnMessenger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMessenger.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnMessenger.ForeColor = System.Drawing.Color.White;
-            this.btnMessenger.IconChar = FontAwesome.Sharp.IconChar.Music;
+            this.btnMessenger.IconChar = FontAwesome.Sharp.IconChar.FacebookMessenger;
             this.btnMessenger.IconColor = System.Drawing.Color.White;
             this.btnMessenger.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMessenger.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,7 +153,7 @@ namespace Facebook
             this.btnFriends.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnFriends.ForeColor = System.Drawing.Color.White;
-            this.btnFriends.IconChar = FontAwesome.Sharp.IconChar.Mosque;
+            this.btnFriends.IconChar = FontAwesome.Sharp.IconChar.Users;
             this.btnFriends.IconColor = System.Drawing.Color.White;
             this.btnFriends.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnFriends.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -179,7 +179,7 @@ namespace Facebook
             this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.btnProfile.ForeColor = System.Drawing.Color.White;
-            this.btnProfile.IconChar = FontAwesome.Sharp.IconChar.NetworkWired;
+            this.btnProfile.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
             this.btnProfile.IconColor = System.Drawing.Color.White;
             this.btnProfile.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -230,7 +230,7 @@ namespace Facebook
 
         public System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.Panel panelMenu;
-        private FontAwesome.Sharp.IconButton btnAccount;
+        private FontAwesome.Sharp.IconButton btnDrive;
         private FontAwesome.Sharp.IconButton btnMessenger;
         private FontAwesome.Sharp.IconButton btnFriends;
         private FontAwesome.Sharp.IconButton btnProfile;

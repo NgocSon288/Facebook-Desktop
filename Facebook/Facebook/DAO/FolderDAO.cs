@@ -15,11 +15,13 @@ namespace Facebook.DAO
 
         Folder GetByID(int id);
 
-        Folder GetByUserID(int userID);
+        Folder GetRootByUserID(int userID, bool isShareRoot = false);
 
         bool DeleteRange(List<Folder> folders);
 
         bool Create(Folder folder);
+
+        bool CreateRange(List<Folder> folders);
 
         bool SaveChanges();
     }
@@ -39,6 +41,27 @@ namespace Facebook.DAO
             {
                 // add db
                 _folderService.Insert(folder);
+
+                // save db
+                SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool CreateRange(List<Folder> folders)
+        {
+            try
+            {
+                // add db
+                foreach (var item in folders)
+                {
+                    _folderService.Insert(item);
+                }
 
                 // save db
                 SaveChanges();
@@ -85,9 +108,9 @@ namespace Facebook.DAO
             return GetAll().Join(listID, f => f.ID, i => i, (f, i) => f).ToList();
         }
 
-        public Folder GetByUserID(int userID)
+        public Folder GetRootByUserID(int userID, bool isShareRoot)
         {
-            var folder = GetAll().FirstOrDefault(f => f.UserID == userID);
+            var folder = GetAll().FirstOrDefault(f => f.UserID == userID && f.ParentID == null && f.IsShareRoot == isShareRoot);
 
             if (folder == null)
             {
@@ -99,7 +122,9 @@ namespace Facebook.DAO
                     Name = Constants.UserSession.Name,
                     IsPublic = false,
                     ParentID = null,
-                    ShareList = ""
+                    ShareList = "",
+                    ColorName = "",
+                    IsShareRoot = false
                 };
 
                 _folderService.Insert(folder);

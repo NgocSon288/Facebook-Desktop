@@ -40,6 +40,8 @@ namespace Facebook.FormUC
         private Random rand = new Random();
         private bool isError = false;
 
+        private Label lbl;
+
         public fDrive(IFolderDAO folderDAO)
         {
             InitializeComponent();
@@ -52,7 +54,7 @@ namespace Facebook.FormUC
 
             this._folderDAO = folderDAO;
 
-            root = _folderDAO.GetByUserID(Constants.UserSession.ID);
+            root = _folderDAO.GetRootByUserID(Constants.UserSession.ID);
 
             SetUpUI();
             Load();
@@ -80,6 +82,7 @@ namespace Facebook.FormUC
 
         private void LoadHead()
         {
+            pnlHead.Controls.Clear();
             // Cần có node root
             driveLinkUC = new DriveLinkUC(new List<Folder>() { root });
             driveLinkUC.OnClickLinkItem += () => LoadContent();
@@ -107,6 +110,45 @@ namespace Facebook.FormUC
 
             pnlHead.Controls.Add(pnl);
 
+            // Load lbl share with me
+            if (lbl == null)
+            {
+                lbl = new Label()
+                {
+                    Text = "Share with me",
+                    Font = new Font("Consolas", 14),
+                    ForeColor = Constants.MAIN_FORE_COLOR,
+                    BackColor = Constants.MAIN_BACK_COLOR,
+                    AutoSize = true,
+                    Cursor = Cursors.Hand
+                };
+
+                lbl.Top = pnlHead.Height / 2 - lbl.Height / 2 - 7;
+                lbl.Left = (pnlHead.Right - pnl.Right) / 2 - lbl.Width / 2 + pnl.Right - 98;
+
+                lbl.Click += (o, s) =>
+                {
+                    lbl.Text = "";
+                    Constants.IsShareRoot = !Constants.IsShareRoot;
+
+                    if (Constants.IsShareRoot)
+                    {
+                        lbl.Text = "My Drive";
+                        root = _folderDAO.GetRootByUserID(Constants.UserSession.ID, true);
+                    }
+                    else
+                    {
+                        lbl.Text = "Share with me";
+                        root = _folderDAO.GetRootByUserID(Constants.UserSession.ID);
+                    }
+
+                    lbl.Left = (pnlHead.Right - pnl.Right) / 2 - lbl.Width / 2 + pnl.Right;
+
+                    Load();
+                };
+            }
+            pnlHead.Controls.Add(lbl);
+
             // Load get code (get code để lấy folder share)
         }
 
@@ -125,18 +167,24 @@ namespace Facebook.FormUC
                     globalUC.Visible = true;
                     folderUC.Visible = false;
                     fileUC.Visible = false;
+
+                    globalUC.LoadOwn();
                     break;
 
                 case CONTROL.FOLDER:
                     globalUC.Visible = false;
                     folderUC.Visible = true;
                     fileUC.Visible = false;
+
+                    folderUC.LoadOwn();
                     break;
 
                 case CONTROL.FILE:
                     globalUC.Visible = false;
                     folderUC.Visible = false;
                     fileUC.Visible = true;
+
+                    fileUC.LoadOwn();
                     break;
             }
         }
@@ -287,7 +335,7 @@ namespace Facebook.FormUC
                         ParentID = parentF.ID,
                         IsPublic = false,
                         ShareList = "",
-                        UserID = parentF.UserID
+                        UserID = Constants.UserSession.ID
                     };
 
                     // save lại,
@@ -347,13 +395,35 @@ namespace Facebook.FormUC
             return fa;
         }
 
-        #endregion Methods
+        /// <summary>
+        /// Kiểm tra nếu là parent share root thì không cho
+        /// </summary>
+        /// <returns></returns>
+        private bool IsDragOk()
+        {
+            var f = DriveLinkUC.CurrentFolder;
+            return f.ParentID != null || !f.IsShareRoot;
+        }
+
+        #endregion 
 
         #region Controls Global
 
         private void LoadGlobalControls()
         {
-            globalUC = new ControlsGlobalUC(AutofacFactory<IFolderDAO>.Get()) { Location = new Point(0, 0), Visible = false };
+            var check = false;
+            foreach (var item in pnlControls.Controls)
+            {
+                if (item is ControlsGlobalUC)
+                {
+                    check = true;
+                }
+            }
+
+            if (check)
+                return;
+
+            globalUC = new ControlsGlobalUC(AutofacFactory<IFolderDAO>.Get(), AutofacFactory<IUserDAO>.Get()) { Location = new Point(0, 0), Visible = false };
             globalUC.OnClickSpace += GlobalUC_OnClickSpace;
             globalUC.OnCreateNewFolder += GlobalUC_OnCreateNewFolder;
             globalUC.OnUploadFolder += GlobalUC_OnUploadFolder;
@@ -434,7 +504,7 @@ namespace Facebook.FormUC
                 IsPublic = false,
                 ParentID = parentF.ID,
                 ShareList = "",
-                UserID = parentF.UserID
+                UserID = Constants.UserSession.ID
             };
 
             _folderDAO.Create(newF);
@@ -453,7 +523,19 @@ namespace Facebook.FormUC
 
         private void LoadFolderControls()
         {
-            folderUC = new ControlsFolderUC(AutofacFactory<IFolderDAO>.Get()) { Location = new Point(0, 0), Visible = false };
+            var check = false;
+            foreach (var item in pnlControls.Controls)
+            {
+                if (item is ControlsFolderUC)
+                {
+                    check = true;
+                }
+            }
+
+            if (check)
+                return;
+
+            folderUC = new ControlsFolderUC(AutofacFactory<IFolderDAO>.Get(), AutofacFactory<IUserDAO>.Get()) { Location = new Point(0, 0), Visible = false };
             folderUC.OnClickSpace += FolderUC_OnClickSpace;
             folderUC.OnPaste += FolderUC_OnPaste;
             folderUC.OnRenameFolder += FolderUC_OnRenameFolder;
@@ -508,7 +590,19 @@ namespace Facebook.FormUC
 
         private void LoadFileControls()
         {
-            fileUC = new ControlsFileUC() { Location = new Point(0, 0), Visible = false };
+            var check = false;
+            foreach (var item in pnlControls.Controls)
+            {
+                if (item is ControlsFileUC)
+                {
+                    check = true;
+                }
+            }
+
+            if (check)
+                return;
+
+            fileUC = new ControlsFileUC(AutofacFactory<IUserDAO>.Get()) { Location = new Point(0, 0), Visible = false };
             fileUC.OnClickSpace += () =>
             {
                 DriveFileItemUC.CurrentFileItemUCFocus?.ResetColor();
@@ -615,6 +709,17 @@ namespace Facebook.FormUC
 
         private void pnlContent_DragDrop(object sender, DragEventArgs e)
         {
+            if (!IsDragOk())
+            {
+                driveContentUC.DragLeave();
+                pnlContent.BackColor = Constants.MAIN_BACK_COLOR;
+                pnlWrapContent.BackColor = Constants.MAIN_BACK_COLOR;
+
+                MyMessageBox.Show("Bạn không thể Upload file hoặc thư mục vào thư mục này!", MessageBoxType.Warning);
+
+                return;
+            }
+
             isError = false;
             filesCopy = new Dictionary<string, string>();
             string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -648,6 +753,7 @@ namespace Facebook.FormUC
 
         private void pnlContent_DragEnter(object sender, DragEventArgs e)
         {
+
             driveContentUC.DragEnter();
             if (e.Data.GetDataPresent(DataFormats.FileDrop, false))
             {

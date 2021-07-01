@@ -37,7 +37,7 @@ namespace Facebook.Components.Profile
             lblTitle.Left = this.Width / 2 - lblTitle.Width / 2;
 
             UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         #endregion 

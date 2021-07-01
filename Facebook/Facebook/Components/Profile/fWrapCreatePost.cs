@@ -238,5 +238,10 @@ namespace Facebook.Components.Profile
         }
 
         #endregion
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblTitle;
+        }
     }
 }

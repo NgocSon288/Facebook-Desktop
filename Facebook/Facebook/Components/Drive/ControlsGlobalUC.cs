@@ -34,17 +34,21 @@ namespace Facebook.Components.Drive
         public event Paste OnPaste;
 
         private readonly IFolderDAO _folderDAO;
+        private readonly IUserDAO _userDAO;
 
         private ControlsItemUC pasteCon;
 
-        public ControlsGlobalUC(IFolderDAO folderDAO)
+        public ControlsGlobalUC(IFolderDAO folderDAO, IUserDAO userDAO)
         {
             InitializeComponent();
 
             this._folderDAO = folderDAO;
+            this._userDAO = userDAO;
 
             Load();
         }
+
+        private Label lblOwnName;
 
         #region Methods
 
@@ -52,7 +56,58 @@ namespace Facebook.Components.Drive
         {
             LoadControls();
 
+            pnlOwn.Controls.Add(GetSeparator());
+            lblOwnName = new Label()
+            {
+                Text = "11111",
+                ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR,
+                BackColor = Constants.MAIN_BACK_COLOR,
+                AutoSize = true,
+                Margin = new Padding(0, 0, 0, 0),
+                Padding = new Padding(0, 0, 0, 0),
+                Font = new Font("Consolas", 14)
+            };
+            lblOwnName.Top = pnlOwn.Height / 2 - lblOwnName.Height / 2 - 7;
+            lblOwnName.Left = pnlOwn.Width / 2 - lblOwnName.Width / 2;
+
+            pnlOwn.Controls.Add(lblOwnName);
+
+
             this.BackColor = Constants.MAIN_BACK_COLOR;
+        }
+
+        private Panel GetSeparator()
+        {
+            return new Panel()
+            {
+                Width = 2,
+                Height = flpControls.Height,
+                BackColor = Constants.BORDER_BOX_COLOR
+            };
+        }
+
+        public void LoadOwn()
+        {
+            lblOwnName.Text = _userDAO.GetByID(DriveLinkUC.CurrentFolder.UserID).Name;
+            lblOwnName.Left = pnlOwn.Width / 2 - lblOwnName.Width / 2;
+        }
+
+        /// <summary>
+        /// Kiểm tra có thể tạo folder mới được không
+        /// true = cho phép
+        /// false = không cho phép
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckCreateShare()
+        {
+            var globalF = DriveLinkUC.CurrentFolder;    // folder global hiện tại
+            // kiểm tra liệu folder đó có là folder parent share root
+            if (globalF.ParentID == null && globalF.IsShareRoot)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void LoadControls()
@@ -61,6 +116,13 @@ namespace Facebook.Components.Drive
             var newCon = new ControlsItemUC(IconChar.FolderPlus, "Tạo mới thư mục");
             newCon.OnClickControl += () =>
             {
+                if (!CheckCreateShare())
+                {
+                    MyMessageBox.Show("Bạn không thể tạo thư mục tại thư mục này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 var fnewFolder = new fNewFolder(AutofacFactory<IFolderDAO>.Get());
                 var fparent = new fParentClickHidden(fnewFolder);
                 var fName = "";
@@ -95,6 +157,13 @@ namespace Facebook.Components.Drive
             var upFolderCon = new ControlsItemUC(IconChar.FolderOpen, "Upload thư mục từ máy tính");
             upFolderCon.OnClickControl += () =>
             {
+                if (!CheckCreateShare())
+                {
+                    MyMessageBox.Show("Bạn không thể upload thư mục tại thư mục này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 CommonOpenFileDialog dialog = new CommonOpenFileDialog();
                 dialog.IsFolderPicker = true;
                 dialog.Multiselect = true;
@@ -136,6 +205,13 @@ namespace Facebook.Components.Drive
             var upFileCon = new ControlsItemUC(IconChar.FileUpload, "Upload file từ máy tính");
             upFileCon.OnClickControl += () =>
             {
+                if (!CheckCreateShare())
+                {
+                    MyMessageBox.Show("Bạn không thể upload file tại thư mục này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 OpenFileDialog dialog = new OpenFileDialog();
                 dialog.Multiselect = true;
                 dialog.Title = "Chọn những file bạn muốn upload";

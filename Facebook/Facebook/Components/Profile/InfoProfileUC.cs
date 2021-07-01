@@ -34,6 +34,7 @@ namespace Facebook.Components.Profile
             this.user = user == null ? Constants.UserSession : user;
 
             Load();
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         #region Methods
@@ -95,7 +96,7 @@ namespace Facebook.Components.Profile
             SetColor();
 
             UIHelper.BorderRadius(pnlContent, Constants.BORDER_RADIUS);
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
 

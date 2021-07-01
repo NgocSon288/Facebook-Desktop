@@ -112,6 +112,7 @@ namespace Facebook.Components.Profile
             this.pnlMyComment.Name = "pnlMyComment";
             this.pnlMyComment.Size = new System.Drawing.Size(444, 50);
             this.pnlMyComment.TabIndex = 0;
+            this.pnlMyComment.Click += new System.EventHandler(this.pnlMyComment_Click);
             // 
             // pnlWrapDescription
             // 
@@ -227,6 +228,7 @@ namespace Facebook.Components.Profile
             this.pnlSectionComment.Size = new System.Drawing.Size(145, 44);
             this.pnlSectionComment.TabIndex = 1;
             this.pnlSectionComment.Click += new System.EventHandler(this.pnlSectionComment_Click);
+            this.pnlSectionComment.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSectionComment_Paint);
             this.pnlSectionComment.MouseEnter += new System.EventHandler(this.btnComment_MouseEnter);
             this.pnlSectionComment.MouseLeave += new System.EventHandler(this.pnlSectionComment_MouseLeave);
             // 
@@ -281,7 +283,7 @@ namespace Facebook.Components.Profile
             this.btnLike.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnLike.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLike.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnLike.IconChar = FontAwesome.Sharp.IconChar.HandPointLeft;
+            this.btnLike.IconChar = FontAwesome.Sharp.IconChar.ThumbsUp;
             this.btnLike.IconColor = System.Drawing.SystemColors.ControlText;
             this.btnLike.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnLike.IconSize = 30;
@@ -330,6 +332,7 @@ namespace Facebook.Components.Profile
             this.pnlHead.Name = "pnlHead";
             this.pnlHead.Size = new System.Drawing.Size(444, 50);
             this.pnlHead.TabIndex = 0;
+            this.pnlHead.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // lblShareCount
             // 
@@ -343,6 +346,7 @@ namespace Facebook.Components.Profile
             this.lblShareCount.Size = new System.Drawing.Size(98, 15);
             this.lblShareCount.TabIndex = 67;
             this.lblShareCount.Text = "11.813 Shares";
+            this.lblShareCount.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // lblCommentCount
             // 
@@ -356,6 +360,7 @@ namespace Facebook.Components.Profile
             this.lblCommentCount.Size = new System.Drawing.Size(112, 15);
             this.lblCommentCount.TabIndex = 66;
             this.lblCommentCount.Text = "94.330 Comments";
+            this.lblCommentCount.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // lblLikeCount
             // 
@@ -369,6 +374,7 @@ namespace Facebook.Components.Profile
             this.lblLikeCount.Size = new System.Drawing.Size(56, 15);
             this.lblLikeCount.TabIndex = 65;
             this.lblLikeCount.Text = "376.063";
+            this.lblLikeCount.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // picLike
             // 
@@ -379,6 +385,7 @@ namespace Facebook.Components.Profile
             this.picLike.Size = new System.Drawing.Size(23, 23);
             this.picLike.TabIndex = 0;
             this.picLike.TabStop = false;
+            this.picLike.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // PostCommentUC
             // 
@@ -389,6 +396,7 @@ namespace Facebook.Components.Profile
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PostCommentUC";
             this.Size = new System.Drawing.Size(464, 366);
+            this.Click += new System.EventHandler(this.PostCommentUC_Click);
             this.pnlWrap.ResumeLayout(false);
             this.pnlComment.ResumeLayout(false);
             this.pnlMyComment.ResumeLayout(false);

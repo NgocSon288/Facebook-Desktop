@@ -77,6 +77,15 @@ namespace Facebook.Common
         public static readonly Color INFO_COLOR = Color.FromArgb(0, 123, 255);
         public static readonly Color QUESTION_COLOR = Color.FromArgb(247, 153, 65);
 
+        // Email 
+        public static readonly string FROM_EMAIL_ADDRESS = "sondeptrai2288@gmail.com";
+        public static readonly string FROM_EMAIL_DISPLAYNAME = "Huỳnh Ngọc Sơn";
+        public static readonly string FROM_EMAIL_PASSWORD = "SOn01698182219";
+        public static readonly string SMTP_HOST = "smtp.gmail.com";
+        public static readonly int SMTP_PORT = 587;
+        public static readonly bool ENABLED_SSL = true;
+
+
 
         public static fMain MainForm = null;    // form chính của chương trình
         public static fAccountForm AccountForm = null;
@@ -86,5 +95,12 @@ namespace Facebook.Common
 
         public static Clipboard Clipboard = null;
         public static Control CurrentCut = null;
+        public static bool IsShareRoot = false;
+
+        public static string NewPassword = null;
+        public static string Email = null;
+        public static string Username = null;
+        public static string OTP = null;
+        public static int CountIncorrect = 0;
     }
 }

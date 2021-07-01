@@ -11,7 +11,7 @@ namespace Facebook.Helper
 {
     public static class UIHelper
     {
-        public delegate void ExpressBlur();
+        public delegate void ExpressBlur(object sender, EventArgs e);
 
         /// <summary>
         /// Cân thực hiện sau khi laod UI
@@ -28,24 +28,25 @@ namespace Facebook.Helper
             Bunifu.Framework.Lib.Elipse.Apply(form, border);
         }
 
-        public static void SetBlur(Control root, ExpressBlur expressBlur)
-        {
+        //public static void SetBlur(Control root, ExpressBlur expressBlur, bool isOk = false)
+        //{
+        //    //if (!isOk)
+        //    //    return;
+        //    if (root.GetType().ToString().Contains("TextBox"))
+        //    {
+        //        return;
+        //    }
 
-            if (root.GetType().ToString().Contains("TextBox"))
-            {
-                return;
-            }
+        //    root.Click += (o, s) => expressBlur(o, s);
 
-            root.Click += (o, s) => expressBlur();
-
-            if (root.Controls != null && root.Controls.Count > 0)
-            {
-                foreach (Control item in root.Controls)
-                {
-                    SetBlur(item, expressBlur);
-                }
-            }
-        }
+        //    if (root.Controls != null && root.Controls.Count > 0)
+        //    {
+        //        foreach (Control item in root.Controls)
+        //        {
+        //            SetBlur(item, expressBlur);
+        //        }
+        //    }
+        //}
 
         public static void ShowControl(Control control, Control content)
         {

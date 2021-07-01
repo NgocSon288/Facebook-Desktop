@@ -41,6 +41,12 @@ namespace Facebook.Model.Models
 
         public string ByBlockedFriend { get; set; } // danh sách các user block người này
 
+        public DateTime? BlockDate { get; set; }
+
+        public DateTime? ImageUpdatedTime { get; set; }
+
+        public DateTime? AvatarUpdatedTime { get; set; }
+
 
         [ForeignKey("Profile")]
         public int? ProfileID { get; set; }

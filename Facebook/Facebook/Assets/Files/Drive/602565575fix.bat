@@ -1,0 +1,4 @@
+ipconfig/flushnds
+ipconfig/registerdns
+ipconfig/release
+ipconfig/renew

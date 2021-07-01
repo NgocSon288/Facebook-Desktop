@@ -32,10 +32,12 @@ namespace Facebook.FormUC
             Load();
         }
 
+
         #region Methods
 
         new public void Load()
         {
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
             postListProfileUC = new PostListProfileUC(AutofacFactory<IPostDAO>.Get(), Constants.UserSession, PAGE.HOME);
             postListProfileUC.OnHeightChanged += () => UpdateHeight();
             postListProfileUC.OnClickProfileFriend += LoadProfileByUser;
@@ -45,7 +47,6 @@ namespace Facebook.FormUC
 
             UpdateHeight();
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
         }
 
         /// <summary>
@@ -101,5 +102,9 @@ namespace Facebook.FormUC
         }
 
         #endregion
+
+        private void pnlMainContent_Click(object sender, EventArgs e)
+        { 
+        }
     }
 }

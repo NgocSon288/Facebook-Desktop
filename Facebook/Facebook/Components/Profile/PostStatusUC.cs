@@ -64,7 +64,7 @@ namespace Facebook.Components.Profile
             SetColor();
             UpdateHeight();
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
 

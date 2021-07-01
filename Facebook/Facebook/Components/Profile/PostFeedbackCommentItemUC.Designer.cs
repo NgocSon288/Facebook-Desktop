@@ -55,6 +55,7 @@ namespace Facebook.Components.Profile
             this.pnlFeedbackComment.Name = "pnlFeedbackComment";
             this.pnlFeedbackComment.Size = new System.Drawing.Size(322, 133);
             this.pnlFeedbackComment.TabIndex = 5;
+            this.pnlFeedbackComment.Click += new System.EventHandler(this.lblDescription_Click);
             // 
             // lblDescription
             // 
@@ -64,6 +65,7 @@ namespace Facebook.Components.Profile
             this.lblDescription.Size = new System.Drawing.Size(309, 85);
             this.lblDescription.TabIndex = 3;
             this.lblDescription.Text = resources.GetString("lblDescription.Text");
+            this.lblDescription.Click += new System.EventHandler(this.lblDescription_Click);
             // 
             // lblName
             // 
@@ -99,6 +101,7 @@ namespace Facebook.Components.Profile
             this.pnlMyCommentControl.Name = "pnlMyCommentControl";
             this.pnlMyCommentControl.Size = new System.Drawing.Size(318, 22);
             this.pnlMyCommentControl.TabIndex = 8;
+            this.pnlMyCommentControl.Click += new System.EventHandler(this.pnlMyCommentControl_Click);
             // 
             // lblLikeCount
             // 
@@ -111,6 +114,7 @@ namespace Facebook.Components.Profile
             this.lblLikeCount.Size = new System.Drawing.Size(32, 16);
             this.lblLikeCount.TabIndex = 9;
             this.lblLikeCount.Text = "100";
+            this.lblLikeCount.Click += new System.EventHandler(this.pnlMyCommentControl_Click);
             // 
             // picLike
             // 
@@ -120,6 +124,7 @@ namespace Facebook.Components.Profile
             this.picLike.Size = new System.Drawing.Size(15, 15);
             this.picLike.TabIndex = 8;
             this.picLike.TabStop = false;
+            this.picLike.Click += new System.EventHandler(this.pnlMyCommentControl_Click);
             // 
             // lblLike
             // 
@@ -143,6 +148,7 @@ namespace Facebook.Components.Profile
             this.lblTime.Size = new System.Drawing.Size(37, 16);
             this.lblTime.TabIndex = 6;
             this.lblTime.Text = "7 giờ";
+            this.lblTime.Click += new System.EventHandler(this.pnlMyCommentControl_Click);
             // 
             // PostFeedbackCommentItemUC
             // 

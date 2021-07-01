@@ -125,6 +125,22 @@
     <Compile Include="Migrations\202106270813251_Update_FileColor_Entity.designer.cs">
       <DependentUpon>202106270813251_Update_FileColor_Entity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106291216537_Update_FileColor_Entity1.cs" />
+    <Compile Include="Migrations\202106291216537_Update_FileColor_Entity1.designer.cs">
+      <DependentUpon>202106291216537_Update_FileColor_Entity1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106300419458_Update_Folder_Entity_IsShareRoot.cs" />
+    <Compile Include="Migrations\202106300419458_Update_Folder_Entity_IsShareRoot.designer.cs">
+      <DependentUpon>202106300419458_Update_Folder_Entity_IsShareRoot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107011026345_Update_User_Emtity.cs" />
+    <Compile Include="Migrations\202107011026345_Update_User_Emtity.designer.cs">
+      <DependentUpon>202107011026345_Update_User_Emtity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107011326520_Update_User_Entity2.cs" />
+    <Compile Include="Migrations\202107011326520_Update_User_Entity2.designer.cs">
+      <DependentUpon>202107011326520_Update_User_Entity2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FileColorRepository.cs" />
@@ -184,6 +200,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106270813251_Update_FileColor_Entity.resx">
       <DependentUpon>202106270813251_Update_FileColor_Entity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106291216537_Update_FileColor_Entity1.resx">
+      <DependentUpon>202106291216537_Update_FileColor_Entity1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106300419458_Update_Folder_Entity_IsShareRoot.resx">
+      <DependentUpon>202106300419458_Update_Folder_Entity_IsShareRoot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107011026345_Update_User_Emtity.resx">
+      <DependentUpon>202107011026345_Update_User_Emtity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107011326520_Update_User_Entity2.resx">
+      <DependentUpon>202107011326520_Update_User_Entity2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

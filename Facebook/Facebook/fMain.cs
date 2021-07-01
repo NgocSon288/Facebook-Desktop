@@ -51,6 +51,13 @@ namespace Facebook
 
         new private void Load()
         {
+            panelContent.BackColor = Constants.MAIN_BACK_COLOR;
+
+            btnProfile.ForeColor = Constants.MAIN_FORE_COLOR;
+            btnFriends.ForeColor = Constants.MAIN_FORE_COLOR;
+            btnMessenger.ForeColor = Constants.MAIN_FORE_COLOR;
+            btnDrive.ForeColor = Constants.MAIN_FORE_COLOR;
+
             Constants.MainForm = this;
             CURRENT_BUTTON = BUTTON.HOME;
 
@@ -61,7 +68,7 @@ namespace Facebook
             Reset();
             ShowAccountForm();
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void ActivateButton(object senderBtn)

@@ -60,7 +60,7 @@ namespace Facebook.Components.Profile
             UpdateHeight();
             SetLike();
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
             UIHelper.BorderRadius(pnlSectionLike, Constants.BORDER_RADIUS_SECTION_LIKE);
             UIHelper.BorderRadius(pnlSectionComment, Constants.BORDER_RADIUS_SECTION_LIKE);
             UIHelper.BorderRadius(pnlSectionShare, Constants.BORDER_RADIUS_SECTION_LIKE);
@@ -284,12 +284,14 @@ namespace Facebook.Components.Profile
         /// <param name="e"></param>
         private void pnlSectionComment_Click(object sender, EventArgs e)
         {
+
             pnlComment.Visible = !pnlComment.Visible;
 
             txtMyCommentDescription.Text = "Viết bình luận...";
 
             UpdateHeight();
             OnHeightChanged?.Invoke();
+            this.ActiveControl = lblComment;
 
         }
 
@@ -301,6 +303,7 @@ namespace Facebook.Components.Profile
 
         private void txtMyFeedbackComment_Enter(object sender, EventArgs e)
         {
+            this.ActiveControl = txtMyCommentDescription;
             var txt = sender as TextBox;
             var text = txt.Text;
             txt.ForeColor = Constants.MAIN_FORE_COLOR;
@@ -330,6 +333,8 @@ namespace Facebook.Components.Profile
         /// <param name="e"></param>
         private void btnLike_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = lblComment;
+
             var check = likes.Any(l => l == Constants.UserSession.ID);
 
             if (check)
@@ -355,6 +360,7 @@ namespace Facebook.Components.Profile
         /// <param name="e"></param>
         private void pnlSectionShare_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = lblShare;
             if (post.User.ID == Constants.UserSession.ID)
             {
                 MyMessageBox.Show("Không thể share!", MessageBoxType.Warning);
@@ -409,6 +415,7 @@ namespace Facebook.Components.Profile
 
                 UpdateHeight();
                 OnHeightChanged?.Invoke();
+                this.ActiveControl = lblLikeCount;
             }
         }
 
@@ -417,6 +424,26 @@ namespace Facebook.Components.Profile
         private void picMyCommentAvatar_Click(object sender, EventArgs e)
         {
             OnClickProfileFriend?.Invoke(post.User);
+        }
+
+        private void pnlSectionComment_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlHead_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblLikeCount;
+        }
+
+        private void PostCommentUC_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblLikeCount;
+        }
+
+        private void pnlMyComment_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblLikeCount;
         }
     }
 }

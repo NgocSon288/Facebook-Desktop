@@ -53,7 +53,7 @@ namespace Facebook.Components.Profile
             SetUpUI();
             LoadDetail();
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void LoadDetail()
@@ -147,7 +147,7 @@ namespace Facebook.Components.Profile
             UpdateHeight();
 
             // Add sự kiện remove focus textbox
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void UpdateHeight()

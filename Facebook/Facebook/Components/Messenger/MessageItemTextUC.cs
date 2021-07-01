@@ -89,7 +89,7 @@ namespace Facebook.Components.Messenger
 
         private void txtDescription_Click(object sender, EventArgs e)
         {
-            this.ActiveControl = lblFocus;
+            this.ActiveControl = null;
         }
     }
 }

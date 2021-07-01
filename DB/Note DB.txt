@@ -630,6 +630,8 @@ AngleUp		lên: khi đã xổ ra
 - Files: string (danh sách file name)
 - ShareList: string (danh sách id user được share)
 - IsPublic: bool true là bạn bè
+- UserID
+- IsShare: có là thư mục share của root không
 
 -------------------------------------------------------
 - kéo vào lọc ra các file, các folder riêng
@@ -761,24 +763,69 @@ extension: vd .docs, .xls
 ColorName: vd timnho, sushi
 
 -------------------------------------------------------
+share dùng chung Folder, không thể copy paste, và chia sẽ
+
+- IsShareRoot là parentRoot chưa tất các các folder share
+- shareRoot có ChildID là danh sách các folder được share(các folder con này khác cha nhau)
+- 
+
+-------------------------------------------------------
+696 780
+- khi click vào share thì cập nhật lại ShareList của folder được focus
+
+- thêm ChildrenID của parentShareRoot
+
+-------------------------------------------------------
+global, 
+-  create, up fd, up fi
+không cho tạo thư mục khi parent là parentShareRoot
+
+folder
+- share
+không cho share khi đang Constants.IsShare
 
 
 -------------------------------------------------------
+NOTE: NHẤN VÀO THƯ MỤC HIỆN RA TÊN CỦA CHỦ NHÂN
 
+-------------------------------------------------------
+thêm gửi nhấn email
+group ảnh trang profile + thông tin ảnh
+
+-------------------------------------------------------
+public int ForgetPassword(string username, string password, string email)
+        {
+            try
+            {
+                var user = GetByUsername(username);
+
+                if (user == null)
+                {
+                    return -1;
+                }
+
+                if (!string.Equals(email, user.Email, StringComparison.OrdinalIgnoreCase))
+                {
+                    return -2;
+                }
+
+                var passwordHashed = MD5Helper.CreateMD5(password);
+
+                // cập nhật DB
+                user.Password = passwordHashed;
+                _userService.SaveChanges();
+
+                return 1;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
 
 -------------------------------------------------------
 
-
--------------------------------------------------------
-
-
--------------------------------------------------------
-
-
--------------------------------------------------------
-
-
--------------------------------------------------------
+ 
 
 
 -------------------------------------------------------

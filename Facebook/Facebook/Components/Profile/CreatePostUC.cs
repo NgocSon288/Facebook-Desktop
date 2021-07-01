@@ -54,7 +54,7 @@ namespace Facebook.Components.Profile
 
             UIHelper.BorderRadius(pnlPostStatus, Constants.BORDER_RADIUS);
             UIHelper.BorderRadius(picImage, Constants.BORDER_RADIUS);
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
 
@@ -121,7 +121,7 @@ namespace Facebook.Components.Profile
             UpdateHeight();
 
             // Add sự kiện remove focus textbox
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void UpdateHeight()
@@ -301,5 +301,9 @@ namespace Facebook.Components.Profile
 
         #endregion
 
+        private void pnlHead_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblName;
+        }
     }
 }

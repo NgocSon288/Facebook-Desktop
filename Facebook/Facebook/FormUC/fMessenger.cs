@@ -45,7 +45,7 @@ namespace Facebook.FormUC
             SetColor();
             Load();
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = pnlMiddle);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         #region Methods
@@ -409,21 +409,24 @@ namespace Facebook.FormUC
 
         public void SetThemeColor()
         {
-            var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
-
-            if (ms == null || ThemeColor.GetThemeByName(ms.ThemeColor).Color == Constants.THEME_COLOR)
+            if (MessengerFriendItemUC.CurrentItem != null && Constants.UserSession != null)
             {
-                return;
+                var ms = _messageSettingDAO.GetByMultipID(MessengerFriendItemUC.CurrentItem.user.ID, Constants.UserSession.ID);
+
+                if (ms == null || ThemeColor.GetThemeByName(ms.ThemeColor).Color == Constants.THEME_COLOR)
+                {
+                    return;
+                }
+
+                // Update UI, cập nhật constants
+                Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
+
+                messengerShareContentUC.SetThemeColor();
+
+                messengerHeaderMessageUC.SetThemeColor();
+                messageListUC.SetThemeColor();
+                messengerContentMessageUC.SetThemeColor();
             }
-
-            // Update UI, cập nhật constants
-            Constants.THEME_COLOR = ThemeColor.GetThemeByName(ms.ThemeColor).Color;
-
-            messengerShareContentUC.SetThemeColor();
-
-            messengerHeaderMessageUC.SetThemeColor();
-            messageListUC.SetThemeColor();
-            messengerContentMessageUC.SetThemeColor();
         }
 
         #endregion
@@ -434,6 +437,7 @@ namespace Facebook.FormUC
         {
             // Set background color for form
             this.BackColor = Constants.MAIN_BACK_COLOR;
+            pnlLeft.BackColor = pnlMiddle.BackColor = pnlMiddleBottom.BackColor = pnlMiddleCenter.BackColor = pnlMiddleTop.BackColor = pnlRight.BackColor = pnlWrap.BackColor = Constants.MAIN_BACK_COLOR;
 
             // Set color for button control window
             btnMinimize.BackColor = Constants.MAIN_BACK_COLOR;

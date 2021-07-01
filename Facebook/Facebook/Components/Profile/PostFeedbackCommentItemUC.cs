@@ -73,7 +73,7 @@ namespace Facebook.Components.Profile
 
             UIHelper.BorderRadius(pnlFeedbackComment, Constants.BORDER_RADIUS);
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
 
@@ -192,6 +192,7 @@ namespace Facebook.Components.Profile
 
         private void lblLike_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = lblLike;
             var userID = Constants.UserSession.ID;
             var check = likes.Any(l => l == userID);
 
@@ -219,6 +220,16 @@ namespace Facebook.Components.Profile
         private void lblName_Click(object sender, EventArgs e)
         {
             OnClickProfileFriend?.Invoke(commentFeedback.User);
+        }
+
+        private void pnlMyCommentControl_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblLikeCount;
+        }
+
+        private void lblDescription_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblDescription;
         }
     }
 }

@@ -98,6 +98,7 @@ namespace Facebook.FormUC
             this.pnlMainContent.Name = "pnlMainContent";
             this.pnlMainContent.Size = new System.Drawing.Size(970, 765);
             this.pnlMainContent.TabIndex = 0;
+            this.pnlMainContent.Click += new System.EventHandler(this.pnlMainContent_Click);
             // 
             // pnlPostList
             // 

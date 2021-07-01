@@ -204,6 +204,24 @@
     <Compile Include="Components\Drive\Folders\Rename\fRenameFolder.Designer.cs">
       <DependentUpon>fRenameFolder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Drive\Folders\Share\fUserShare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Share\fUserShare.Designer.cs">
+      <DependentUpon>fUserShare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Share\UserShareItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Share\UserShareItemUC.Designer.cs">
+      <DependentUpon>UserShareItemUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Share\UserShareListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Drive\Folders\Share\UserShareListUC.Designer.cs">
+      <DependentUpon>UserShareListUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Drive\Global\NewFolder\fNewFolder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,6 +462,12 @@
     <Compile Include="Components\Profile\InfoProfileImageItemUC.Designer.cs">
       <DependentUpon>InfoProfileImageItemUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Components\Profile\InfoProfileImagesGroupUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Profile\InfoProfileImagesGroupUC.Designer.cs">
+      <DependentUpon>InfoProfileImagesGroupUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Components\Profile\InfoProfileImagesUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -557,6 +581,13 @@
     <Compile Include="DAO\PostDAO.cs" />
     <Compile Include="DAO\CommentFeedbackDAO.cs" />
     <Compile Include="DAO\ProfileDAO.cs" />
+    <Compile Include="DTO\MetadataImage.cs" />
+    <Compile Include="FormUC\fVerifyPassword.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormUC\fVerifyPassword.Designer.cs">
+      <DependentUpon>fVerifyPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUC\fProfileFriend.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -567,6 +598,7 @@
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Helper\FriendHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\MailHelper.cs" />
     <Compile Include="Helper\MD5Helper.cs" />
     <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Helper\UIHelper.cs" />
@@ -742,6 +774,15 @@
     <EmbeddedResource Include="Components\Drive\Folders\Rename\fRenameFolder.resx">
       <DependentUpon>fRenameFolder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Folders\Share\fUserShare.resx">
+      <DependentUpon>fUserShare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Folders\Share\UserShareItemUC.resx">
+      <DependentUpon>UserShareItemUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Drive\Folders\Share\UserShareListUC.resx">
+      <DependentUpon>UserShareListUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Drive\Global\NewFolder\fNewFolder.resx">
       <DependentUpon>fNewFolder.cs</DependentUpon>
     </EmbeddedResource>
@@ -865,6 +906,9 @@
     <EmbeddedResource Include="Components\Profile\InfoProfileImageItemUC.resx">
       <DependentUpon>InfoProfileImageItemUC.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Components\Profile\InfoProfileImagesGroupUC.resx">
+      <DependentUpon>InfoProfileImagesGroupUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Components\Profile\InfoProfileImagesUC.resx">
       <DependentUpon>InfoProfileImagesUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -936,6 +980,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUC\fDrive.resx">
       <DependentUpon>fDrive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUC\fVerifyPassword.resx">
+      <DependentUpon>fVerifyPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUC\fFogetPassword.resx">
       <DependentUpon>fFogetPassword.cs</DependentUpon>
@@ -1031,6 +1078,8 @@
     <Content Include="Assets\Images\Profile\empty-post-icon.png" />
     <Content Include="Assets\Images\Profile\image-default.jpg" />
     <Content Include="Assets\Images\Profile\menu-icon.png" />
+    <Content Include="Assets\Template\BlockAccount.html" />
+    <Content Include="Assets\Template\VerifyOTP.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

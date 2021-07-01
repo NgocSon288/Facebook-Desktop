@@ -78,12 +78,15 @@ namespace Facebook.Components.Messenger
             {
                 var height = pnlTitle.Height;
 
-                foreach (Control item in flpContent.Controls)
+                var heightCon = 0;
+                if (flpContent.Controls.Count > 0)
                 {
-                    height += item.Height;
+                    var item = flpContent.Controls[0] as Control;
+
+                    heightCon = (item.Height + item.Margin.Top + item.Margin.Bottom) * ((flpContent.Controls.Count + 2) / 3);
                 }
 
-                this.Height = height;
+                this.Height = height + heightCon;
             }
         }
 

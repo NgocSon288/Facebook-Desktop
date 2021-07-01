@@ -33,7 +33,7 @@ namespace Facebook.Components.Messenger
 
             SetColor();
             Load();
-            UIHelper.SetBlur(this, () => this.ActiveControl = pnlContent);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         int marginAttach = 10;

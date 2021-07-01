@@ -69,8 +69,7 @@ namespace Facebook.Components.Profile
             picPostStatusIcon.IconColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
             picPostStatusIcon.Left = lblTime.Right + 20;
 
-            btnMenu.BackgroundImage = ImageHelper.FromFile("./../../Assets/Images/Profile/menu-icon.png");
-            btnMenu.BackgroundImageLayout = ImageLayout.Stretch;
+            btnMenu.IconColor = Constants.MAIN_FORE_SMALLTEXT_COLOR;
 
             btnDelete.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
             btnDelete.IconColor = Constants.MAIN_FORE_COLOR;
@@ -84,8 +83,9 @@ namespace Facebook.Components.Profile
             LoadDetail();
             SetColor();
             UpdateHeight();
+            lblDescription.BackColor = Constants.MAIN_BACK_CONTENT_COLOR;
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = o is Panel ? null : (Control)o, true);
         }
 
         private IconChar GetIcon()
@@ -223,6 +223,7 @@ namespace Facebook.Components.Profile
 
             // Cập nhật lại border, vì nó không tự cập nhật lại khi lập trình bất đồng bộ
             UIHelper.BorderRadius(this, Constants.BORDER_RADIUS);
+            this.ActiveControl = pnlComment;
         }
 
 
@@ -283,6 +284,7 @@ namespace Facebook.Components.Profile
         /// <param name="e"></param>
         private void picImage_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = picImage;
             if (pnlMenu.Visible)
             {
                 pnlMenu.Visible = false;
@@ -298,6 +300,7 @@ namespace Facebook.Components.Profile
 
         private void picAvatar_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = lblTime;
             if (pnlMenu.Visible)
             {
                 pnlMenu.Visible = false;

@@ -13,17 +13,24 @@ namespace Facebook.Setup
     {
         private IPostStatusDAO _postStatusDAO;
         private IFileColorDAO _fileColorDAO;
+        private IFolderDAO _folderDAO;
+        private IUserDAO _userDAO;
 
-        public void SetUp(IPostStatusDAO postStatusDAO, IFileColorDAO fileColorDAO)
+        public void SetUp(IPostStatusDAO postStatusDAO, IFileColorDAO fileColorDAO, IFolderDAO folderDAO, IUserDAO userDAO)
         {
             this._postStatusDAO = postStatusDAO;
             this._fileColorDAO = fileColorDAO;
+            this._folderDAO = folderDAO;
+            this._userDAO = userDAO;
 
             // Setup PostStatus
             SetUpPostStatus();
 
             // Setup Extension File
             SetUpExtensionFile();
+
+            // SetUpDriveParent
+            SetUpDriveParent();
         }
 
         public void SetUpPostStatus()
@@ -55,8 +62,9 @@ namespace Facebook.Setup
         {
             // kiểm tra có thể setup không
             var data = _fileColorDAO.GetAll();
+            var userID = Constants.UserSession.ID;
 
-            if (data == null || data.Count <= 0)
+            if (data == null || data.Count <= 0 || !data.Any(f => f.UserID == userID))
             {
                 var fileColors = new List<Model.Models.FileColor>();
 
@@ -66,7 +74,8 @@ namespace Facebook.Setup
                     {
                         ColorName = null,
                         ExtensionName = item.Category,
-                        Extension = StringHelper.StringListToString(item.Exts)
+                        Extension = StringHelper.StringListToString(item.Exts),
+                        UserID = userID
                     });
                 }
 
@@ -77,9 +86,60 @@ namespace Facebook.Setup
                 {
                     ColorName = null,
                     Extension = "*",
-                    ExtensionName = "All"
+                    ExtensionName = "All",
+                    UserID = userID
                 });
             }
+        }
+
+        public void SetUpDriveParent()
+        {
+            // Thiết lập 2 Folder parent root, và parent share root
+            var fds = _folderDAO.GetAll().Where(f => f.ParentID == null).ToList();      // danh sách các folder là parent, hoặc parentShare
+            var us = _userDAO.GetAll();     // danh sách các user
+
+            var ls = new List<Model.Models.Folder>();
+
+            //kiểm tra mỗi user phải có 2 folder, nếu không thì tạo  tương ứng với user đó
+            foreach (var u in us)
+            {
+                var pRoot = fds.FirstOrDefault(f => f.UserID == u.ID && !f.IsShareRoot);  // null là chưa có
+                var pShareRoot = fds.FirstOrDefault(f => f.UserID == u.ID && f.IsShareRoot);
+
+                if (pRoot == null)
+                {
+                    ls.Add(new Model.Models.Folder()
+                    {
+                        ChildrenID = "",
+                        ColorName = "",
+                        Files = "",
+                        IsPublic = false,
+                        IsShareRoot = false,
+                        Name = u.Name,
+                        ParentID = null,
+                        ShareList = "",
+                        UserID = u.ID
+                    });
+                }
+
+                if (pShareRoot == null)
+                {
+                    ls.Add(new Model.Models.Folder()
+                    {
+                        ChildrenID = "",
+                        ColorName = "",
+                        Files = "",
+                        IsPublic = false,
+                        IsShareRoot = true,
+                        Name = u.Name,
+                        ParentID = null,
+                        ShareList = "",
+                        UserID = u.ID
+                    });
+                }
+            }
+
+            _folderDAO.CreateRange(ls);
         }
     }
 }

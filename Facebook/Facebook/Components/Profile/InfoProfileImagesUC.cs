@@ -22,7 +22,10 @@ namespace Facebook.Components.Profile
         private IPostDAO _postDAO;
         private User user;
 
-        private List<string> images;
+        private List<Post> imagesPublic;
+        private List<Post> imagesFriend;
+        private List<Post> imagesPrivate;
+
 
         public InfoProfileImagesUC(IPostDAO postDAO, User user)
         {
@@ -48,19 +51,9 @@ namespace Facebook.Components.Profile
 
         private async Task LoadImage()
         {
-            images = new List<string>();
-
-            // Từ Image
-            if (!string.IsNullOrEmpty(user.Image))
-            {
-                images.Add($"./../../Assets/Images/Profile/{user.Image}");
-            }
-
-            // Từ Avatar
-            if (!string.IsNullOrEmpty(user.Avatar))
-            {
-                images.Add($"./../../Assets/Images/Profile/{user.Avatar}");
-            }
+            imagesPublic = new List<Post>();
+            imagesFriend = new List<Post>();
+            imagesPrivate = new List<Post>();
 
             // Từ Post
             var posts = await _postDAO.GetByUserID(user.ID);
@@ -80,18 +73,49 @@ namespace Facebook.Components.Profile
             {
                 if (!string.IsNullOrEmpty(item.Image))
                 {
-                    images.Add($"./../../Assets/Images/Post/{item.Image}");
+                    switch (item.PostStatusID)
+                    {
+                        case 1:
+                            imagesPublic.Add(item);
+                            //imagesPublic.Add($"./../../Assets/Images/Post/{item.Image}");
+                            break;
+                        case 2:
+                            imagesFriend.Add(item);
+                            //imagesFriend.Add($"./../../Assets/Images/Post/{item.Image}");
+                            break;
+                        case 3:
+                            imagesPrivate.Add(item);
+                            //imagesPrivate.Add($"./../../Assets/Images/Post/{item.Image}");
+                            break;
+
+                    }
+
                 }
             }
 
-            foreach (var item in images)
+
+            if (!string.IsNullOrEmpty(user.Image) || !string.IsNullOrEmpty(user.Avatar))
             {
-                var itemUC = new InfoProfileImageItemUC(item);
-
-
-
+                var itemUC = new InfoProfileImagesGroupUC("Ảnh nền, ảnh đại diện", user, true);
                 flpContent.Controls.Add(itemUC);
+            }
 
+            if (imagesPublic.Count > 0)
+            {
+                var itemUC = new InfoProfileImagesGroupUC("Ảnh bài viết công khai", imagesPublic);
+                flpContent.Controls.Add(itemUC);
+            }
+
+            if (imagesFriend.Count > 0)
+            {
+                var itemUC = new InfoProfileImagesGroupUC("Ảnh bài viết bạn bè", imagesFriend);
+                flpContent.Controls.Add(itemUC);
+            }
+
+            if (imagesPrivate.Count > 0)
+            {
+                var itemUC = new InfoProfileImagesGroupUC("Ảnh bài viết riêng tư", imagesPrivate);
+                flpContent.Controls.Add(itemUC);
             }
         }
 
@@ -137,26 +161,28 @@ namespace Facebook.Components.Profile
                 pnlWrap.BackColor = Constants.MAIN_BACK_COLOR;
                 pnlWrap.Controls.Add(pic);
                 pnlWrap.Controls.Add(lbl);
+                this.Height = pnlWrap.Height;
+                return;
             }
 
-            if (count > 5)
+            var height = 0;
+
+            foreach (Control item in flpContent.Controls)
             {
-                var con = flpContent.Controls[0];
-                var n = (count + 4) / 5;
-                var height = con.Height + con.Margin.Top + con.Margin.Bottom;
-
-                this.Height = height * n + 2 * 20;
-                pnlWrap.Height = height * n;
-
-                UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
+                height += item.Height;
             }
+
+            pnlWrap.Height = height;
+            this.Height = pnlWrap.Height;
+
+            UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
         }
-
-        #endregion
-
-        #region Events
-
-
-        #endregion
     }
+
+    #endregion
+
+    #region Events
+
+
+    #endregion
 }

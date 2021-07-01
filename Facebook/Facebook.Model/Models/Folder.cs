@@ -28,5 +28,7 @@ namespace Facebook.Model.Models
         public int UserID { get; set; }
 
         public string ColorName { get; set; }
+
+        public bool IsShareRoot { get; set; }
     }
 }

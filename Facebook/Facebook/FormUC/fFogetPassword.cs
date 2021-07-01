@@ -1,11 +1,13 @@
 ﻿using Facebook.Common;
 using Facebook.ControlCustom.Message;
 using Facebook.DAO;
+using Facebook.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,9 @@ namespace Facebook.FormUC
 {
     public partial class fFogetPassword : UserControl
     {
+        public delegate void VerifyOTPEmail();
+        public event VerifyOTPEmail OnVerifyOTPEmail;
+
         private readonly IUserDAO _userDAO;
 
         public fFogetPassword(IUserDAO userDAO)
@@ -36,12 +41,39 @@ namespace Facebook.FormUC
 
         new private void Load()
         {
+            // test
+            txtUsername.Text = "son";
+            txtNewPassword.Text = "123";
+            txtConfirmPassword.Text = "123";
+            txtEmail.Text = "18521694@gm.uit.edu.vn";
+
             // Setup hình ảnh social
             picFacebook.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-facebook.png");
             picTwitter.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-twitter.png");
             picGoogle.BackgroundImage = new Bitmap("./../../Assets/Images/btn-social-google.png");
 
             SetColor();
+        }
+
+        private async void SendOTPToEmail()
+        {
+            // tạo OTP
+            Constants.OTP = GetOTP();
+
+            // Gửi OTP qua email 
+            await SendMail();
+        }
+
+        private async Task SendMail()
+        {
+            var content = File.ReadAllText("./../../Assets/Template/VerifyOTP.html");
+
+            var us = _userDAO.GetByUsername(Constants.Username);
+
+            content = content.Replace("{{Name}}", us.Name);
+            content = content.Replace("{{OTP}}", Constants.OTP);
+
+            await MailHelper.SendMail(us.Email, "Xác nhận mật khẩu từ FACEBOOK", content);
         }
 
         public void RestSetForm()
@@ -163,11 +195,16 @@ namespace Facebook.FormUC
                 return;
             }
 
-            var check = _userDAO.ForgetPassword(username, newPassword, email);
+            var check = _userDAO.CheckForgetPassword(username, email);
 
             if (check == -1)
             {
                 MyMessageBox.Show("Tài khoản không hợp lệ", MessageBoxType.Error);
+                return;
+            }
+            else if (check == -3)
+            {
+                MyMessageBox.Show($"Tài khoản {username} đã bị khóa", MessageBoxType.Error);
                 return;
             }
             else if (check == -2)
@@ -181,10 +218,49 @@ namespace Facebook.FormUC
                 return;
             }
 
+            Constants.Email = email;
+            Constants.Username = username;
+            Constants.NewPassword = newPassword;
+            Constants.OTP = GetOTP();
+            Constants.CountIncorrect = 0;
 
-            MyMessageBox.Show("Đổi mật khẩu thành công", MessageBoxType.Success);
+            SendOTPToEmail();
+
+            // Chuyển qua trang nhập OTP
+            Constants.AccountForm.SwitchFormSwitchForm(fAccountForm.ACCOUNT_FORM.VERIFY_PASSWORD);
+
+            MyMessageBox.Show($"Chúng tôi đã gửi mã OTP qua email {email}, vui lòng kiểm tra lại!", MessageBoxType.Infomation);
 
             RestSetForm();
+        }
+
+        private string GetOTP(int len = 8)
+        {
+            var rand = new Random();
+            var s = "";
+            var i = 0;
+            var c = 0;
+            while (i < len)
+            {
+                c = rand.Next(0, 3);
+
+                if (c == 0)
+                {
+                    s += rand.Next(0, 10).ToString();
+                }
+                else if (c == 1)
+                {
+                    s += (char)rand.Next(65, 91);
+                }
+                else
+                {
+                    s += (char)rand.Next(97, 123);
+                }
+
+                i++;
+            }
+
+            return s;
         }
 
         #endregion
@@ -356,6 +432,6 @@ namespace Facebook.FormUC
             }
         }
 
-        #endregion
+        #endregion 
     }
 }

@@ -1,7 +1,9 @@
 ﻿using Facebook.Common;
+using Facebook.Configure.Autofac;
 using Facebook.ControlCustom.Message;
 using Facebook.DAO;
 using Facebook.Model.Models;
+using Facebook.Setup;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -126,6 +128,9 @@ namespace Facebook.FormUC
                 case 0:
                     MyMessageBox.Show("Tài khoản hoặc mật khẩu không hợp lệ", MessageBoxType.Error);
                     break;
+                case -2:
+                    MyMessageBox.Show("Tài khoản của bạn đã bị khóa", MessageBoxType.Error);
+                    break;
                 case 1:
                     // Đưa user, profile vào session vào session
                     Constants.UserSession = _userDAO.GetByUsername(username);
@@ -136,6 +141,11 @@ namespace Facebook.FormUC
                     Constants.MainForm.Visible = true;
                     Constants.MainForm.Reset();
                     OnLoginSuccess?.Invoke();
+
+
+                    // Setup data
+                    new StartSetup().SetUp(AutofacFactory<IPostStatusDAO>.Get(), AutofacFactory<IFileColorDAO>.Get(), AutofacFactory<IFolderDAO>.Get(), AutofacFactory<IUserDAO>.Get());
+
                     break;
 
             }

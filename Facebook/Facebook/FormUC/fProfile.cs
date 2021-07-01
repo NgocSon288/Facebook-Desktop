@@ -52,6 +52,8 @@ namespace Facebook.FormUC
             LoadIntroduce();
 
             SetColor();
+
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void LoadMenu()

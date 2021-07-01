@@ -57,7 +57,7 @@ namespace Facebook.Components.Profile
             lblTitle.ForeColor = Constants.MAIN_FORE_COLOR;
             lblParagraph.ForeColor = Constants.MAIN_FORE_PARAGRAPH_COLOR;
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private IconChar GetIcon()

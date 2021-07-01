@@ -19,5 +19,7 @@ namespace Facebook.Model.Models
         public string ExtensionName { get; set; }
 
         public string ColorName { get; set; }
+
+        public int? UserID { get; set; }
     }
 }

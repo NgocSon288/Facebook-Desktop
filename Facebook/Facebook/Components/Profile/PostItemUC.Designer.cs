@@ -30,7 +30,7 @@ namespace Facebook.Components.Profile
         private void InitializeComponent()
         {
             this.pnlHead = new System.Windows.Forms.Panel();
-            this.btnMenu = new System.Windows.Forms.PictureBox();
+            this.btnMenu = new FontAwesome.Sharp.IconPictureBox();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.btnDelete = new FontAwesome.Sharp.IconButton();
             this.btnEdit = new FontAwesome.Sharp.IconButton();
@@ -70,12 +70,18 @@ namespace Facebook.Components.Profile
             // 
             // btnMenu
             // 
+            this.btnMenu.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.btnMenu.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMenu.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnMenu.IconChar = FontAwesome.Sharp.IconChar.EllipsisH;
+            this.btnMenu.IconColor = System.Drawing.SystemColors.ControlText;
+            this.btnMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnMenu.IconSize = 30;
             this.btnMenu.Location = new System.Drawing.Point(417, 12);
             this.btnMenu.Margin = new System.Windows.Forms.Padding(0);
             this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(20, 20);
-            this.btnMenu.TabIndex = 69;
+            this.btnMenu.Size = new System.Drawing.Size(30, 30);
+            this.btnMenu.TabIndex = 70;
             this.btnMenu.TabStop = false;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
@@ -265,6 +271,6 @@ namespace Facebook.Components.Profile
         private FontAwesome.Sharp.IconPictureBox picPostStatusIcon;
         private System.Windows.Forms.Panel pnlMenu;
         private FontAwesome.Sharp.IconButton btnDelete;
-        private System.Windows.Forms.PictureBox btnMenu;
+        private FontAwesome.Sharp.IconPictureBox btnMenu;
     }
 }

@@ -31,9 +31,15 @@ namespace Facebook.Components.Drive
         public event DeleteFile OnDeleteFile;
         public event ChangeColorExtension OnChangeColorExtension;
 
-        public ControlsFileUC()
+        private readonly IUserDAO _userDAO;
+
+        private Label lblOwnName;
+
+        public ControlsFileUC(IUserDAO userDAO)
         {
             InitializeComponent();
+
+            this._userDAO = userDAO;
 
             Load();
         }
@@ -44,7 +50,28 @@ namespace Facebook.Components.Drive
         {
             LoadControls();
 
+            pnlOwn.Controls.Add(GetSeparator());
+            lblOwnName = new Label()
+            {
+                Text = "11111",
+                ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR,
+                BackColor = Constants.MAIN_BACK_COLOR,
+                AutoSize = true,
+                Margin = new Padding(0, 0, 0, 0),
+                Padding = new Padding(0, 0, 0, 0),
+                Font = new Font("Consolas", 14)
+            };
+            lblOwnName.Top = pnlOwn.Height / 2 - lblOwnName.Height / 2 - 7;
+            lblOwnName.Left = pnlOwn.Width / 2 - lblOwnName.Width / 2;
+            pnlOwn.Controls.Add(lblOwnName);
+
             this.BackColor = Constants.MAIN_BACK_COLOR;
+        }
+
+        public void LoadOwn()
+        {
+            lblOwnName.Text = _userDAO.GetByID(DriveLinkUC.CurrentFolder.UserID).Name;
+            lblOwnName.Left = pnlOwn.Width / 2 - lblOwnName.Width / 2;
         }
 
         private void LoadControls()
@@ -133,6 +160,13 @@ namespace Facebook.Components.Drive
             var renameCon = new ControlsItemUC(IconChar.Edit, "Đổi tên file");
             renameCon.OnClickControl += () =>
             {
+                if (Constants.IsShareRoot)
+                {
+                    MyMessageBox.Show("Bạn không có quyền đổi tên file này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 var fnewFolder = new fRenameFile(AutofacFactory<IFolderDAO>.Get());
                 var fparent = new fParentClickHidden(fnewFolder);
                 var fName = "";
@@ -190,6 +224,14 @@ namespace Facebook.Components.Drive
             var deleteCon = new ControlsItemUC(IconChar.Times, "Xóa file");
             deleteCon.OnClickControl += () =>
             {
+
+                if (Constants.IsShareRoot && DriveLinkUC.CurrentFolder.UserID != Constants.UserSession.ID)
+                {
+                    MyMessageBox.Show("Bạn không có quyền xóa thư mục này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 if (MyMessageBox.Show($"Bạn có muốn xóa file {DriveFileItemUC.CurrentFileItemUCFocus.fileName.Substring(9)}?", MessageBoxType.Question).Value == DialogResult.OK)
                 {
                     // cập nhật files

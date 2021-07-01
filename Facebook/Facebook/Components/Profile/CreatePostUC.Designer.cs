@@ -73,6 +73,7 @@ namespace Facebook.Components.Profile
             this.picImage.Size = new System.Drawing.Size(480, 191);
             this.picImage.TabIndex = 61;
             this.picImage.TabStop = false;
+            this.picImage.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // pnlSeparator
             // 
@@ -81,6 +82,7 @@ namespace Facebook.Components.Profile
             this.pnlSeparator.Name = "pnlSeparator";
             this.pnlSeparator.Size = new System.Drawing.Size(480, 21);
             this.pnlSeparator.TabIndex = 60;
+            this.pnlSeparator.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // btnCreate
             // 
@@ -129,6 +131,7 @@ namespace Facebook.Components.Profile
             this.pnlHead.Name = "pnlHead";
             this.pnlHead.Size = new System.Drawing.Size(480, 70);
             this.pnlHead.TabIndex = 1;
+            this.pnlHead.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // btnAddImage
             // 
@@ -213,6 +216,7 @@ namespace Facebook.Components.Profile
             this.lblName.Size = new System.Drawing.Size(90, 28);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "label1";
+            this.lblName.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // picAvatar
             // 
@@ -223,6 +227,7 @@ namespace Facebook.Components.Profile
             this.picAvatar.Size = new System.Drawing.Size(70, 70);
             this.picAvatar.TabIndex = 0;
             this.picAvatar.TabStop = false;
+            this.picAvatar.Click += new System.EventHandler(this.pnlHead_Click);
             // 
             // CreatePostUC
             // 

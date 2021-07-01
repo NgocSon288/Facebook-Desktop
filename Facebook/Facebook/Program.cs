@@ -35,12 +35,9 @@ namespace Facebook
                 // Config DI
                 Container = AutofacConfig.Configure();
 
-                // Setup data
-                new StartSetup().SetUp(AutofacFactory<IPostStatusDAO>.Get(), AutofacFactory<IFileColorDAO>.Get());
-
                 Application.Run(new fMain());
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
             }

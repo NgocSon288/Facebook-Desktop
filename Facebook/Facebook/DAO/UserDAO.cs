@@ -18,13 +18,19 @@ namespace Facebook.DAO
 
         User GetByUsername(string username);
 
+        User GetByID(int id);
+
         bool Update(User user);
 
         int Login(string username, string password);
 
         Task<int> Register(string name, string username, string password, string email);
 
-        int ForgetPassword(string username, string password, string email);
+        int CheckForgetPassword(string username, string email);
+
+        bool ChangePassword(string userName, string password);
+
+        void BlockUser(string userName);
 
         bool SaveChanges();
     }
@@ -44,9 +50,44 @@ namespace Facebook.DAO
             users = GetAll();
         }
 
+        public void BlockUser(string userName)
+        {
+            try
+            {
+                var user = GetByUsername(userName);
+
+                // cập nhật DB
+                user.BlockDate = DateTime.Now.AddDays(14);
+                _userService.SaveChanges();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public bool ChangePassword(string userName, string password)
+        {
+            try
+            {
+                var user = GetByUsername(userName);
+                var passwordHashed = MD5Helper.CreateMD5(password);
+
+                // cập nhật DB
+                user.Password = passwordHashed;
+                _userService.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// -1 = Tài khoản không hợp lệ
         /// -2 = Email không hợp lệ
+        /// -3 = Tài khoản đã bị khóa
         /// 0 = Lỗi server
         /// 1 = Ok
         /// </summary>
@@ -54,7 +95,7 @@ namespace Facebook.DAO
         /// <param name="password"></param>
         /// <param name="email"></param>
         /// <returns></returns>
-        public int ForgetPassword(string username, string password, string email)
+        public int CheckForgetPassword(string username, string email)
         {
             try
             {
@@ -65,16 +106,15 @@ namespace Facebook.DAO
                     return -1;
                 }
 
+                if (user.BlockDate != null && DateTime.Now < user.BlockDate)
+                {
+                    return -3;
+                }
+
                 if (!string.Equals(email, user.Email, StringComparison.OrdinalIgnoreCase))
                 {
                     return -2;
                 }
-
-                var passwordHashed = MD5Helper.CreateMD5(password);
-
-                // cập nhật DB
-                user.Password = passwordHashed;
-                _userService.SaveChanges();
 
                 return 1;
             }
@@ -89,6 +129,11 @@ namespace Facebook.DAO
             return _userService.GetAll().ToList();
         }
 
+        public User GetByID(int id)
+        {
+            return users.FirstOrDefault(u => u.ID == id);
+        }
+
         /// <summary>
         /// Get user dựa vào tài khoản
         /// </summary>
@@ -101,6 +146,7 @@ namespace Facebook.DAO
 
         /// <summary>
         /// -1 = Tài khoản hoặc mật khẩu không hợp lệ
+        /// -2 = Tài khoản đã bị khóa
         /// 0 = Tài khoản hoặc mật khẩu không hợp lệ
         /// 1 = Ok
         /// </summary>
@@ -114,6 +160,11 @@ namespace Facebook.DAO
             if (user == null)
             {
                 return -1;
+            }
+
+            if (user.BlockDate != null && DateTime.Now < user.BlockDate)
+            {
+                return -2;
             }
 
             if (!MD5Helper.Verify(user.Password, password))

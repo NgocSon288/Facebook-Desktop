@@ -29,8 +29,10 @@ namespace Facebook.Components.Profile
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlWrap = new System.Windows.Forms.Panel();
             this.picImage = new System.Windows.Forms.PictureBox();
+            this.tt = new System.Windows.Forms.ToolTip(this.components);
             this.pnlWrap.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picImage)).BeginInit();
             this.SuspendLayout();
@@ -71,5 +73,6 @@ namespace Facebook.Components.Profile
         #endregion
         private System.Windows.Forms.Panel pnlWrap;
         private System.Windows.Forms.PictureBox picImage;
+        private System.Windows.Forms.ToolTip tt;
     }
 }

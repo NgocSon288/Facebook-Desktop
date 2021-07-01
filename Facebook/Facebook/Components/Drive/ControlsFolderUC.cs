@@ -33,17 +33,21 @@ namespace Facebook.Components.Drive
         public event DeleteFolder OnDeleteFolder;
 
         private readonly IFolderDAO _folderDAO;
+        private readonly IUserDAO _userDAO;
 
         private ControlsItemUC pasteCon;
 
-        public ControlsFolderUC(IFolderDAO folderDAO)
+        public ControlsFolderUC(IFolderDAO folderDAO, IUserDAO userDAO)
         {
             InitializeComponent();
 
             this._folderDAO = folderDAO;
+            this._userDAO = userDAO;
 
             Load();
         }
+
+        private Label lblOwnName;
 
         #region Methods
 
@@ -51,7 +55,30 @@ namespace Facebook.Components.Drive
         {
             LoadControls();
 
+            pnlOwn.Controls.Add(GetSeparator());
+            lblOwnName = new Label()
+            {
+                Text = "11111",
+                ForeColor = Constants.MAIN_FORE_SMALLTEXT_COLOR,
+                BackColor = Constants.MAIN_BACK_COLOR,
+                AutoSize = true,
+                Margin = new Padding(0, 0, 0, 0),
+                Padding = new Padding(0, 0, 0, 0),
+                Font = new Font("Consolas", 14)
+            };
+            lblOwnName.Top = pnlOwn.Height / 2 - lblOwnName.Height / 2 - 7;
+            lblOwnName.Left = pnlOwn.Width / 2 - lblOwnName.Width / 2;
+
+            pnlOwn.Controls.Add(lblOwnName);
+
+
             this.BackColor = Constants.MAIN_BACK_COLOR;
+        }
+
+        public void LoadOwn()
+        {
+            lblOwnName.Text = _userDAO.GetByID(DriveFolderItemUC.CurrentFolderItemUCFocus.folder.UserID).Name;
+            lblOwnName.Left = pnlOwn.Width / 2 - lblOwnName.Width / 2;
         }
 
         private void LoadControls()
@@ -67,7 +94,24 @@ namespace Facebook.Components.Drive
             var shareCon = new ControlsItemUC(IconChar.ShareAltSquare, "Chia sẻ thư mục cho bạn bè");
             shareCon.OnClickControl += () =>
             {
+                if (Constants.IsShareRoot)
+                {
+                    MyMessageBox.Show("Bạn không có quyền share thư mục này!", MessageBoxType.Warning);
 
+                    return;
+                }
+
+                try
+                {
+                    var fUserShare = new Folders.Share.fUserShare();
+                    var fparent = new fParentClickHidden(fUserShare);
+
+                    fparent.ShowDialog();
+                }
+                catch (Exception)
+                {
+
+                }
             };
 
             /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +120,13 @@ namespace Facebook.Components.Drive
             var moveCon = new ControlsItemUC(IconChar.PaperPlane, "Di chuyển  thư mục");
             moveCon.OnClickControl += () =>
             {
+                if (Constants.IsShareRoot)
+                {
+                    MyMessageBox.Show("Bạn không có quyền di chuyển thư mục này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 var itemUC1 = Constants.CurrentCut as DriveFolderItemUC;
                 var itemUC2 = Constants.CurrentCut as DriveFileItemUC;
 
@@ -304,36 +355,43 @@ namespace Facebook.Components.Drive
             // Rename  folder   => xong
             var renameCon = new ControlsItemUC(IconChar.Edit, "Đổi tên thư mục");
             renameCon.OnClickControl += () =>
+            {
+                if (Constants.IsShareRoot)
                 {
-                    var fnewFolder = new fRenameFolder(AutofacFactory<IFolderDAO>.Get());
-                    var fparent = new fParentClickHidden(fnewFolder);
-                    var fName = "";
+                    MyMessageBox.Show("Bạn không có quyền đổi tên thư mục này!", MessageBoxType.Warning);
 
-                    // Close và không sửa tên  thư mục
-                    fnewFolder.OnClickClose += () =>
-                            {
-                                fName = "";
-                                fparent.FParentClickHidden_Click(null, null);
-                            };
+                    return;
+                }
 
-                    fnewFolder.OnClickUpdate += (folderName) =>
-                            {
-                                fName = folderName;
-                                fparent.FParentClickHidden_Click(null, null);
-                            };
+                var fnewFolder = new fRenameFolder(AutofacFactory<IFolderDAO>.Get());
+                var fparent = new fParentClickHidden(fnewFolder);
+                var fName = "";
 
-                    fparent.FormClosed += (s, o) =>
+                // Close và không sửa tên  thư mục
+                fnewFolder.OnClickClose += () =>
+                        {
+                            fName = "";
+                            fparent.FParentClickHidden_Click(null, null);
+                        };
+
+                fnewFolder.OnClickUpdate += (folderName) =>
+                        {
+                            fName = folderName;
+                            fparent.FParentClickHidden_Click(null, null);
+                        };
+
+                fparent.FormClosed += (s, o) =>
+            {
+                if (!string.IsNullOrEmpty(fName.Trim()))
                 {
-                    if (!string.IsNullOrEmpty(fName.Trim()))
-                    {
-                        OnRenameFolder?.Invoke(fName);
-                    }
-                };
+                    OnRenameFolder?.Invoke(fName);
+                }
+            };
 
-                    // Close và thực hiện sửa tên
+                // Close và thực hiện sửa tên
 
-                    fparent.ShowDialog();
-                };
+                fparent.ShowDialog();
+            };
 
             // Color folder     =>  xong
             var colorCon = new ControlsItemUC(IconChar.Palette, "Thay đổi màu sắc");
@@ -390,6 +448,13 @@ namespace Facebook.Components.Drive
             var deleteCon = new ControlsItemUC(IconChar.Times, "Xóa thư mục");
             deleteCon.OnClickControl += () =>
             {
+                if (Constants.IsShareRoot && DriveFolderItemUC.CurrentFolderItemUCFocus.folder.UserID != Constants.UserSession.ID)
+                {
+                    MyMessageBox.Show("Bạn không có quyền xóa thư mục này!", MessageBoxType.Warning);
+
+                    return;
+                }
+
                 if (MyMessageBox.Show($"Bạn có muốn xóa folder {DriveFolderItemUC.CurrentFolderItemUCFocus.folder.Name}?", MessageBoxType.Question).Value == DialogResult.OK)
                 {
                     // duyệt đệ quy,danh sách tất cả các node cần xóa

@@ -45,6 +45,7 @@ namespace Facebook.Components.Profile
             this.page = page;
 
             Load();
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
 
@@ -85,7 +86,7 @@ namespace Facebook.Components.Profile
                 LoadUI();
                 SetColor();
 
-                UIHelper.SetBlur(this, () => this.ActiveControl = null);
+                //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
             }
         }
 
@@ -183,24 +184,6 @@ namespace Facebook.Components.Profile
 
                         UIHelper.BorderRadius(flpContent, Constants.BORDER_RADIUS);
                     }
-                }
-
-                if (posts.Count <= 0)
-                {
-                    var emptyItem = new PostEmptyItemUC();
-                    if (flpContent.InvokeRequired)
-                    {
-
-                        flpContent.BeginInvoke((Action)(() =>
-                        {
-                            flpContent.Controls.Add(emptyItem);
-                            UIHelper.BorderRadius(emptyItem, Constants.BORDER_RADIUS);
-                        }));
-                    }
-                    else
-                    {
-                        flpContent.Controls.Add(emptyItem);
-                    }
 
                     UpdateHeight();
                 }
@@ -208,6 +191,26 @@ namespace Facebook.Components.Profile
 
             task.Start();
             await task;
+
+            if (posts.Count <= 0)
+            {
+                var emptyItem = new PostEmptyItemUC();
+                if (flpContent.InvokeRequired)
+                {
+
+                    flpContent.BeginInvoke((Action)(() =>
+                    {
+                        flpContent.Controls.Add(emptyItem);
+                        UIHelper.BorderRadius(emptyItem, Constants.BORDER_RADIUS);
+                    }));
+                }
+                else
+                {
+                    flpContent.Controls.Add(emptyItem);
+                }
+
+                UpdateHeight();
+            }
         }
 
         private void PostItem_OnDeletePost(PostItemUC postItemUC)
@@ -337,6 +340,7 @@ namespace Facebook.Components.Profile
 
         private async void pnlWrapText_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = lblText;
             var isCreated = false;
             try
             {

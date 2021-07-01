@@ -42,7 +42,7 @@ namespace Facebook.Components.Messenger
             this.btnAttach.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAttach.FlatAppearance.BorderSize = 0;
             this.btnAttach.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAttach.IconChar = FontAwesome.Sharp.IconChar.PlusCircle;
+            this.btnAttach.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
             this.btnAttach.IconColor = System.Drawing.Color.Black;
             this.btnAttach.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAttach.Location = new System.Drawing.Point(3, 14);

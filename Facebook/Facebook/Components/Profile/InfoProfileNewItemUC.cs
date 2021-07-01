@@ -33,7 +33,7 @@ namespace Facebook.Components.Profile
             Load();
 
             UIHelper.BorderRadius(this, Constants.BORDER_RADIUS_SECTION_LIKE);
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
         #region Methods
 

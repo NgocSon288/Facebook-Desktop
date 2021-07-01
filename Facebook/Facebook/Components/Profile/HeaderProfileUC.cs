@@ -66,7 +66,7 @@ namespace Facebook.Components.Profile
             UIHelper.BorderRadius(beWrapAavatar, Constants.BORDER_RADIUS);
             UIHelper.BorderRadius(pnlWrapImage, Constants.BORDER_RADIUS);
             UIHelper.BorderRadius(pnlWrap, Constants.BORDER_RADIUS);
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void SetColor()

@@ -56,7 +56,14 @@ namespace Facebook.DAO
 
         public List<Comment> GetAll()
         {
-            return _commentService.GetAll().ToList();
+            try
+            {
+                return _commentService.GetAll().ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Comment>();
+            }
         }
 
         public Comment GetByID(int id)

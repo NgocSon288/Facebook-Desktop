@@ -20,6 +20,7 @@ namespace Facebook
         public fLogin fLogin;
         private fRegister fRegister;
         private fFogetPassword fFogetPassword;
+        private fVerifyPassword fVerifyPassword;
 
         public fAccountForm()
         {
@@ -32,7 +33,8 @@ namespace Facebook
         {
             LOGIN,
             REGISTER,
-            FORGET_PASSWORD
+            FORGET_PASSWORD,
+            VERIFY_PASSWORD
         }
 
         #region Methods
@@ -45,10 +47,12 @@ namespace Facebook
             fLogin = new fLogin(AutofacFactory<IUserDAO>.Get(), AutofacFactory<IProfileDAO>.Get()) { Left = 0, Top = 0 };
             fRegister = new fRegister(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0, Visible = false };
             fFogetPassword = new fFogetPassword(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0, Visible = false };
+            fVerifyPassword = new fVerifyPassword(AutofacFactory<IUserDAO>.Get()) { Left = 0, Top = 0, Visible = false };
 
             this.panelContent.Controls.Add(fLogin);
             this.panelContent.Controls.Add(fRegister);
             this.panelContent.Controls.Add(fFogetPassword);
+            this.panelContent.Controls.Add(fVerifyPassword);
         }
 
         public void SwitchFormSwitchForm(ACCOUNT_FORM ACCOUNT_FORM)
@@ -60,18 +64,28 @@ namespace Facebook
                     fLogin.RestSetForm();
                     fRegister.Visible = false;
                     fFogetPassword.Visible = false;
+                    fVerifyPassword.Visible = false;
                     break;
                 case ACCOUNT_FORM.REGISTER:
                     fLogin.Visible = false;
                     fRegister.Visible = true;
                     fRegister.RestSetForm();
                     fFogetPassword.Visible = false;
+                    fVerifyPassword.Visible = false;
                     break;
                 case ACCOUNT_FORM.FORGET_PASSWORD:
                     fLogin.Visible = false;
                     fRegister.Visible = false;
                     fFogetPassword.Visible = true;
                     fFogetPassword.RestSetForm();
+                    fVerifyPassword.Visible = false;
+                    break;
+                case ACCOUNT_FORM.VERIFY_PASSWORD:
+                    fLogin.Visible = false;
+                    fRegister.Visible = false;
+                    fFogetPassword.Visible = false;
+                    fVerifyPassword.Visible = true;
+                    fVerifyPassword.RestSetForm();
                     break;
             }
         }

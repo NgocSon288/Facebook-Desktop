@@ -33,7 +33,7 @@ namespace Facebook.Components.Friend
 
         new private void Load()
         {
-            UIHelper.SetBlur(this, () => this.ActiveControl = lblTitle);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
         private void SetUpUI()
@@ -95,7 +95,7 @@ namespace Facebook.Components.Friend
             {
                 isSubmit = true;
                 txtMyCommentDescription_TextChanged(null, null);
-                this.ActiveControl = lblTitle;
+                this.ActiveControl = null;
             }
         }
 

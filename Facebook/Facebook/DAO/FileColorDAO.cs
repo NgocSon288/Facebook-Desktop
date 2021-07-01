@@ -73,12 +73,12 @@ namespace Facebook.DAO
 
         public List<FileColor> GetAll()
         {
-            return _fileColorService.GetAll().ToList();
+            return _fileColorService.GetAll().Where(f => f.UserID == Constants.UserSession.ID).ToList();
         }
 
         public FileColor GetByExtension(string extension)
         {
-            var list = _fileColorService.GetAll();
+            var list = _fileColorService.GetAll().Where(f => f.UserID == Constants.UserSession.ID);
             var fc = list.FirstOrDefault(f =>
             {
                 var ls = StringHelper.StringToStringList(f.Extension);

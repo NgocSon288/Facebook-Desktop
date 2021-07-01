@@ -70,7 +70,7 @@ namespace Facebook.Components.Profile
             UIHelper.BorderRadius(pnlMyComment, Constants.BORDER_RADIUS);
             UIHelper.BorderRadius(pnlBackgroundDescription, Constants.BORDER_RADIUS * 2);
 
-            UIHelper.SetBlur(this, () => this.ActiveControl = null);
+            //UIHelper.SetBlur(this, (o, s) => this.ActiveControl = (Control)o, true);
         }
 
 
@@ -267,7 +267,7 @@ namespace Facebook.Components.Profile
 
         private void lblOwnMyCommentFeedback_Click(object sender, EventArgs e)
         {
-
+            this.ActiveControl = lblOwnMyCommentFeedback;
             //if (!pnlMyFeedbackComments.Visible)
             {
 
@@ -280,6 +280,7 @@ namespace Facebook.Components.Profile
 
         private void txtMyFeedbackComment_Enter(object sender, EventArgs e)
         {
+            this.ActiveControl = txtMyFeedbackComment;
             var txt = sender as TextBox;
             var text = txt.Text;
             txt.ForeColor = Constants.MAIN_FORE_COLOR;
@@ -304,6 +305,7 @@ namespace Facebook.Components.Profile
 
         private void lblOwnMyCommentLike_Click(object sender, EventArgs e)
         {
+            this.ActiveControl = lblOwnMyCommentLike;
             var userID = Constants.UserSession.ID;
             var check = likes.Any(l => l == userID);
 
@@ -329,7 +331,7 @@ namespace Facebook.Components.Profile
             {
                 isSubmit = true;
                 txtMyCommentDescription_TextChanged(null, null);
-                this.ActiveControl = lblLikeCount;
+                this.ActiveControl = null;
             }
         }
 
@@ -390,5 +392,24 @@ namespace Facebook.Components.Profile
             OnClickProfileFriend?.Invoke(comment.User);
         }
 
+        private void lblOwnCommentDesctiption_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblOwnCommentDesctiption;
+        }
+
+        private void pnlMyComment_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblOwnCommentDesctiption;
+        }
+
+        private void PostCommentItemUC_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblOwnCommentDesctiption;
+        }
+
+        private void lblMyCommentTime_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = lblMyCommentTime;
+        }
     }
 }

@@ -87,6 +87,7 @@ namespace Facebook.Components.Profile
             this.pnlMyComment.Name = "pnlMyComment";
             this.pnlMyComment.Size = new System.Drawing.Size(378, 71);
             this.pnlMyComment.TabIndex = 3;
+            this.pnlMyComment.Click += new System.EventHandler(this.pnlMyComment_Click);
             // 
             // lblOwnCommentDesctiption
             // 
@@ -96,6 +97,7 @@ namespace Facebook.Components.Profile
             this.lblOwnCommentDesctiption.Size = new System.Drawing.Size(369, 25);
             this.lblOwnCommentDesctiption.TabIndex = 3;
             this.lblOwnCommentDesctiption.Text = resources.GetString("lblOwnCommentDesctiption.Text");
+            this.lblOwnCommentDesctiption.Click += new System.EventHandler(this.lblOwnCommentDesctiption_Click);
             // 
             // lblOwnMyCommentLike
             // 
@@ -131,6 +133,7 @@ namespace Facebook.Components.Profile
             this.lblMyCommentTime.Size = new System.Drawing.Size(37, 16);
             this.lblMyCommentTime.TabIndex = 6;
             this.lblMyCommentTime.Text = "7 giờ";
+            this.lblMyCommentTime.Click += new System.EventHandler(this.lblMyCommentTime_Click);
             // 
             // pnlMyCommentControl
             // 
@@ -144,6 +147,7 @@ namespace Facebook.Components.Profile
             this.pnlMyCommentControl.Name = "pnlMyCommentControl";
             this.pnlMyCommentControl.Size = new System.Drawing.Size(375, 22);
             this.pnlMyCommentControl.TabIndex = 7;
+            this.pnlMyCommentControl.Click += new System.EventHandler(this.lblMyCommentTime_Click);
             // 
             // lblLikeCount
             // 
@@ -156,6 +160,7 @@ namespace Facebook.Components.Profile
             this.lblLikeCount.Size = new System.Drawing.Size(32, 16);
             this.lblLikeCount.TabIndex = 7;
             this.lblLikeCount.Text = "100";
+            this.lblLikeCount.Click += new System.EventHandler(this.lblMyCommentTime_Click);
             // 
             // picLike
             // 
@@ -165,6 +170,7 @@ namespace Facebook.Components.Profile
             this.picLike.Size = new System.Drawing.Size(15, 15);
             this.picLike.TabIndex = 4;
             this.picLike.TabStop = false;
+            this.picLike.Click += new System.EventHandler(this.lblMyCommentTime_Click);
             // 
             // flpFeedbackComment
             // 
@@ -236,6 +242,7 @@ namespace Facebook.Components.Profile
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PostCommentItemUC";
             this.Size = new System.Drawing.Size(444, 219);
+            this.Click += new System.EventHandler(this.PostCommentItemUC_Click);
             ((System.ComponentModel.ISupportInitialize)(this.picOwnCommentAvatar)).EndInit();
             this.pnlMyComment.ResumeLayout(false);
             this.pnlMyComment.PerformLayout();
