@@ -211,7 +211,19 @@ namespace Facebook.DAO
                     Name = name,
                     Username = username,
                     Password = passwordHashed,
-                    Email = email
+                    Email = email,
+                    AvatarUpdatedTime = DateTime.Now,
+                    ImageUpdatedTime = DateTime.Now,
+                    Avatar = null,
+                    BlockDate = null,
+                    BlockedFriend = null,
+                    ByBlockedFriend = null,
+                    CreatedBy = null,
+                    CreatedDate = DateTime.Now,
+                    Friend = null,
+                    Image = null,
+                    PhoneNumber = null,
+                    RequestedFriend = null
                 };
 
                 // Email trong profile vào user

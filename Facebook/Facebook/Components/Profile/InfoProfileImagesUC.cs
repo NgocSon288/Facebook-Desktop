@@ -41,7 +41,14 @@ namespace Facebook.Components.Profile
 
         new private async void Load()
         {
-            await LoadImage();
+            try
+            {
+                await LoadImage();
+            }
+            catch (Exception)
+            {
+
+            }
 
             SetUpUI();
             UpdateImage();

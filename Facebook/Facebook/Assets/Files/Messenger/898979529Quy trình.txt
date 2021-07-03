@@ -1,0 +1,25 @@
+Giới thiệu trang account
+	- đăng ký
+	- đăng nhập
+	
+Home	(1 tấm hình)
+	- giới thiệu cấu trúc 1 bài viết
+	- nhấn vào profile của người khác
+	- tạo 1 bài viết chọn chế độ, kèm  1 tâm hình
+
+Profile (1 ảnh đại diện 1000x370, 1 avatar 480x480)
+
+CHUYỂN NICK KHÁC
+	- giới thiệu lại profile: bạn bè, hình  ảnh
+
+Friend
+	- giới thiệu cấu trúc chức năng
+
+Messenger(3 img, 3 file)
+	- giới thiệu cấu chúc chức năng
+	- từ trái sang  phải
+	-  demo nhắn tin 2 máy
+
+Drive
+	- giới thiệu cấu trúc
+	- 

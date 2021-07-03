@@ -1,0 +1,4 @@
+thiết kết db, làm chức năng đăng ký, đăng nhập, quên mật khẩu, viết báo cáo
+
+architecture solutions, làm trang chủ, cá nhân, kết bạn, messenger, drive
+
